@@ -10,6 +10,7 @@ import Navbar from "../components/Nav";
 import PromptConsultation from "../components/PromptConsultation";
 import RealStateInsights from "../components/RealStateInsights";
 import ReviewSection from "../components/review";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 export const Landing = () => {
   return (
@@ -28,6 +29,7 @@ export const Landing = () => {
       <PromptConsultation />
 
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 };

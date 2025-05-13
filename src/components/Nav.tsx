@@ -40,7 +40,7 @@ const Navbar = () => {
     { label: "Off-Plan", path: "/off-plan" },
     { label: "Chronicle", path: "/chronicle" },
     { label: "Catalogs", path: "/catalogs" },
-    { label: "Agents", path: "/agents" },
+    { label: "Agents", path: "/AgentsSection" },
   ];
 
   useEffect(() => {
@@ -121,7 +121,15 @@ const Navbar = () => {
               </div>
 
               <div className="flex items-center space-x-6">
-                <FaWhatsapp className="text-[var(--primary-color)] text-2xl cursor-pointer font-light" />
+                <div className="flex items-center space-x-6">
+                  <a
+                    href="https://wa.me/971521110795"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaWhatsapp className="text-[var(--primary-color)] text-2xl cursor-pointer font-light" />
+                  </a>
+                </div>
                 <div className="relative group">
                   <span className="text-sm text-[var(--primary-color)] font-medium cursor-pointer py-8">
                     Follow Us
@@ -135,7 +143,7 @@ const Navbar = () => {
                     }`}
                   >
                     <a
-                      href="https://facebook.com"
+                      href="https://www.facebook.com/p/Mondus-Group-61554982800603"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
@@ -144,7 +152,7 @@ const Navbar = () => {
                       Facebook
                     </a>
                     <a
-                      href="https://instagram.com"
+                      href="https://www.instagram.com/mondusproperties/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
@@ -152,26 +160,9 @@ const Navbar = () => {
                       <Instagram size={16} />
                       Instagram
                     </a>
+
                     <a
-                      href="https://twitter.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
-                    >
-                      <Twitter size={16} />
-                      Twitter
-                    </a>
-                    <a
-                      href="https://linkedin.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
-                    >
-                      <Linkedin size={16} />
-                      Linkedin
-                    </a>
-                    <a
-                      href="https://youtube.com"
+                      href="https://www.youtube.com/@MondusPropertiesOfficial"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
@@ -182,7 +173,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <span className="text-sm text-[var(--primary-color)] font-medium cursor-pointer">
-                  <a href="tel:+1234567890">Call Us</a>
+                  <a href="tel:+971521110794">Call Us</a>
                 </span>
                 <div className="w-px h-6 bg-gray-400 dark:bg-gray-600"></div>
                 <FiPlus className="text-inherit text-xl" />

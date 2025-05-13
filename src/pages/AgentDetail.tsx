@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import agents from "../data/agents.data.json";
-import Navbar from "../components/nav";
-import Footer from "../components/footer";
+import Navbar from "../components/Nav";
+import Footer from "../components/Footer";
 import { useEffect } from "react";
 
 const AgentDetail = () => {

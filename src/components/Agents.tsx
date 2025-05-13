@@ -1,6 +1,6 @@
 import agents from "../data/agents.data.json";
-import Footer from "./footer";
-import Navbar from "./nav";
+import Footer from "../components/Footer";
+import Navbar from "../components/Nav";
 import agentBanner from "../assets/agent-desktop.webp";
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";

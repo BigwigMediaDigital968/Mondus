@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FiMenu, FiBookmark, FiPlus, FiSun, FiMoon } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import logo from "../assets/mondus.png";
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 
 declare global {
   interface Window {
@@ -12,13 +14,13 @@ declare global {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [showSocialLinks, setShowSocialLinks] = useState(false);
 
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme")
       ? localStorage.getItem("theme") === "dark"
-      : true; // default to dark
+      : true;
   });
 
   useEffect(() => {
@@ -32,18 +34,17 @@ const Navbar = () => {
   }, [darkMode]);
 
   const navItems = [
-    "Buy",
-    "Rent",
-    "Sell",
-    "Off-Plan",
-    "Chronicle ",
-    "Catalogs",
-    "Agents",
+    { label: "Buy", path: "/buy" },
+    { label: "Rent", path: "/rent" },
+    { label: "Sell", path: "/sell" },
+    { label: "Off-Plan", path: "/off-plan" },
+    { label: "Chronicle", path: "/chronicle" },
+    { label: "Catalogs", path: "/catalogs" },
+    { label: "Agents", path: "/agents" },
   ];
 
   useEffect(() => {
     const googleTranslateElementInit = () => {
-      // @ts-ignore
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
@@ -52,7 +53,7 @@ const Navbar = () => {
         "google_translate_element"
       );
     };
-    // Check if the script has already been added
+
     const loadGoogleTranslateScript = () => {
       if (!window.googleTranslateElementInit) {
         const script = document.createElement("script");
@@ -74,7 +75,10 @@ const Navbar = () => {
           <div className="flex justify-between h-20 items-center">
             {/* Mobile View */}
             <div className="flex items-center w-full justify-between md:hidden">
-              <img src={logo} alt="Mondus Logo" className="w-1/3" />
+              <a href="/">
+                <img src={logo} alt="Mondus Logo" className="w-1/3" />
+              </a>
+
               <div className="flex gap-4">
                 <button
                   onClick={() => setDarkMode(!darkMode)}
@@ -94,42 +98,92 @@ const Navbar = () => {
 
             {/* Desktop View */}
             <div className="hidden md:flex w-full justify-between items-center">
-              {/* Left logo and menu */}
               <div className="flex items-center space-x-4">
                 <div className="h-20 pr-6 mr-6 border-r border-gray-600 dark:border-gray-400 flex items-center">
-                  <img src={logo} alt="AX Logo" className="h-24" />
+                  <a href="/">
+                    <img src={logo} alt="AX Logo" className="h-24" />
+                  </a>
                 </div>
                 <div className="flex items-center gap-8">
                   {navItems.map((item, index) => (
-                    <a
+                    <Link
                       key={index}
-                      href="#"
-                      onClick={() => setActiveItem(item)}
+                      to={item.path}
+                      onClick={() => setActiveItem(item.label)}
                       className={`relative pb-2 text-sm text-inherit transition-colors hover:text-[var(--primary-color)] ${
-                        activeItem === item ? "font-light text-md" : ""
+                        activeItem === item.label ? "font-light text-md" : ""
                       }`}
                     >
-                      {item}
-                    </a>
+                      {item.label}
+                    </Link>
                   ))}
                 </div>
               </div>
 
-              {/* Right section */}
               <div className="flex items-center space-x-6">
                 <FaWhatsapp className="text-[var(--primary-color)] text-2xl cursor-pointer font-light" />
-                <a
-                  href="#"
-                  className="text-sm text-[var(--primary-color)] hover:underline font-light"
-                >
-                  FOLLOW US
-                </a>
-                <a
-                  href="#"
-                  className="text-sm text-[var(--primary-color)] hover:underline font-light"
-                >
-                  CALL US
-                </a>
+                <div className="relative group">
+                  <span className="text-sm text-[var(--primary-color)] font-medium cursor-pointer py-8">
+                    Follow Us
+                  </span>
+
+                  <div
+                    className={`absolute top-12 -right-16 min-w-[150px] rounded shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto ${
+                      darkMode
+                        ? "bg-gray-800 text-white"
+                        : "bg-white text-black"
+                    }`}
+                  >
+                    <a
+                      href="https://facebook.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                    >
+                      <Facebook size={16} />
+                      Facebook
+                    </a>
+                    <a
+                      href="https://instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                    >
+                      <Instagram size={16} />
+                      Instagram
+                    </a>
+                    <a
+                      href="https://twitter.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                    >
+                      <Twitter size={16} />
+                      Twitter
+                    </a>
+                    <a
+                      href="https://linkedin.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                    >
+                      <Linkedin size={16} />
+                      Linkedin
+                    </a>
+                    <a
+                      href="https://youtube.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                    >
+                      <Youtube size={16} />
+                      Youtube
+                    </a>
+                  </div>
+                </div>
+                <span className="text-sm text-[var(--primary-color)] font-medium cursor-pointer">
+                  <a href="tel:+1234567890">Call Us</a>
+                </span>
                 <div className="w-px h-6 bg-gray-400 dark:bg-gray-600"></div>
                 <FiPlus className="text-inherit text-xl" />
                 <FiBookmark className="text-inherit text-xl" />
@@ -145,40 +199,36 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile dropdown menu */}
+        {/* Mobile Dropdown Menu */}
         {isOpen && (
-          <div className="md:hidden fixed inset-0 z-[9999] bg-white dark:bg-black flex flex-col pl-2 pr-5 pb-4">
-            {/* Header with logo and close */}
-            <div className="flex justify-between items-center">
+          <div className="md:hidden fixed inset-0 z-[9999] bg-white dark:bg-black flex flex-col pl-2 pr-5 pb-6 pt-3">
+            <div className="flex justify-between items-center mb-6">
               <img src={logo} alt="Mondus Logo" className="w-48" />
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-2xl text-inherit"
-                title="Close"
               >
                 ✕
               </button>
             </div>
 
-            {/* Navigation items */}
             <div className="flex flex-col space-y-4 px-5">
               {navItems.map((item, index) => (
-                <a
+                <Link
                   key={index}
-                  href="#"
+                  to={item.path}
                   onClick={() => {
-                    setActiveItem(item);
+                    setActiveItem(item.label);
                     setIsOpen(false);
                   }}
                   className="text-lg text-inherit hover:text-[var(--primary-color)] transition-colors"
                 >
-                  {item}
-                </a>
+                  {item.label}
+                </Link>
               ))}
             </div>
 
-            {/* Bottom row with icons */}
-            <div className="flex mt-5 border border-[var(--primary-color)] dark:border-[var(--primary-color)]">
+            <div className="flex mt-6 border border-[var(--primary-color)]">
               <div className="w-1/2 flex justify-center items-center border-r border-[var(--primary-color)] py-3">
                 <FiPlus className="text-xl text-[var(--primary-color)]" />
               </div>
@@ -186,13 +236,88 @@ const Navbar = () => {
                 <FiBookmark className="text-xl text-[var(--primary-color)]" />
               </div>
             </div>
+
+            {/* Bottom Buttons */}
+            {/* Bottom Buttons */}
+            <div className="absolute bottom-0 left-0 w-full flex flex-col">
+              {showSocialLinks && (
+                <div
+                  className={`w-full flex flex-col px-4 py-4 transition-all duration-300 ${
+                    darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+                  }`}
+                >
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 py-2 border-b border-gray-300"
+                  >
+                    <Facebook size={18} />
+                    Facebook
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 py-2 border-b border-gray-300"
+                  >
+                    <Instagram size={18} />
+                    Instagram
+                  </a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 py-2 border-b border-gray-300"
+                  >
+                    <Twitter size={18} />
+                    Twitter
+                  </a>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 py-2 border-b border-gray-300"
+                  >
+                    <Linkedin size={18} />
+                    LinkedIn
+                  </a>
+                  <a
+                    href="https://youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 py-2"
+                  >
+                    <Youtube size={18} />
+                    YouTube
+                  </a>
+                </div>
+              )}
+
+              <div className="w-full flex">
+                <div className="w-1/2 bg-[var(--primary-color)] text-white text-center py-3">
+                  <button
+                    onClick={() => setShowSocialLinks((prev) => !prev)}
+                    className="w-full"
+                  >
+                    {showSocialLinks ? "Hide" : "Follow Us"}
+                  </button>
+                </div>
+                <div className="w-1/2 bg-black dark:bg-white text-white dark:text-black text-center py-3 border-l border-[var(--primary-color)]">
+                  <a href="tel:+1234567890" className="w-full block">
+                    Call Us
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </nav>
+
       {!isOpen && (
         <div
           id="google_translate_element"
-          className="fixed z-[999] right-[90px] top-6 translate-x-0 md:right-[360px] md:top-[22px] md:-translate-x-1/2"
+          className="fixed z-[999] right-[90px] top-6 translate-x-0 md:right-[330px] md:top-[22px] md:-translate-x-1/2"
         />
       )}
     </>

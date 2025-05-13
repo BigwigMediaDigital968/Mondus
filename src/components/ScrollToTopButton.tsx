@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 
 const ScrollToTopButton = () => {
   const [scrollPercent, setScrollPercent] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleScroll = () => {
     const scrollTop = window.scrollY;
     const docHeight =
       document.documentElement.scrollHeight - window.innerHeight;
-    const scrollProgress = (scrollTop / docHeight) * 100;
-    setScrollPercent(scrollProgress);
+    const progress = (scrollTop / docHeight) * 100;
+
+    setScrollPercent(progress);
+    setIsVisible(scrollTop > 100); // show button after 100px scroll
   };
 
   const scrollToTop = () => {
@@ -23,7 +26,9 @@ const ScrollToTopButton = () => {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center z-50"
+      className={`fixed bottom-6 right-6 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center z-50 transition-opacity duration-300 ${
+        isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
       aria-label="Scroll to top"
     >
       <svg width="48" height="48" viewBox="0 0 36 36" className="absolute">

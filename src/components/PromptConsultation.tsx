@@ -39,7 +39,9 @@ const PromptConsultation = () => {
           <p className="text-center text-md text-gray-600 dark:text-gray-400">
             Or contact us right now via{" "}
             <a
-              href="#"
+              href="https://wa.me/971521110795"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[var(--primary-color)] inline-flex items-center gap-1 hover:underline"
             >
               <FaWhatsapp size={20} /> WhatsApp

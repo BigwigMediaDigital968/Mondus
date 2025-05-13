@@ -59,15 +59,63 @@ const Footer = () => {
             Mondus Group Iris Bay 2402 , Business Bay , Dubai
           </p>
           <div className="flex justify-start lg:justify-end gap-4 pt-2 text-[var(--primary-color)] text-xl">
-            <FaEnvelope />
-            <FaFacebookF />
-            <FaLinkedinIn />
-            <FaWhatsapp />
-            <FaInstagram />
-            <FaYoutube />
+            <a
+              href="mailto:info@mondusproperties.ae"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white hover:bg-gray-700 p-2 rounded"
+            >
+              <FaEnvelope />
+            </a>
+
+            <a
+              href="https://www.facebook.com/p/Mondus-Group-61554982800603"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white hover:bg-gray-700 p-2 rounded"
+            >
+              <FaFacebookF />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/company/mondusproperties"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white hover:bg-gray-700 p-2 rounded"
+            >
+              <FaLinkedinIn />
+            </a>
+
+            <a
+              href="https://wa.me/971521110795"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white hover:bg-gray-700 p-2 rounded"
+            >
+              <FaWhatsapp />
+            </a>
+
+            <a
+              href="https://www.instagram.com/mondusproperties/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white hover:bg-gray-700 p-2 rounded"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="https://www.youtube.com/@MondusPropertiesOfficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white hover:bg-gray-700 p-2 rounded"
+            >
+              <FaYoutube />
+            </a>
           </div>
+
           <button className="mt-4 border border-[var(--primary-color)] text-[var(--primary-color)] px-6 py-2 uppercase tracking-wide hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-white dark:hover:text-black hover:font-light transition">
-            Call Us
+            <a href="tel:+971521110794">Call Us</a>
           </button>
         </div>
       </div>

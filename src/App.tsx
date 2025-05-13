@@ -8,6 +8,8 @@ import BuyDetails from "./pages/BuyDetails";
 import Rent from "./pages/Rent";
 import RentDetails from "./pages/RentDetails";
 import OffPlan from "./pages/OffPlan";
+import Sell from "./pages/Sell";
+import Blog from "./pages/Blog";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/AgentsSection" element={<AgentsSection />} />
         <Route path="/offplan" element={<OffPlan />} />
+        <Route path="/sell" element={<Sell />} />
+        <Route path="/chronicle" element={<Blog />} />
       </Routes>
     </Router>
   );

@@ -1,4 +1,4 @@
-import { FaBath, FaBed, FaHeart } from "react-icons/fa";
+import { FaBath, FaBed } from "react-icons/fa";
 import "leaflet/dist/leaflet.css";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
@@ -21,9 +21,7 @@ const PropertyCard = ({ property }: { property: (typeof properties)[0] }) => {
             Selling
           </span>
         </div>
-        <button className="absolute top-2 right-2 bg-white dark:bg-neutral-800 p-1 rounded-full text-gray-700 dark:text-white">
-          <FaHeart size={14} />
-        </button>
+
         <div className="absolute bottom-2 left-2 bg-white dark:bg-neutral-800 text-xs px-2 py-0.5 rounded shadow">
           {property.type}
         </div>

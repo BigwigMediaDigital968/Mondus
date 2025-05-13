@@ -82,13 +82,13 @@ const AgentsSection = () => {
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       {/* Navbar */}
-      <div className="mb-27 md:mb-20 pt-20 md:pt-10">
+      <div>
         <Navbar />
       </div>
 
       {/* Banner */}
       <div
-        className="w-full h-[575px] bg-cover bg-center flex flex-col justify-center items-center text-center px-4 relative"
+        className="w-full h-screen bg-cover bg-center flex flex-col justify-end py-10 items-center text-center px-4 relative"
         style={{
           backgroundImage: `url(${agentBanner})`,
         }}

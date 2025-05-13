@@ -4,6 +4,7 @@ import { Landing } from "./pages/Landing";
 import AgentDetail from "./pages/AgentDetail";
 import AgentsSection from "./components/Agents";
 import Buy from "./pages/Buy";
+import BuyDetails from "./pages/BuyDetails";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/buy" element={<Buy />} />
+        <Route path="/buy/:title" element={<BuyDetails />} />
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/AgentsSection" element={<AgentsSection />} />
       </Routes>

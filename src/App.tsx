@@ -5,6 +5,8 @@ import AgentDetail from "./pages/AgentDetail";
 import AgentsSection from "./components/Agents";
 import Buy from "./pages/Buy";
 import BuyDetails from "./pages/BuyDetails";
+import Rent from "./pages/Rent";
+import RentDetails from "./pages/RentDetails";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/buy" element={<Buy />} />
         <Route path="/buy/:title" element={<BuyDetails />} />
+        <Route path="/rent" element={<Rent />} />
+        <Route path="/rent/:title" element={<RentDetails />} />
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/AgentsSection" element={<AgentsSection />} />
       </Routes>

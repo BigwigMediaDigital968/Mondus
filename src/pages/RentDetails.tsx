@@ -5,10 +5,9 @@ import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import PromptConsultation from "../components/PromptConsultation";
 
-const BuyDetails = () => {
+const RentDetails = () => {
   const { title } = useParams<{ title: string }>();
   const decodedTitle = title?.replace(/-/g, " ").toLowerCase();
-  //   const [selectedCurrency, setSelectedCurrency] = useState("AED");
 
   const property = buyData.find(
     (item) => item.title.toLowerCase().replace(/\s+/g, " ") === decodedTitle
@@ -21,14 +20,6 @@ const BuyDetails = () => {
       </div>
     );
   }
-
-  //   const numericPrice = parseInt(property.price.replace(/\D/g, ""));
-  //   const convertedPrice = (
-  //     numericPrice * currencyRates[selectedCurrency]
-  //   ).toLocaleString(undefined, {
-  //     minimumFractionDigits: 0,
-  //     maximumFractionDigits: 0,
-  //   });
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
@@ -157,4 +148,4 @@ const BuyDetails = () => {
   );
 };
 
-export default BuyDetails;
+export default RentDetails;

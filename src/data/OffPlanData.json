@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Bliss",
+    "location": "Arabian Ranches 3, Dubai",
+    "type": "Apartment",
+    "price": "AED 2,850,000",
+    "image": "https://mondusproperties.ae/storage/properties/bliss/b5-400x260.png",
+    "beds": 3,
+    "baths": 4
+  },
+  {
+    "id": 2,
+    "title": "South Bay",
+    "location": "Dubai South, Dubai",
+    "type": "Villa",
+    "price": "AED 4,699,999",
+    "image": "https://mondusproperties.ae/storage/properties/south-bay/s1-400x260.png",
+    "beds": 5,
+    "baths": 7
+  },
+  {
+    "id": 3,
+    "title": "Jebel Ali Village",
+    "location": "Jebel Ali, Dubai",
+    "type": "Villa",
+    "price": "AED 7,200,000",
+    "image": "https://mondusproperties.ae/storage/properties/jebel-ali/j1-400x260.png",
+    "beds": 4,
+    "baths": 5
+  },
+  {
+    "id": 4,
+    "title": "Avonlea",
+    "location": "Mina Rashid, Dubai",
+    "type": "Apartment",
+    "price": "AED 1,950,000",
+    "image": "https://mondusproperties.ae/storage/properties/avonlea/a1-400x260.png",
+    "beds": 1,
+    "baths": 1
+  },
+  {
+    "id": 5,
+    "title": "The Hamilton",
+    "location": "Town Square, Dubai",
+    "type": "Apartment",
+    "price": "AED 1,299,999",
+    "image": "https://mondusproperties.ae/storage/properties/hamilton/h1-400x260.png",
+    "beds": 2,
+    "baths": 2
+  },
+  {
+    "id": 6,
+    "title": "Nadine Residences",
+    "location": "Al Furjan, Dubai",
+    "type": "Apartment",
+    "price": "AED 2,300,000",
+    "image": "https://mondusproperties.ae/storage/properties/nadine-residences/n1-400x260.png",
+    "beds": 3,
+    "baths": 3
+  }
+]

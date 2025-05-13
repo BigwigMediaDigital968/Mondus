@@ -4,6 +4,7 @@ import { FiMenu, FiBookmark, FiPlus, FiSun, FiMoon } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import logo from "../assets/mondus.png";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
 
 declare global {
   interface Window {
@@ -159,6 +160,15 @@ const Navbar = () => {
                     >
                       <Instagram size={16} />
                       Instagram
+                    </a>
+                    <a
+                      href="https://www.tiktok.com/@mondus.properties"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                    >
+                      <FaTiktok />
+                      Tiktok
                     </a>
 
                     <a

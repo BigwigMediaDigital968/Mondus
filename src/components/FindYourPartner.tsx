@@ -113,32 +113,6 @@ const FindYourPartner: React.FC = () => {
               needs and embark on your real estate journey with MONDUS
               professionals.
             </p>
-
-            <div className="flex flex-wrap gap-2 md:gap-4 mb-6">
-              <select className="bg-white border border-gray-600 px-2 md:px-4 py-2 w-[140px] md:w-[160px] dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-                <option>Specialization</option>
-                <option>Residential</option>
-                <option>Commercial</option>
-                <option>Investment</option>
-                <option>Luxury</option>
-                <option>Property Management</option>
-              </select>
-              <select className="bg-white border border-gray-600 px-4 py-2 w-[140px] md:w-[160px] dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-                <option>Language</option>
-                <option>English</option>
-                <option>Spanish</option>
-                <option>Russian</option>
-                <option>Romanian</option>
-                <option>French</option>
-              </select>
-              <button className="border border-gray-600 px-4 py-2 text-lg dark:border-gray-500 dark:text-white">
-                &#8635;
-              </button>
-            </div>
-
-            <button className="border border-[var(--primary-color)] text-[var(--primary-color)]  px-6 py-3 hover:opacity-70 hover:text-black transition dark:border-[var(--primary-color)] dark:text-[primary-color] hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] dark:hover:text-black">
-              SHOW ALL
-            </button>
           </div>
 
           {/* Right Slider Section */}

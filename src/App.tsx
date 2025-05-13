@@ -7,6 +7,7 @@ import Buy from "./pages/Buy";
 import BuyDetails from "./pages/BuyDetails";
 import Rent from "./pages/Rent";
 import RentDetails from "./pages/RentDetails";
+import OffPlan from "./pages/OffPlan";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/rent/:title" element={<RentDetails />} />
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/AgentsSection" element={<AgentsSection />} />
+        <Route path="/offplan" element={<OffPlan />} />
       </Routes>
     </Router>
   );

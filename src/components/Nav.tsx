@@ -38,7 +38,7 @@ const Navbar = () => {
     { label: "Buy", path: "/buy" },
     { label: "Rent", path: "/rent" },
     { label: "Sell", path: "/sell" },
-    { label: "Off-Plan", path: "/off-plan" },
+    { label: "Off-Plan", path: "/offplan" },
     { label: "Chronicle", path: "/chronicle" },
     { label: "Catalogs", path: "/catalogs" },
     { label: "Agents", path: "/AgentsSection" },

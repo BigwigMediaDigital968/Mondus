@@ -11,6 +11,7 @@ import OffPlan from "./pages/OffPlan";
 import Sell from "./pages/Sell";
 import Blog from "./pages/Blog";
 import OffPlanDetails from "./pages/OffPlanDetails";
+import BlogDetails from "./pages/BlogDetails";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/offplan/:slug" element={<OffPlanDetails />} />
         <Route path="/sell" element={<Sell />} />
         <Route path="/chronicle" element={<Blog />} />
+        <Route path="/chronicle/:slug" element={<BlogDetails />} />
       </Routes>
     </Router>
   );

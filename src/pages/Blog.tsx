@@ -49,7 +49,7 @@ const Blog = () => {
                     {blog.date}
                   </span>
                   <Link
-                    to={`/chronicle/${blog.slug}`}
+                    to={`/insights/${blog.slug}`}
                     className="text-[var(--primary-color)] hover:underline"
                   >
                     Explore →

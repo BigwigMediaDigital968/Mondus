@@ -33,8 +33,8 @@ function App() {
         <Route path="/offplan" element={<OffPlan />} />
         <Route path="/offplan/:slug" element={<OffPlanDetails />} />
         <Route path="/sell" element={<Sell />} />
-        <Route path="/chronicle" element={<Blog />} />
-        <Route path="/chronicle/:slug" element={<BlogDetails />} />
+        <Route path="/insights" element={<Blog />} />
+        <Route path="/insights/:slug" element={<BlogDetails />} />
         <Route path="/catalogs" element={<CatalogSection />} />
         <Route path="/developers" element={<Developers />} />
         <Route path="/contact" element={<Contact />} />

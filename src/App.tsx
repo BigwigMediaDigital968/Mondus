@@ -12,6 +12,7 @@ import Sell from "./pages/Sell";
 import Blog from "./pages/Blog";
 import OffPlanDetails from "./pages/OffPlanDetails";
 import BlogDetails from "./pages/BlogDetails";
+import CatalogSection from "./components/CatalogSection";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/sell" element={<Sell />} />
         <Route path="/chronicle" element={<Blog />} />
         <Route path="/chronicle/:slug" element={<BlogDetails />} />
+        <Route path="/catalogs" element={<CatalogSection />} />
       </Routes>
     </Router>
   );

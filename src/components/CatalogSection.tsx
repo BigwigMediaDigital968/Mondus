@@ -1,29 +1,51 @@
 import React, { useState } from "react";
 import CatalogCard from "./CatalogCard";
 import CatalogPreviewModal from "./CatalogPreviewModal";
+import Navbar from "./Nav";
+import Footer from "./Footer";
+import { catalogImgData } from "../data/catalogImgData";
 
 const catalogItems = [
   {
     title: "Best Emaar Offers",
     subtitle: "TOP 10 PROJECTS FROM DUBAI LEADING DEVELOPER",
-    cover: "https://fnst.axflare.com/catalog/images/WEBP/yQEOifTGKc.webp",
-    pages: [
-      "https://fnst.axflare.com/catalog/images/WEBP/yQEOifTGKc.webp",
-      "https://fnst.axflare.com/catalog/images/WEBP/QJxFTxvzWR.webp",
-      "https://fnst.axflare.com/catalog/images/WEBP/JuKUpbzljH.webp",
-      "https://fnst.axflare.com/catalog/images/WEBP/JuKUpbzljH.webp",
-    ],
+    cover: catalogImgData[0].cover,
+    pages: catalogImgData[0].pages,
   },
   {
     title: "Branded Homes",
     subtitle:
       "CURATED PROJECTS IN DUBAI MADE IN COLLABORATION WITH FAMOUS BRANDS",
-    cover: "/catelog/branded-cover.jpg",
-    pages: [
-      "/catelog/branded-cover.jpg",
-      "/catelog/branded-1.jpg",
-      "/catelog/branded-2.jpg",
-    ],
+    cover: catalogImgData[1].cover,
+    pages: catalogImgData[1].pages,
+  },
+  {
+    title: "Branded Homes",
+    subtitle:
+      "CURATED PROJECTS IN DUBAI MADE IN COLLABORATION WITH FAMOUS BRANDS",
+    cover: catalogImgData[2].cover,
+    pages: catalogImgData[2].pages,
+  },
+  {
+    title: "Branded Homes",
+    subtitle:
+      "CURATED PROJECTS IN DUBAI MADE IN COLLABORATION WITH FAMOUS BRANDS",
+    cover: catalogImgData[3].cover,
+    pages: catalogImgData[3].pages,
+  },
+  {
+    title: "Branded Homes",
+    subtitle:
+      "CURATED PROJECTS IN DUBAI MADE IN COLLABORATION WITH FAMOUS BRANDS",
+    cover: catalogImgData[4].cover,
+    pages: catalogImgData[4].pages,
+  },
+  {
+    title: "Branded Homes",
+    subtitle:
+      "CURATED PROJECTS IN DUBAI MADE IN COLLABORATION WITH FAMOUS BRANDS",
+    cover: catalogImgData[5].cover,
+    pages: catalogImgData[5].pages,
   },
 ];
 
@@ -37,21 +59,26 @@ const CatalogSection: React.FC = () => {
   };
 
   return (
-    <div className="bg-black p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {catalogItems.map((item, idx) => (
-        <CatalogCard
-          key={idx}
-          title={item.title}
-          subtitle={item.subtitle}
-          imageUrl={item.cover}
-          onPreview={() => handlePreview(item.pages)}
+    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
+      <Navbar />
+      <div className="w-[90%]  mx-auto  p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-28">
+        {catalogItems.map((item, idx) => (
+          <CatalogCard
+            key={idx}
+            title={item.title}
+            subtitle={item.subtitle}
+            imageUrl={item.cover}
+            onPreview={() => handlePreview(item.pages)}
+            images={item.pages}
+          />
+        ))}
+        <CatalogPreviewModal
+          isOpen={previewOpen}
+          onRequestClose={() => setPreviewOpen(false)}
+          images={activePages}
         />
-      ))}
-      <CatalogPreviewModal
-        isOpen={previewOpen}
-        onRequestClose={() => setPreviewOpen(false)}
-        images={activePages}
-      />
+      </div>
+      <Footer />
     </div>
   );
 };

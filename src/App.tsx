@@ -16,6 +16,8 @@ import CatalogSection from "./components/CatalogSection";
 import Developers from "./pages/Developers";
 import Contact from "./pages/Contact";
 import Career from "./pages/Career";
+import AreaGuide from "./pages/AreaGuide";
+import AreaGuideDetails from "./pages/AreaGuideDetails";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
         <Route path="/developers" element={<Developers />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/careers" element={<Career />} />
+        <Route path="/area-guides" element={<AreaGuide />} />
+        <Route path="/area-guides/:title" element={<AreaGuideDetails />} />
       </Routes>
     </Router>
   );

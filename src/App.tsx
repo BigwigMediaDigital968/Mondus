@@ -10,6 +10,7 @@ import RentDetails from "./pages/RentDetails";
 import OffPlan from "./pages/OffPlan";
 import Sell from "./pages/Sell";
 import Blog from "./pages/Blog";
+import OffPlanDetails from "./pages/OffPlanDetails";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/AgentsSection" element={<AgentsSection />} />
         <Route path="/offplan" element={<OffPlan />} />
+        <Route path="/offplan/:slug" element={<OffPlanDetails />} />
         <Route path="/sell" element={<Sell />} />
         <Route path="/chronicle" element={<Blog />} />
       </Routes>

@@ -1,47 +1,43 @@
-import { FaBath, FaBed } from "react-icons/fa";
 import "leaflet/dist/leaflet.css";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import properties from "../data/OffPlanData.json";
 
+import { useNavigate } from "react-router-dom";
+
 const PropertyCard = ({ property }: { property: (typeof properties)[0] }) => {
+  const navigate = useNavigate();
+
+  const slug = `${property.title
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "")}`;
+
   return (
-    <div className="bg-white dark:bg-neutral-900 text-black dark:text-white  shadow border dark:border-white/10 hover:shadow-md transition duration-200 overflow-hidden">
+    <div className="bg-white dark:bg-neutral-900 text-black dark:text-white shadow border dark:border-white/10 hover:shadow-md transition duration-200 overflow-hidden">
       <div className="relative">
         <img
           src={property.image}
           alt={property.title}
           className="w-full h-52 object-cover"
         />
-        <div className="absolute top-2 left-2 flex gap-1 text-xs">
-          <span className="bg-green-600 text-white px-2 py-0.5 rounded">
-            Featured
-          </span>
-          <span className="bg-orange-600 text-white px-2 py-0.5 rounded">
-            Selling
-          </span>
-        </div>
 
         <div className="absolute bottom-2 left-2 bg-white dark:bg-neutral-800 text-xs px-2 py-0.5 rounded shadow">
           {property.type}
         </div>
       </div>
+
       <div className="p-3">
-        <h3 className="font-semibold text-base mb-1">{property.title}</h3>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-          {property.location}
-        </p>
-        <div className="flex items-center gap-4 text-sm text-gray-700 dark:text-gray-300 mb-2">
-          <span className="flex items-center gap-1">
-            <FaBed /> {property.beds}
-          </span>
-          <span className="flex items-center gap-1">
-            <FaBath /> {property.baths}
-          </span>
-        </div>
-        <div className="font-semibold text-[var(--primary-color)] text-lg">
-          {property.price}
-        </div>
+        <h3 className=" mb-1">{property.title}</h3>
+        <p className="text-sm  mb-1">Developer: {property.developer}</p>
+        <div className="text-sm mb-2">Type: {property.type}</div>
+
+        <button
+          onClick={() => navigate(`/offplan/${slug}`)}
+          className="text-[var(--primary-color)] text-sm mt-2 hover:underline"
+        >
+          Explore →
+        </button>
       </div>
     </div>
   );
@@ -49,7 +45,7 @@ const PropertyCard = ({ property }: { property: (typeof properties)[0] }) => {
 
 const OffPlan = () => {
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway">
+    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <Navbar />
 
       {/* Hero Image with Overlay Text */}

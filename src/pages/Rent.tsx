@@ -7,7 +7,6 @@ import rentData from "../data/BuyData.json";
 import {
   BedDouble,
   Bookmark,
-  Funnel,
   Mail,
   MapPin,
   MessageCircle,
@@ -22,7 +21,6 @@ const Rent: React.FC = () => {
   const [bedrooms, setBedrooms] = useState("");
   const [areaRange, setAreaRange] = useState([500, 5000]);
   const [priceRange, setPriceRange] = useState([500000, 50000000]);
-  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   const filteredProperties = useMemo(() => {
     return rentData.filter((property) => {
@@ -48,131 +46,6 @@ const Rent: React.FC = () => {
     });
   }, [propertyType, bedrooms, priceRange, areaRange]);
 
-  const Filters = () => (
-    <div className="w-full md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 px-4 py-6">
-      {/* Property Type */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-sm">Property Type</label>
-        <select
-          value={propertyType}
-          onChange={(e) => setPropertyType(e.target.value)}
-          className="bg-white dark:bg-black border border-gray-400 dark:border-gray-600 px-4 py-2 rounded text-black dark:text-white"
-        >
-          <option value="">Any</option>
-          <option value="Apartment">Apartment</option>
-          <option value="Villa">Villa</option>
-          <option value="Townhouse">Townhouse</option>
-          <option value="Penthouse">Penthouse</option>
-        </select>
-      </div>
-
-      {/* Bedrooms */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-sm">Bedrooms</label>
-        <select
-          value={bedrooms}
-          onChange={(e) => setBedrooms(e.target.value)}
-          className="bg-white dark:bg-black border border-gray-400 dark:border-gray-600 px-4 py-2 rounded text-black dark:text-white"
-        >
-          <option value="">Any</option>
-          {[1, 2, 3, 4, 5].map((num) => (
-            <option key={num} value={num}>
-              {num}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Area Range */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-sm">Area (sqft)</label>
-        <div className=" font-sans border border-gray-400 dark:border-gray-600 rounded px-4 py-2 bg-white dark:bg-black relative">
-          <div className="flex justify-between text-xs mb-2">
-            <span>{areaRange[0].toLocaleString()}</span>
-            <span>{areaRange[1].toLocaleString()}</span>
-          </div>
-          <div className="absolute left-4 right-4 bottom-0">
-            <Range
-              step={100}
-              min={500}
-              max={5000}
-              values={areaRange}
-              onChange={setAreaRange}
-              renderTrack={({ props, children }) => (
-                <div
-                  {...props}
-                  className="h-1 bg-gray-300 dark:bg-gray-700 rounded"
-                  style={{
-                    ...props.style,
-                    background: `linear-gradient(to right, #ccc ${
-                      ((areaRange[0] - 500) / (5000 - 500)) * 100
-                    }%, var(--primary-color) ${
-                      ((areaRange[0] - 500) / (5000 - 500)) * 100
-                    }%, var(--primary-color) ${
-                      ((areaRange[1] - 500) / (5000 - 500)) * 100
-                    }%, #ccc ${((areaRange[1] - 500) / (5000 - 500)) * 100}%)`,
-                  }}
-                >
-                  {children}
-                </div>
-              )}
-              renderThumb={({ props }) => (
-                <div
-                  {...props}
-                  className="w-4 h-4 bg-[var(--primary-color)] rounded-full shadow"
-                />
-              )}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Price Range */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-sm">Price (AED)</label>
-        <div className=" font-sans border border-gray-400 dark:border-gray-600 rounded px-4 py-2 bg-white dark:bg-black relative">
-          <div className="flex justify-between text-xs mb-2">
-            <span>{priceRange[0].toLocaleString()}</span>
-            <span>{priceRange[1].toLocaleString()}</span>
-          </div>
-          <div className="absolute left-4 right-4 bottom-0">
-            <Range
-              step={50000}
-              min={500000}
-              max={50000000}
-              values={priceRange}
-              onChange={setPriceRange}
-              renderTrack={({ props, children }) => (
-                <div
-                  {...props}
-                  className="h-1 bg-gray-300 dark:bg-gray-700 rounded"
-                  style={{
-                    ...props.style,
-                    background: `linear-gradient(to right, #ccc ${
-                      (priceRange[0] / 50000000) * 100
-                    }%, var(--primary-color) ${
-                      (priceRange[0] / 50000000) * 100
-                    }%, var(--primary-color) ${
-                      (priceRange[1] / 50000000) * 100
-                    }%, #ccc ${(priceRange[1] / 50000000) * 100}%)`,
-                  }}
-                >
-                  {children}
-                </div>
-              )}
-              renderThumb={({ props }) => (
-                <div
-                  {...props}
-                  className="w-4 h-4 bg-[var(--primary-color)] rounded-full shadow"
-                />
-              )}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <div className="mb-16 md:mb-28 pt-5">
@@ -181,25 +54,130 @@ const Rent: React.FC = () => {
 
       <h1 className="text-2xl text-center">PROPERTIES FOR RENT IN DUBAI</h1>
 
-      <div className="md:hidden px-4 mt-4">
-        <button
-          onClick={() => setShowMobileFilters((prev) => !prev)}
-          className="flex items-center gap-2 text-sm px-4 py-2 bg-[var(--primary-color)] text-white rounded"
-        >
-          <Funnel className="w-4 h-4" />
-          Filters
-        </button>
-      </div>
-
-      {showMobileFilters && (
-        <div className="md:hidden">
-          <Filters />
+      {/* Filters */}
+      <div className="w-full md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 px-4 py-6">
+        {/* Property Type */}
+        <div className="flex flex-col">
+          <label className="mb-1 text-sm">Property Type</label>
+          <select
+            value={propertyType}
+            onChange={(e) => setPropertyType(e.target.value)}
+            className="bg-white dark:bg-black border border-gray-400 dark:border-gray-600 px-4 py-2 rounded text-black dark:text-white"
+          >
+            <option value="">Any</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Villa">Villa</option>
+            <option value="Townhouse">Townhouse</option>
+            <option value="Penthouse">Penthouse</option>
+          </select>
         </div>
-      )}
 
-      {/* Desktop Filter Panel */}
-      <div className="hidden md:block">
-        <Filters />
+        {/* Bedrooms */}
+        <div className="flex flex-col">
+          <label className="mb-1 text-sm">Bedrooms</label>
+          <select
+            value={bedrooms}
+            onChange={(e) => setBedrooms(e.target.value)}
+            className="bg-white dark:bg-black border border-gray-400 dark:border-gray-600 px-4 py-2 rounded text-black dark:text-white"
+          >
+            <option value="">Any</option>
+            {[1, 2, 3, 4, 5].map((num) => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Area Range */}
+        <div className="flex flex-col">
+          <label className="mb-1 text-sm">Area (sqft)</label>
+          <div className=" font-sans border border-gray-400 dark:border-gray-600 rounded px-4 py-2 bg-white dark:bg-black relative">
+            <div className="flex justify-between text-xs mb-2">
+              <span>{areaRange[0].toLocaleString()}</span>
+              <span>{areaRange[1].toLocaleString()}</span>
+            </div>
+            <div className="absolute left-4 right-4 bottom-0">
+              <Range
+                step={100}
+                min={500}
+                max={5000}
+                values={areaRange}
+                onChange={setAreaRange}
+                renderTrack={({ props, children }) => (
+                  <div
+                    {...props}
+                    className="h-1 bg-gray-300 dark:bg-gray-700 rounded"
+                    style={{
+                      ...props.style,
+                      background: `linear-gradient(to right, #ccc ${
+                        ((areaRange[0] - 500) / (5000 - 500)) * 100
+                      }%, var(--primary-color) ${
+                        ((areaRange[0] - 500) / (5000 - 500)) * 100
+                      }%, var(--primary-color) ${
+                        ((areaRange[1] - 500) / (5000 - 500)) * 100
+                      }%, #ccc ${
+                        ((areaRange[1] - 500) / (5000 - 500)) * 100
+                      }%)`,
+                    }}
+                  >
+                    {children}
+                  </div>
+                )}
+                renderThumb={({ props }) => (
+                  <div
+                    {...props}
+                    className="w-4 h-4 bg-[var(--primary-color)] rounded-full shadow"
+                  />
+                )}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Price Range */}
+        <div className="flex flex-col">
+          <label className="mb-1 text-sm">Price (AED)</label>
+          <div className=" font-sans border border-gray-400 dark:border-gray-600 rounded px-4 py-2 bg-white dark:bg-black relative">
+            <div className="flex justify-between text-xs mb-2">
+              <span>{priceRange[0].toLocaleString()}</span>
+              <span>{priceRange[1].toLocaleString()}</span>
+            </div>
+            <div className="absolute left-4 right-4 bottom-0">
+              <Range
+                step={50000}
+                min={500000}
+                max={50000000}
+                values={priceRange}
+                onChange={setPriceRange}
+                renderTrack={({ props, children }) => (
+                  <div
+                    {...props}
+                    className="h-1 bg-gray-300 dark:bg-gray-700 rounded"
+                    style={{
+                      ...props.style,
+                      background: `linear-gradient(to right, #ccc ${
+                        (priceRange[0] / 50000000) * 100
+                      }%, var(--primary-color) ${
+                        (priceRange[0] / 50000000) * 100
+                      }%, var(--primary-color) ${
+                        (priceRange[1] / 50000000) * 100
+                      }%, #ccc ${(priceRange[1] / 50000000) * 100}%)`,
+                    }}
+                  >
+                    {children}
+                  </div>
+                )}
+                renderThumb={({ props }) => (
+                  <div
+                    {...props}
+                    className="w-4 h-4 bg-[var(--primary-color)] rounded-full shadow"
+                  />
+                )}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Properties Listing */}

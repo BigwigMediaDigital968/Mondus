@@ -53,10 +53,11 @@ const RealEstateExperts: React.FC = () => {
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             We have implemented all these in MONDUS PROPERTIES
           </p>
-
-          <button className="border px-6 py-3 transition mb-8 border-[var(--primary-color)] text-[var(--primary-color)] btn-gradient-hover">
-            Enquire now
-          </button>
+          <a href="/contact">
+            <button className="border px-6 py-3 transition mb-8 border-[var(--primary-color)] text-[var(--primary-color)] btn-gradient-hover">
+              Enquire now
+            </button>
+          </a>
 
           {/* Desktop stats */}
           <div className="hidden md:grid grid-cols-3 text-center gap-6 border-t border-gray-300 dark:border-gray-800 pt-8">

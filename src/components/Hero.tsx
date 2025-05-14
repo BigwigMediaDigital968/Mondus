@@ -48,9 +48,6 @@ export default function Hero() {
           We bring <span className="font-semibold">Due Diligence</span> at Your
           service
         </p>
-        <button className="border border-[#C29579] text-[#C29579] px-6 py-3 hover:bg-[#C29579]/20 transition dark:text-[#f7b48a] dark:border-[#C29579] dark:hover:bg-[#C29579]/20">
-          Leave a request
-        </button>
       </div>
 
       {/* Right Form */}

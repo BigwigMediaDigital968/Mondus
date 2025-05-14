@@ -137,7 +137,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-6 py-6 text-xs text-gray-600 dark:text-gray-400 flex flex-col sm:flex-row justify-between gap-2">
         <span>Mondus ©2025 All Rights Reserved</span>
         <div className="flex gap-4">
-          {["Terms of Use", "Privacy Policy", "Sitemap"].map((item, idx) => (
+          {["Terms of Use", "Privacy Policy"].map((item, idx) => (
             <a
               key={idx}
               href="#"

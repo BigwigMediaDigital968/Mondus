@@ -161,12 +161,11 @@ const Exclusives = () => {
                     Handover date: {property.handover}
                   </p>
                   <div className="mt-4 flex gap-4">
-                    <button className="bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black px-6 py-2">
-                      Enquire now
-                    </button>
-                    <button className="border border-black dark:border-white px-6 py-2 font-light dark:font-thin">
-                      Learn more
-                    </button>
+                    <a href="/contact">
+                      <button className="bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black px-6 py-2">
+                        Enquire now
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>

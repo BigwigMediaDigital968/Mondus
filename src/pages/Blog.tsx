@@ -6,7 +6,7 @@ import PromptConsultation from "../components/PromptConsultation";
 
 const Blog = () => {
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway">
+    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <Navbar />
 
       <section className="relative h-screen w-full">
@@ -40,7 +40,7 @@ const Blog = () => {
                 className="w-full h-52 object-cover"
               />
               <div className="p-5 h-[250px] flex flex-col justify-between">
-                <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
+                <h3 className="text-xl  mb-2">{blog.title}</h3>
                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                   {blog.excerpt}
                 </p>

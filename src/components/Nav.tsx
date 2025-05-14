@@ -107,16 +107,16 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center gap-8">
                   {navItems.map((item, index) => (
-                    <Link
+                    <a
                       key={index}
-                      to={item.path}
+                      href={item.path}
                       onClick={() => setActiveItem(item.label)}
                       className={`relative pb-2 text-sm text-inherit transition-colors hover:text-[var(--primary-color)] ${
                         activeItem === item.label ? "font-light text-md" : ""
                       }`}
                     >
                       {item.label}
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </div>

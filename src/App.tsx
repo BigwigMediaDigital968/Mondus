@@ -13,6 +13,7 @@ import Blog from "./pages/Blog";
 import OffPlanDetails from "./pages/OffPlanDetails";
 import BlogDetails from "./pages/BlogDetails";
 import CatalogSection from "./components/CatalogSection";
+import Developers from "./pages/Developers";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/chronicle" element={<Blog />} />
         <Route path="/chronicle/:slug" element={<BlogDetails />} />
         <Route path="/catalogs" element={<CatalogSection />} />
+        <Route path="/developers" element={<Developers />} />
       </Routes>
     </Router>
   );

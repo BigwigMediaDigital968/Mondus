@@ -32,20 +32,33 @@ const Footer = () => {
       {/* Main content */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between px-6 sm:px-12 lg:px-6 gap-8 pb-10 font-light dark:font-thin ">
         {/* Left: Navigation Columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {[
-            ["Apartments", "Penthouses", "Villas", "Townhouses"],
-            ["Off-Plan", "Catalogs", "Area Guides", "Sell"],
-            ["Rent", "Developers", "Reviews"],
-            ["Careers", "Contact Us"],
+            [
+              { label: "Buy", path: "/buy" },
+              { label: "Rent", path: "/rent" },
+              { label: "Sell", path: "/sell" },
+              { label: "Off-Plan", path: "/offplan" },
+            ],
+            [
+              { label: "Catalogs", path: "/catalogs" },
+              { label: "Area Guides", path: "/area-guides" },
+              { label: "Developers", path: "/developers" },
+            ],
+            [
+              { label: "Careers", path: "/careers" },
+              { label: "Contact Us", path: "/contact" },
+            ],
           ].map((group, idx) => (
-            <ul key={idx} className="space-y-2">
+            <ul key={idx} className="space-y-4">
               {group.map((item, i) => (
-                <li
-                  key={i}
-                  className="cursor-pointer hover:text-[var(--primary-color)] transition"
-                >
-                  {item}
+                <li key={i}>
+                  <a
+                    href={item.path}
+                    className="cursor-pointer hover:text-[var(--primary-color)] transition"
+                  >
+                    {item.label}
+                  </a>
                 </li>
               ))}
             </ul>

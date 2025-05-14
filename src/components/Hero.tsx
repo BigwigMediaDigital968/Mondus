@@ -37,6 +37,7 @@ export default function Hero() {
         alt="Dubai Tower"
         className="absolute inset-0 w-full h-full object-cover opacity-70 z-0"
         style={{ background: "var(--bg-primary-gradient)" }}
+        draggable="false"
       />
 
       {/* Left Content */}

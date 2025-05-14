@@ -40,6 +40,7 @@ const CatalogFlipbook = forwardRef<any, CatalogFlipbookProps>(
               src={src}
               alt={`Page ${idx + 1}`}
               className="w-full h-full object-cover"
+              draggable="false"
             />
           </div>
         ))}

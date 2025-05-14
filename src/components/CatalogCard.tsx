@@ -74,6 +74,7 @@ const CatalogCard: React.FC<CatalogCardProps> = ({
         src={imageUrl}
         alt={title}
         className="mt-4 w-full h-96 object-cover"
+        draggable="false"
       />
     </div>
   );

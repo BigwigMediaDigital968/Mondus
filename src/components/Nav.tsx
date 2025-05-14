@@ -78,7 +78,12 @@ const Navbar = () => {
             {/* Mobile View */}
             <div className="flex items-center w-full justify-between md:hidden">
               <a href="/">
-                <img src={logo} alt="Mondus Logo" className="w-1/3" />
+                <img
+                  src={logo}
+                  alt="Mondus Logo"
+                  className="w-1/3"
+                  draggable="false"
+                />
               </a>
 
               <div className="flex gap-4">

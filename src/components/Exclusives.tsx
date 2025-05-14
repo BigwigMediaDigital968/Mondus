@@ -98,6 +98,7 @@ const Exclusives = () => {
                     src={property.image}
                     alt={property.title}
                     className="w-full h-full object-cover md:h-[80vh]"
+                    draggable="false"
                   />
                   <div className="p-4">
                     <h3 className="text-xl md:text-2xl font-light mb-2">

@@ -37,7 +37,7 @@ const RentDetails = () => {
               className="w-full h-full object-cover rounded-md"
             />
           </div>
-          <div className="w-full md:w-1/3 flex-col gap-2 hidden md:block">
+          <div className="w-full md:w-1/3 hidden md:flex flex-col gap-2">
             <img
               src={property.images[1]}
               alt="Side 1"

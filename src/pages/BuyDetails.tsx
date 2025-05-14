@@ -22,14 +22,6 @@ const BuyDetails = () => {
     );
   }
 
-  //   const numericPrice = parseInt(property.price.replace(/\D/g, ""));
-  //   const convertedPrice = (
-  //     numericPrice * currencyRates[selectedCurrency]
-  //   ).toLocaleString(undefined, {
-  //     minimumFractionDigits: 0,
-  //     maximumFractionDigits: 0,
-  //   });
-
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <div className="mb-16 md:mb-28 pt-5">
@@ -46,7 +38,7 @@ const BuyDetails = () => {
               className="w-full h-full object-cover rounded-md"
             />
           </div>
-          <div className="w-full md:w-1/3 flex-col gap-2 hidden md:block">
+          <div className="w-full md:w-1/3 hidden md:flex flex-col gap-2">
             <img
               src={property.images[1]}
               alt="Side 1"

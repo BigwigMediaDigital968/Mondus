@@ -14,6 +14,8 @@ import OffPlanDetails from "./pages/OffPlanDetails";
 import BlogDetails from "./pages/BlogDetails";
 import CatalogSection from "./components/CatalogSection";
 import Developers from "./pages/Developers";
+import Contact from "./pages/Contact";
+import Career from "./pages/Career";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route path="/chronicle/:slug" element={<BlogDetails />} />
         <Route path="/catalogs" element={<CatalogSection />} />
         <Route path="/developers" element={<Developers />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/careers" element={<Career />} />
       </Routes>
     </Router>
   );

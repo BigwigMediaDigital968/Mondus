@@ -22,6 +22,7 @@ const AgentCard = ({ agent }: { agent: Agent & { id: string } }) => (
         src={agent.img}
         alt={agent.name}
         className="w-full h-full object-cover"
+        draggable="false"
       />
       <div className="absolute bottom-0 w-full bg-black bg-opacity-60 text-white p-4 backdrop-blur-sm">
         <h2 className="font-semibold text-lg">{agent.name}</h2>

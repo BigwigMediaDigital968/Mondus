@@ -11,6 +11,7 @@ import PromptConsultation from "../components/PromptConsultation";
 import RealStateInsights from "../components/RealStateInsights";
 import ReviewSection from "../components/review";
 import ScrollToTopButton from "../components/ScrollToTopButton";
+import WhatWeDoSection from "../components/WhatWeDoSection";
 
 export const Landing = () => {
   return (
@@ -21,7 +22,7 @@ export const Landing = () => {
       <BuyRentSection />
       <Exclusives />
       <FindYourPartner />
-
+      <WhatWeDoSection />
       <ReviewSection />
       <AboutSection />
       <LifeStyleSection />

@@ -18,6 +18,7 @@ import Contact from "./pages/Contact";
 import Career from "./pages/Career";
 import AreaGuide from "./pages/AreaGuide";
 import AreaGuideDetails from "./pages/AreaGuideDetails";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/catalogs" element={<CatalogSection />} />
         <Route path="/developers" element={<Developers />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Career />} />
         <Route path="/area-guides" element={<AreaGuide />} />
         <Route path="/area-guides/:title" element={<AreaGuideDetails />} />

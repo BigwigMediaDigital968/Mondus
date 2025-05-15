@@ -8,8 +8,8 @@ const About = () => {
       <Navbar />
       <section className="relative h-screen w-full">
         <img
-          src="https://www.axcapital.ae/_ipx/s_1920x960/img/blog/blog-bg.webp"
-          alt="Blog Hero"
+          src="https://mondusproperties.ae/storage/yoyo.png"
+          alt="About"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40 dark:bg-black/70 flex flex-col items-center justify-end py-5 text-center px-4">

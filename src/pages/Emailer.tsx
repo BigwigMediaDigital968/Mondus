@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import logo from "../assets/mondus.png";
 
 const Emailer = () => {
   const [form, setForm] = useState({
@@ -75,7 +76,14 @@ const Emailer = () => {
       <nav className="bg-gray-900 shadow px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="text-3xl font-bold bg-gradient-to-r from-[#ac7072] via-[#e6d2d1] to-[#ad7173] bg-clip-text text-transparent uppercase">
-            Fern Hospitality
+            <a href="/">
+              <img
+                src={logo}
+                alt="Mondus Logo"
+                className="w-1/3"
+                draggable="false"
+              />
+            </a>{" "}
           </div>
         </div>
       </nav>

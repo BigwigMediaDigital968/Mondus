@@ -19,6 +19,8 @@ import Career from "./pages/Career";
 import AreaGuide from "./pages/AreaGuide";
 import AreaGuideDetails from "./pages/AreaGuideDetails";
 import About from "./pages/About";
+import NewsletterForm from "./pages/Newsletter";
+import Emailer from "./pages/Emailer";
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
         <Route path="/careers" element={<Career />} />
         <Route path="/area-guides" element={<AreaGuide />} />
         <Route path="/area-guides/:title" element={<AreaGuideDetails />} />
+        <Route path="/newsletter" element={<NewsletterForm />} />
+        <Route path="/emailer" element={<Emailer />} />
       </Routes>
     </Router>
   );

@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import LifeStyleSection from "../components/LifestyleSection";
 import Navbar from "../components/Nav";
+import NewsSubscribeSection from "../components/NewsLetterSection";
 import PromptConsultation from "../components/PromptConsultation";
 import RealStateInsights from "../components/RealStateInsights";
 import ReviewSection from "../components/review";
@@ -27,7 +28,7 @@ export const Landing = () => {
       <LifeStyleSection />
       <RealStateInsights />
       <PromptConsultation />
-
+      <NewsSubscribeSection />
       <Footer />
       <ScrollToTopButton />
     </div>

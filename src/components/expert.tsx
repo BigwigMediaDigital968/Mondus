@@ -1,4 +1,5 @@
 import React from "react";
+import { FaDatabase, FaLanguage, FaUserTie } from "react-icons/fa";
 
 const RealEstateExperts: React.FC = () => {
   return (
@@ -63,19 +64,22 @@ const RealEstateExperts: React.FC = () => {
           {/* Desktop stats */}
           <div className="hidden md:grid grid-cols-3 text-center gap-6 border-t border-gray-300 dark:border-gray-800 pt-8">
             <div>
-              <h3 className="text-3xl font-semibold">5000+</h3>
+              <FaDatabase className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
+              <h3 className="text-2xl font-sans">5000+</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                 OFFERS IN THE DATABASE
               </p>
             </div>
             <div>
-              <h3 className="text-3xl font-semibold">30+</h3>
+              <FaLanguage className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
+              <h3 className="text-2xl font-sans">30+</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                 LANGUAGES
               </p>
             </div>
             <div>
-              <h3 className="text-3xl font-semibold">500+</h3>
+              <FaUserTie className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
+              <h3 className="text-2xl font-sans">500+</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                 SPECIALISTS
               </p>

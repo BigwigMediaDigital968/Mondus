@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa6";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -43,8 +44,8 @@ const ReviewSection = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
-    slidesToShow: 4,
+    speed: 600,
+    slidesToShow: 3,
     slidesToScroll: 1,
     swipeToSlide: true,
     arrows: false,
@@ -53,66 +54,72 @@ const ReviewSection = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 640,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
         },
       },
     ],
   };
 
   return (
-    <section className="relative w-full bg-white text-black dark:bg-black dark:text-white py-10 px-4 sm:px-6 lg:px-28 font-raleway font-light dark:font-thin ">
-      <h2 className="text-center text-3xl font-light mb-10 tracking-wide">
-        REVIEWS
+    <section className="relative w-full bg-white text-black dark:bg-black dark:text-white py-16 px-6 lg:px-28 font-raleway">
+      <h2 className="text-center text-3xl font-semibold mb-12 tracking-wide">
+        What Our Clients Say
       </h2>
+
       <Slider {...settings} className="cursor-grab">
         {reviews.map((review, index) => (
-          <div key={index} className="px-2 ">
-            <div className="bg-gray-50 dark:bg-[#111] p-6 border border-[#222] rounded-md flex flex-col justify-between h-full ">
-              <div>
-                <h3 className="text-lg font-light mb-2 uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                  {review.name}
-                </h3>
-                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+          <div key={index} className="px-3">
+            <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl border border-white/10 dark:border-gray-800 p-6 shadow-lg h-full transition duration-300 hover:shadow-2xl">
+              <FaQuoteLeft className="absolute top-4 left-4 text-[var(--primary-color)] text-2xl opacity-30" />
+
+              <div className="mb-4 mt-6">
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                   {expanded === index
                     ? review.content
                     : `${review.content.slice(0, 140)}...`}
                 </p>
               </div>
-              <div className="mt-4">
-                <div className="flex space-x-1 mb-4">
-                  {Array.from({ length: review.rating }).map((_, i) => (
-                    <FaStar key={i} className="text-[var(--primary-color)]" />
-                  ))}
+
+              <button
+                onClick={() =>
+                  setExpanded((prev) => (prev === index ? null : index))
+                }
+                className="text-sm text-[var(--primary-color)] hover:underline"
+              >
+                {expanded === index ? "SEE LESS" : "READ MORE"}
+              </button>
+
+              <div className="mt-6 flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-800 dark:text-white">
+                    {review.name}
+                  </h3>
+                  <div className="flex mt-1">
+                    {Array.from({ length: review.rating }).map((_, i) => (
+                      <FaStar
+                        key={i}
+                        className="text-[var(--primary-color)] text-sm mr-1"
+                      />
+                    ))}
+                  </div>
                 </div>
-                <button
-                  onClick={() =>
-                    setExpanded((prev) => (prev === index ? null : index))
-                  }
-                  className="text-sm text-[var(--primary-color)] hover:underline"
-                >
-                  {expanded === index ? "SEE LESS" : "READ MORE"}
-                </button>
+
+                <div className="w-10 h-10 rounded-full bg-[var(--primary-color)] text-white flex items-center justify-center text-sm font-bold uppercase">
+                  {review.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
+                </div>
               </div>
             </div>
           </div>
         ))}
       </Slider>
-
-      {/* <div className="mt-10 flex flex-col items-center gap-6">
-        <button className="text-[var(--primary-color)] text-sm hover:underline font-light">
-          Show All
-        </button>
-        <button className="border border-[var(--primary-color)] px-6 py-3 text-[var(--primary-color)] hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-black hover:font-light transition-all duration-200">
-          Leave your review
-        </button>
-      </div> */}
     </section>
   );
 };

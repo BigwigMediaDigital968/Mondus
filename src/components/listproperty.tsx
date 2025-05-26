@@ -10,7 +10,7 @@ const ListProperty = () => {
   return (
     <>
       <section className="bg-white dark:bg-black text-black dark:text-white py-10  ">
-        <div className="w-full md:w-11/12 mx-auto container px-4 flex flex-col lg:flex-row items-center gap-10">
+        <div className="max-w-7xl mx-auto container px-4 flex flex-col lg:flex-row items-center gap-10">
           {/* Left Side: Image */}
           <div className="w-full lg:w-1/2">
             <img
@@ -37,14 +37,13 @@ const ListProperty = () => {
               you turn your property into a successful transaction. Start today,
               and let us guide you through every step of the process!
             </p>
-            <div className="flex justify-center md:justify-start">
-              <button
-                onClick={() => setShowForm(true)}
-                className="border px-6 py-3 transition mb-8 border-[var(--primary-color)] text-[var(--primary-color)] btn-gradient-hover"
-              >
-                List Your Property
-              </button>
-            </div>
+
+            <button
+              onClick={() => setShowForm(true)}
+              className="border px-6 py-3 transition mb-8 border-[var(--primary-color)] text-[var(--primary-color)] btn-gradient-hover"
+            >
+              List Your Property
+            </button>
           </div>
         </div>
       </section>

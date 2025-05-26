@@ -52,13 +52,13 @@ export default function Hero() {
       </div>
 
       {/* Right Form */}
-      <div className="relative z-10 w-full sm:w-1/3 lg:w-1/3 bg-[#121212]/90 dark: p-8 rounded-lg">
+      <div className="relative z-10 w-full sm:w-11/12 lg:w-[420px] bg-[#121212]/90 p-8 rounded-2xl shadow-xl border border-[#333] backdrop-blur-md space-y-6 mt-5">
         {/* Toggle Buttons */}
-        <div className="flex mb-6">
+        <div className="flex rounded-full overflow-hidden border border-gray-700">
           <button
-            className={`w-1/2 py-2 ${
+            className={`w-1/2 py-2 text-sm ${
               selectedTab === "primary"
-                ? "bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black"
+                ? "bg-[var(--primary-color)] text-black font-semibold"
                 : "bg-transparent text-white"
             }`}
             onClick={() => setSelectedTab("primary")}
@@ -66,9 +66,9 @@ export default function Hero() {
             Primary
           </button>
           <button
-            className={`w-1/2 py-2 ${
+            className={`w-1/2 py-2 text-sm ${
               selectedTab === "secondary"
-                ? "bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black"
+                ? "bg-[var(--primary-color)] text-black font-semibold"
                 : "bg-transparent text-white"
             }`}
             onClick={() => setSelectedTab("secondary")}
@@ -77,103 +77,81 @@ export default function Hero() {
           </button>
         </div>
 
-        {/* Property Type */}
-        <div className="mb-4 font-raleway font-thin">
-          <label className="text-sm mb-1 block">Property type</label>
-          <select className="w-full bg-[#1f1f1f] p-3 text-white dark:bg-[#1f1f1f]">
-            <option>Villa</option>
-            <option>Apartment</option>
-            <option>Townhouse</option>
-            <option>Studio</option>
-            <option>Penthouse</option>
-          </select>
-        </div>
-
-        {/* Bedrooms */}
-        <div className="mb-4 font-raleway font-thin">
-          <label className="text-sm mb-1 block">Bedrooms</label>
-          <select className="w-full bg-[#1f1f1f] p-3 text-white dark:bg-[#1f1f1f]">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5+</option>
-          </select>
-        </div>
-
-        {/* Currency */}
-        <div className="mb-4 font-raleway font-thin">
-          <label className="text-sm mb-1 block">Currency</label>
-          <div className="flex space-x-4 text-sm text-white/60 cursor-pointer">
-            <span
-              className={
-                selectedCurrency === "GBP"
-                  ? "text-[var(--primary-color)] font-semibold"
-                  : ""
-              }
-              onClick={() => handleCurrencyChange("GBP")}
-            >
-              GBP
-            </span>
-            <span
-              className={
-                selectedCurrency === "CNY"
-                  ? "text-[var(--primary-color)] font-semibold"
-                  : ""
-              }
-              onClick={() => handleCurrencyChange("CNY")}
-            >
-              CNY
-            </span>
-            <span
-              className={
-                selectedCurrency === "EUR"
-                  ? "text-[var(--primary-color)] font-semibold"
-                  : ""
-              }
-              onClick={() => handleCurrencyChange("EUR")}
-            >
-              EUR
-            </span>
-            <span
-              className={
-                selectedCurrency === "AED"
-                  ? "text-[var(--primary-color)] font-semibold"
-                  : ""
-              }
-              onClick={() => handleCurrencyChange("AED")}
-            >
-              AED
-            </span>
-            <span
-              className={
-                selectedCurrency === "USD"
-                  ? "text-[var(--primary-color)] font-semibold"
-                  : ""
-              }
-              onClick={() => handleCurrencyChange("USD")}
-            >
-              USD
-            </span>
+        {/* Dropdowns */}
+        <div className="space-y-4 font-raleway font-thin">
+          <div>
+            <label className="text-sm mb-1 block">Property Type</label>
+            <select className="w-full bg-[#1f1f1f] p-3 rounded text-white border border-gray-700">
+              <option>Villa</option>
+              <option>Apartment</option>
+              <option>Townhouse</option>
+              <option>Studio</option>
+              <option>Penthouse</option>
+            </select>
+          </div>
+          <div>
+            <label className="text-sm mb-1 block">Bedrooms</label>
+            <select className="w-full bg-[#1f1f1f] p-3 rounded text-white border border-gray-700">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5+</option>
+            </select>
           </div>
         </div>
 
-        {/* Price Range */}
-        <div className="flex justify-between mb-6 ">
-          <div className="bg-[#1f1f1f] p-3 w-[48%] dark:bg-[#1f1f1f]">
-            Min {minPrice.toLocaleString()} {selectedCurrency}
-          </div>
-          <div className="bg-[#1f1f1f] p-3 w-[48%] text-right dark:bg-[#1f1f1f]">
-            Max {maxPrice.toLocaleString()} {selectedCurrency}
+        {/* Currency Selector */}
+        <div>
+          <label className="text-sm mb-2 block font-raleway font-thin">
+            Currency
+          </label>
+          <div className="flex flex-wrap gap-2 text-sm font-raleway font-thin">
+            {["AED", "USD", "EUR", "GBP", "CNY"].map((cur) => (
+              <span
+                key={cur}
+                onClick={() => handleCurrencyChange(cur as any)}
+                className={`px-3 py-1 rounded-full border text-white/70 cursor-pointer ${
+                  selectedCurrency === cur
+                    ? "bg-[var(--primary-color)] text-black font-semibold"
+                    : "border-gray-600 hover:border-white"
+                }`}
+              >
+                {cur}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Buttons */}
-        <button className="w-full bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black py-3 mb-4 hover:bg-[#C29579]/80 transition dark:bg-gradient-to-r dark:from-[#C29579] dark:via-[#e3c5b5] dark:to-[#C29579] dark:text-black dark:hover:bg-[#C29579]/80">
-          Show 100+ projects
-        </button>
-        <button className="w-full border border-[#C29579] py-3 text-[#C29579] hover:bg-[#C29579]/10 transition dark:border-[#C29579] dark:text-[#C29579] dark:hover:bg-[#C29579]/10">
-          Properties on map
+        {/* Price Inputs */}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="text-sm mb-1 block font-raleway font-thin">
+              Min Price ({selectedCurrency})
+            </label>
+            <input
+              type="number"
+              value={minPrice}
+              onChange={(e) => setMinPrice(Number(e.target.value))}
+              className="w-full bg-[#1f1f1f] p-3 rounded text-white border border-gray-700"
+            />
+          </div>
+          <div>
+            <label className="text-sm mb-1 block font-raleway font-thin">
+              Max Price ({selectedCurrency})
+            </label>
+            <input
+              type="number"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(Number(e.target.value))}
+              className="w-full bg-[#1f1f1f] p-3 rounded text-white border border-gray-700"
+            />
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <button className="w-full font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black py-3 rounded-lg  hover:opacity-90 transition">
+          Show 100+ Projects
         </button>
       </div>
     </div>

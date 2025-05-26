@@ -73,19 +73,15 @@ const Emailer = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <nav className="bg-gray-900 shadow px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="text-3xl font-bold bg-gradient-to-r from-[#ac7072] via-[#e6d2d1] to-[#ad7173] bg-clip-text text-transparent uppercase">
-            <a href="/">
-              <img
-                src={logo}
-                alt="Mondus Logo"
-                className="w-1/3"
-                draggable="false"
-              />
-            </a>{" "}
-          </div>
-        </div>
+      <nav className="bg-gray-900 shadow px-6">
+        <a href="/">
+          <img
+            src={logo}
+            alt="Mondus Logo"
+            className="h-20"
+            draggable="false"
+          />
+        </a>
       </nav>
       <div className="p-6 max-w-7xl mx-auto text-white ">
         <h1 className="text-3xl font-bold mb-4 text-center">📧 Send Emailer</h1>

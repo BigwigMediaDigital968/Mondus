@@ -6,6 +6,7 @@ import FindYourPartner from "../components/FindYourPartner";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import LifeStyleSection from "../components/LifestyleSection";
+import ListProperty from "../components/listproperty";
 import Navbar from "../components/Nav";
 import NewsSubscribeSection from "../components/NewsLetterSection";
 import PromptConsultation from "../components/PromptConsultation";
@@ -24,6 +25,7 @@ export const Landing = () => {
       <Exclusives />
       <FindYourPartner />
       <WhatWeDoSection />
+      <ListProperty />
       <ReviewSection />
       <AboutSection />
       <LifeStyleSection />

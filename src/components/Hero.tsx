@@ -78,7 +78,7 @@ export default function Hero() {
         </div>
 
         {/* Property Type */}
-        <div className="mb-4">
+        <div className="mb-4 font-raleway font-thin">
           <label className="text-sm mb-1 block">Property type</label>
           <select className="w-full bg-[#1f1f1f] p-3 text-white dark:bg-[#1f1f1f]">
             <option>Villa</option>
@@ -90,7 +90,7 @@ export default function Hero() {
         </div>
 
         {/* Bedrooms */}
-        <div className="mb-4">
+        <div className="mb-4 font-raleway font-thin">
           <label className="text-sm mb-1 block">Bedrooms</label>
           <select className="w-full bg-[#1f1f1f] p-3 text-white dark:bg-[#1f1f1f]">
             <option>1</option>
@@ -102,7 +102,7 @@ export default function Hero() {
         </div>
 
         {/* Currency */}
-        <div className="mb-4">
+        <div className="mb-4 font-raleway font-thin">
           <label className="text-sm mb-1 block">Currency</label>
           <div className="flex space-x-4 text-sm text-white/60 cursor-pointer">
             <span
@@ -159,7 +159,7 @@ export default function Hero() {
         </div>
 
         {/* Price Range */}
-        <div className="flex justify-between mb-6">
+        <div className="flex justify-between mb-6 ">
           <div className="bg-[#1f1f1f] p-3 w-[48%] dark:bg-[#1f1f1f]">
             Min {minPrice.toLocaleString()} {selectedCurrency}
           </div>

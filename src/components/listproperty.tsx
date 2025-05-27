@@ -25,7 +25,9 @@ const ListProperty = () => {
 
           {/* Right Side: Content */}
           <div className="w-full lg:w-1/2 font-raleway font-thin">
-            <h2 className="text-3xl lg:text-4xl   mb-6">List Your Property</h2>
+            <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100">
+              List Your Property
+            </h2>
             <p className="text-gray-800 font-light dark:font-thin dark:text-gray-200 mb-8 text-lg leading-relaxed">
               Ready to sell or rent your property? Listing with us is quick,
               easy, and designed to get your property in front of the right

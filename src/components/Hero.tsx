@@ -1,8 +1,8 @@
 import { useState } from "react";
 import hero from "../assets/frame_img.png";
+import "../index.css";
 
 export default function Hero() {
-  const [selectedTab, setSelectedTab] = useState("primary");
   const [selectedCurrency, setSelectedCurrency] = useState<
     "GBP" | "CNY" | "EUR" | "AED" | "USD"
   >("AED");
@@ -53,30 +53,6 @@ export default function Hero() {
 
       {/* Right Form */}
       <div className="relative z-10 w-full sm:w-11/12 lg:w-[420px] bg-[#121212]/90 p-8 rounded-2xl shadow-xl border border-[#333] backdrop-blur-md space-y-6 mt-5">
-        {/* Toggle Buttons */}
-        <div className="flex rounded-full overflow-hidden border border-gray-700">
-          <button
-            className={`w-1/2 py-2 text-sm ${
-              selectedTab === "primary"
-                ? "bg-[var(--primary-color)] text-black font-semibold"
-                : "bg-transparent text-white"
-            }`}
-            onClick={() => setSelectedTab("primary")}
-          >
-            Primary
-          </button>
-          <button
-            className={`w-1/2 py-2 text-sm ${
-              selectedTab === "secondary"
-                ? "bg-[var(--primary-color)] text-black font-semibold"
-                : "bg-transparent text-white"
-            }`}
-            onClick={() => setSelectedTab("secondary")}
-          >
-            Secondary
-          </button>
-        </div>
-
         {/* Dropdowns */}
         <div className="space-y-4 font-raleway font-thin">
           <div>

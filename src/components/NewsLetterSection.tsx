@@ -57,7 +57,7 @@ const NewsSubscribeSection: React.FC = () => {
         <div className="w-11/12  mx-auto flex flex-col lg:flex-row justify-between gap-10">
           {/* Left Section */}
           <div>
-            <h2 className="text-2xl md:text-4xl font-semibold text-black dark:text-white mt-2">
+            <h2 className="text-2xl md:text-4xl font-thin text-black dark:text-white mt-2">
               Sign up for exclusive <br /> offers from us
             </h2>
           </div>

@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 export default function BuyRentSection() {
-  const [activeTab, setActiveTab] = useState<"buy" | "rent">("buy");
+  const [activeTab, setActiveTab] = useState<"buy" | "rent" | "offplan">("buy");
 
   const images = {
     buy: "https://www.axcapital.ae/_ipx/s_630x400/img/sell/buy-sell_buy.webp",
     rent: "https://www.axcapital.ae/_ipx/s_630x400/img/sell/buy-sell_rent.webp",
+    offplan:
+      "https://cdn.dxbproperties.ae/media/blog/off_plan_property_image.webp",
   };
 
   return (
@@ -24,7 +26,7 @@ export default function BuyRentSection() {
                   activeTab === "buy" ? "text-black dark:text-white " : ""
                 }`}
               >
-                BUY
+                <a href="/buy">BUY</a>
               </h2>
               <div
                 className={`relative ml-6 h-[1px] bg-black dark:bg-white transition-all duration-300 ${
@@ -51,7 +53,7 @@ export default function BuyRentSection() {
                   activeTab === "rent" ? "text-black dark:text-white " : ""
                 }`}
               >
-                RENT
+                <a href="/rent">RENT</a>
               </h2>
               <div
                 className={`relative ml-6 h-[1px] bg-black dark:bg-white transition-all duration-300 ${
@@ -61,6 +63,33 @@ export default function BuyRentSection() {
                 <span
                   className={`absolute -right-2 md:-top-4 -top-[13px] text-black dark:text-white text-xl transition-opacity duration-300 ${
                     activeTab === "rent" ? "opacity-100" : "opacity-100"
+                  }`}
+                >
+                  &gt;
+                </span>
+              </div>
+            </div>
+
+            {/* OFFPLAN Row */}
+            <div
+              className="relative flex items-center cursor-pointer group"
+              onMouseEnter={() => setActiveTab("offplan")}
+            >
+              <h2
+                className={`text-5xl font-raleway font-thin tracking-wider transition-colors ${
+                  activeTab === "offplan" ? "text-black dark:text-white " : ""
+                }`}
+              >
+                <a href="/offplan">OFFPLAN</a>
+              </h2>
+              <div
+                className={`relative ml-6 h-[1px] bg-black dark:bg-white transition-all duration-300 ${
+                  activeTab === "offplan" ? "w-32" : "w-6"
+                }`}
+              >
+                <span
+                  className={`absolute -right-2 md:-top-4 -top-[13px] text-black dark:text-white text-xl transition-opacity duration-300 ${
+                    activeTab === "offplan" ? "opacity-100" : "opacity-100"
                   }`}
                 >
                   &gt;

@@ -82,15 +82,15 @@ const AwardsPage = () => {
         {/* Sidebar (Sticky Year Navigation) */}
         <div
           ref={sidebarRef}
-          className="sticky top-36 left-0 h-fit w-20 md:w-32 rounded bg-gray-200 dark:bg-neutral-900 p-4 text-black dark:text-white space-y-2"
+          className="sticky top-36 left-0 h-fit w-20 md:w-32 border border-[var(--primary-color)] rounded  dark:bg-black p-4 text-black dark:text-white space-y-2"
         >
           {awardsData.map(({ year }) => (
             <button
               key={year}
               className={`w-full py-2 rounded-md text-lg font-semibold transition-colors ${
                 activeYear === year
-                  ? "bg-black dark:bg-white text-white dark:text-black"
-                  : "bg-gray-300 dark:bg-gray-700 text-black dark:text-white"
+                  ? "bg-[var(--primary-color)] dark:bg-white text-white dark:text-black"
+                  : "bg-[var(--primary-color)] dark:bg-[var(--primary-color)] text-black dark:text-white"
               }`}
               onClick={() => {
                 document
@@ -108,7 +108,7 @@ const AwardsPage = () => {
           {awardsData.map(({ givenBy, awardName, year, awardImage, image }) => (
             <div key={year} id={`year-${year}`}>
               {/* Responsive Layout: Column on mobile, Grid on desktop */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 items-center border border-[var(--primary-color)] px-2 py-2 md:px-8 md:py-4 rounded-xl bg-gray-100 dark:bg-neutral-900">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 items-center border border-[var(--primary-color)] px-2 py-2 md:px-8 md:py-4 rounded-xl bg-gray-50 dark:bg-neutral-900">
                 {/* Award Image Info */}
                 <div className="flex flex-col items-center md:items-start">
                   <p className="text-lg md:text-2xl font-medium text-[var(--primary-color)]">

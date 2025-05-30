@@ -34,14 +34,14 @@ const services: Service[] = [
 
 const WhatWeDoSection: React.FC = () => {
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway">
+    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway custom-gradient-lines relative">
       <section className="max-w-7xl px-6 py-16 mx-auto">
         <div className="mb-6">
           <p className="text-sm tracking-wider text-[#9C623E] font-semibold uppercase">
             Our Services
           </p>
           <h2 className="text-3xl md:text-4xl font-light text-black dark:text-gray-100">
-            What We Do?
+            We Help You Find and Buy Your Exact Match
           </h2>
         </div>
 

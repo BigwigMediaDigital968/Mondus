@@ -81,7 +81,8 @@ const Exclusives = () => {
           OUR EXCLUSIVES PROJECTS
         </h2>
         <p className="text-sm md:text-base pl-6 font-light dark:font-thin md:text-center">
-          Discover the outstanding range of Dubai properties only with{" "}
+          Discover the outstanding range of{" "}
+          <span className="font-semibold">Dubai</span> real estate only with{" "}
           <span className="text-[var(--primary-color)] font-light">
             MONDUS PROPERTIES
           </span>

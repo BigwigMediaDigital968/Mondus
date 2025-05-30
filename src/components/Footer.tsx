@@ -67,11 +67,11 @@ const Footer = () => {
         </div>
 
         {/* Middle: QR Code Image */}
-        <div className="flex justify-center lg:justify-center items-center">
+        <div className="flex justify-center lg:justify-center items-center ">
           <img
             src={qrImage}
             alt="QR Code"
-            className="w-32 h-32 object-contain rounded-md shadow-md"
+            className="w-32 h-32 object-contain rounded-md shadow-md -mt-16"
           />
         </div>
 

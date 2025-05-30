@@ -1,6 +1,9 @@
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import PromptConsultation from "../components/PromptConsultation";
+import image1 from "../assets/1.png";
+import image2 from "../assets/2.png";
+import image3 from "../assets/3.png";
 
 const About = () => {
   return (
@@ -18,6 +21,104 @@ const About = () => {
             Empowering your real estate journey with expertise, trust,
             reliability & ever lasting business relation.
           </p>
+        </div>
+      </section>
+
+      <section className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin py-16">
+        <div className="w-[90%] px-5 mx-auto space-y-16">
+          {/* Chairman Section */}
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            {/* Image */}
+            <div className="w-full md:w-1/2">
+              <img
+                src={image1} // Replace with actual image URL
+                alt="Chairman Sandeep Chachra"
+                className="w-full h-[400px]  object-contain"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="w-full md:w-1/2">
+              <h3 className="text-2xl font-semibold mb-2">
+                Chairman & Founder
+              </h3>
+              <h4 className="text-xl font-medium mb-4 text-[var(--primary-color)]">
+                Sandeep Chachra
+              </h4>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                Sandeep Chachra, a leader who founded Mondus Properties, is a
+                well-respected figure in the real estate and hospitality
+                industries. He began his career in hospitality, learning client
+                needs and service excellence, before launching a brokerage
+                office and building a strong portfolio in India. His transition
+                to Dubai marked a turning point where he brought innovation and
+                experience. Today, Mondus Properties thrives in the Dubai
+                market, a testament to his vision and leadership.
+              </p>
+            </div>
+          </div>
+
+          {/* Managing Director Section */}
+          <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+            {/* Image */}
+            <div className="w-full md:w-1/2">
+              <img
+                src={image2} // Replace with actual image URL
+                alt="Managing Director Diksha Khatri"
+                className="w-full h-[400px]  object-cover"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="w-full md:w-1/2">
+              <h3 className="text-2xl font-semibold mb-2">Managing Director</h3>
+              <h4 className="text-xl font-medium mb-4 text-[var(--primary-color)]">
+                Diksha Khatri
+              </h4>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                Ms. Diksha Khatri, Co-Founder and Managing Director of Mondus
+                Properties, combines experience from hospitality and real estate
+                to lead the company with strategy and service excellence. Her
+                strengths in market analysis and client relations have been key
+                in growing the firm and building trust among clients. Diksha’s
+                leadership ensures Mondus Properties continues to be a rising
+                name in Dubai’s real estate sector.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            {/* Image */}
+            <div className="w-full md:w-1/2">
+              <img
+                src={image3} // Replace with actual image URL
+                alt="Chairman Sandeep Chachra"
+                className="w-full h-[400px] object-contain"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="w-full md:w-1/2">
+              <h3 className="text-2xl font-semibold mb-2">CEO</h3>
+              <h4 className="text-xl font-medium mb-4 text-[var(--primary-color)]">
+                Hindustani Bhau
+              </h4>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                Hindustani Bhau, as the CEO of Mondus Properties and a renowned
+                YouTuber and influencer, brings a unique blend of bold
+                leadership and authenticity to the company. Known for his
+                fearless approach and larger-than-life personality, he has a
+                history of standing his ground, even in the face of resistance
+                and hostility. This unwavering resilience is a powerful asset in
+                his entrepreneurial journey, equipping him to lead Mondus
+                Properties with strength, decisiveness, and integrity. His
+                commitment to overcoming challenges ensures that the company
+                remains adaptable, competitive, and firmly rooted in
+                professionalism, driving Mondus Properties to new heights in the
+                industry.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -61,12 +162,24 @@ const About = () => {
               className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center p-6 text-white text-center">
-              <h4 className="text-2xl font-bold mb-3">Why Choose Us?</h4>
-              <ul className="text-lg space-y-2">
-                <li>✔ Trusted UAE Real Estate Experts</li>
-                <li>✔ Transparent, Personalized Service</li>
-                <li>✔ Access to Prime Dubai Properties</li>
-                <li>✔ Guidance from Start to Finish</li>
+              <h4 className="text-2xl font-bold mb-6">Why Choose Us?</h4>
+              <ul className="space-y-3 text-left">
+                <li className="flex items-start gap-2">
+                  <span>✔</span>
+                  <span>Trusted UAE Real Estate Experts</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✔</span>
+                  <span>Transparent, Personalized Service</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✔</span>
+                  <span>Access to Prime Dubai Properties</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✔</span>
+                  <span>Guidance from Start to Finish</span>
+                </li>
               </ul>
             </div>
           </div>

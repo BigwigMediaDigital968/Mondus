@@ -28,6 +28,7 @@ import NewsletterPage from "./pages/AdminNewsletter";
 import EmailerPage from "./pages/AdminEmailer";
 import AdminSubscriber from "./pages/AdminSubscriber";
 import AdminContactRequest from "./pages/AdminContactRequest";
+import AwardsPage from "./pages/AwardsPage";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path="/area-guides/:title" element={<AreaGuideDetails />} />
         <Route path="/newsletter" element={<NewsletterForm />} />
         <Route path="/emailer" element={<Emailer />} />
+        <Route path="/awards" element={<AwardsPage />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="newsletter" element={<NewsletterPage />} />

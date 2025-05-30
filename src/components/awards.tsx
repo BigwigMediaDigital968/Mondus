@@ -51,7 +51,7 @@ const AwardsSection = () => {
   return (
     <div className="w-full py-16 bg-white dark:bg-black text-center cursor-pointer font-raleway font-thin gradient-top relative">
       {/* Title */}
-      <h2 className="text-3xl md:text-5xl text-black dark:text-white mb-10">
+      <h2 className="text-3xl md:text-4xl font-light mb-10 text-black dark:text-gray-100 text-center">
         Awards & Recognitions
       </h2>
 
@@ -84,6 +84,13 @@ const AwardsSection = () => {
           ))}
         </div>
       </div>
+      {/* View All Button */}
+      <a
+        href="/awards"
+        className="inline-block font-light px-8 py-2 text-lg text-black rounded-3xl hover:opacity-80 mt-10 bg-[var(--primary-color)]"
+      >
+        View All
+      </a>
     </div>
   );
 };

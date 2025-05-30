@@ -13,7 +13,7 @@ export default function AboutSection() {
             MONDUS PROPERTIES – A REAL ESTATE AGENCY IN DUBAI
           </h2>
 
-          <p className="text-sm md:text-base mb-6">
+          <p className="text-sm md:text-base mb-6 text-justify">
             MONDUS PROPERTIES is a professional real estate agency involved in
             sale and rent of properties in Dubai, UAE. We process our clients’
             requests promptly in a CRM system, so all your questions will be
@@ -21,7 +21,7 @@ export default function AboutSection() {
             and are happy to consult with you on property selection at any time.
           </p>
 
-          <p className="text-sm md:text-base  mb-6">
+          <p className="text-sm md:text-base  mb-6 text-justify">
             Our team is comprised of experts of over 40 nationalities,
             collectively speaking 30 languages, allowing us to communicate with
             clients, understand their needs, and respond to any requests. With

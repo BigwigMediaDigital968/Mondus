@@ -49,26 +49,26 @@ const RealEstateExperts: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-light mb-6">
             REAL ESTATE EXPERTS
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">
+
+          <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">
             Mondus Properties is your trusted guide in the UAE real estate
-            market. As an upcoming agency and investment advisor in Dubai, we’re
-            committed to helping clients discover ideal options for buying,
-            renting, or investing.
+            market. As an emerging real estate agency and investment advisor in
+            Dubai, we are committed to helping clients explore ideal
+            opportunities—whether they are buying, renting, or investing.
           </p>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Our extensive real estate collection features some of Dubai’s most
-            desirable properties, giving clients access to abodes placed in the
-            most sought-out locations across Dubai.
+          <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">
+            Our extensive real estate collection includes some of Dubai’s most
+            desirable properties, located in the most sought-after
+            neighborhoods. Whether you're a first-time buyer, a seasoned
+            investor, or searching for your dream home, we provide access to
+            exclusive listings and a seamless experience tailored to your needs.
           </p>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Whether you’re a first-time buyer, an experienced investor, or
-            searching for your dream home, we are here to walk you through every
-            step of the way — making the experience effortless
-          </p>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            With a dedicated team of experts, we prioritize transparency, trust,
-            and personalized service. Our knowledge of the Dubai market ensures
-            that you’ll make informed, strategic decisions.
+          <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">
+            With a dedicated team of industry experts, we prioritize
+            transparency, trust, and personalized service. Our deep
+            understanding of the Dubai market ensures you make informed and
+            strategic decisions. Let Mondus Properties help you turn your dream
+            home into a reality.
           </p>
 
           <a href="/contact">

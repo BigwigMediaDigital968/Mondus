@@ -106,7 +106,7 @@ const FindYourPartner: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100">
               FIND YOUR PARTNER
             </h2>
-            <p className="text-gray-600 mb-6 max-w-md dark:text-gray-400">
+            <p className="text-gray-600 mb-6 max-w-md dark:text-gray-400 text-justify">
               Our team is highly experienced and knowledgeable across all
               aspects of the real estate industry. We are ready to answer your
               questions in over 7 languages. Find the perfect match for your

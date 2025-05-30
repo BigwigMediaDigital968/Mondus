@@ -22,6 +22,13 @@ import About from "./pages/About";
 import NewsletterForm from "./pages/Newsletter";
 import Emailer from "./pages/Emailer";
 
+import AdminLayout from "./pages/AdminLayout";
+import Dashboard from "./pages/Dashboard";
+import NewsletterPage from "./pages/AdminNewsletter";
+import EmailerPage from "./pages/AdminEmailer";
+import AdminSubscriber from "./pages/AdminSubscriber";
+import AdminContactRequest from "./pages/AdminContactRequest";
+
 function App() {
   return (
     <Router>
@@ -47,6 +54,13 @@ function App() {
         <Route path="/area-guides/:title" element={<AreaGuideDetails />} />
         <Route path="/newsletter" element={<NewsletterForm />} />
         <Route path="/emailer" element={<Emailer />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="newsletter" element={<NewsletterPage />} />
+          <Route path="emailer" element={<EmailerPage />} />
+          <Route path="subscriber" element={<AdminSubscriber />} />
+          <Route path="contacts" element={<AdminContactRequest />} />
+        </Route>
       </Routes>
     </Router>
   );

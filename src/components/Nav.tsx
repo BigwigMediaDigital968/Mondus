@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FiMenu, FiBookmark, FiPlus, FiSun, FiMoon } from "react-icons/fi";
+import { FiMenu, FiSun, FiMoon } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import logo from "../assets/logo mondus new (1).gif";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
@@ -192,8 +192,8 @@ const Navbar = () => {
                   <a href="tel:+971521110794">Call Us</a>
                 </span>
                 <div className="w-px h-6 bg-gray-400 dark:bg-gray-600"></div>
-                <FiPlus className="text-inherit text-xl" />
-                <FiBookmark className="text-inherit text-xl" />
+                {/* <FiPlus className="text-inherit text-xl" />
+                <FiBookmark className="text-inherit text-xl" /> */}
                 <button
                   onClick={() => setDarkMode(!darkMode)}
                   className="text-xl text-inherit transition-colors"
@@ -235,14 +235,14 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="flex mt-6 border border-[var(--primary-color)]">
+            {/* <div className="flex mt-6 border border-[var(--primary-color)]">
               <div className="w-1/2 flex justify-center items-center border-r border-[var(--primary-color)] py-3">
                 <FiPlus className="text-xl text-[var(--primary-color)]" />
               </div>
               <div className="w-1/2 flex justify-center items-center py-3">
                 <FiBookmark className="text-xl text-[var(--primary-color)]" />
               </div>
-            </div>
+            </div> */}
 
             {/* Bottom Buttons */}
             {/* Bottom Buttons */}
@@ -324,7 +324,7 @@ const Navbar = () => {
       {!isOpen && (
         <div
           id="google_translate_element"
-          className="fixed z-[999] right-[90px] top-6 translate-x-0 md:right-[330px] md:top-[22px] md:-translate-x-1/2"
+          className="fixed z-[999] right-[90px] top-6 translate-x-0 md:right-[260px] md:top-[22px] md:-translate-x-1/2"
         />
       )}
     </>

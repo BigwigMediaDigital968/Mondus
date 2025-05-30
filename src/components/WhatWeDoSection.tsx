@@ -6,6 +6,7 @@ type Service = {
   label: string;
   title: string;
   description: string;
+  redirected: string;
 };
 
 const services: Service[] = [
@@ -14,7 +15,8 @@ const services: Service[] = [
     label: "Offplan Properties",
     title: "Get Offplan Properties",
     description:
-      "Off-plan properties in Dubai are sold before completion, often with flexible plans and good investment returns.",
+      "Off-plan properties in Dubai are sold before completion, often with flexible plans and higher returns on investment.",
+    redirected: "/offplan",
   },
   {
     icon: <Home size={32} className="text-[#9C623E]" />,
@@ -22,6 +24,7 @@ const services: Service[] = [
     title: "Get Ready Properties",
     description:
       "Ready-to-move-in properties available for viewing and instant handover — no wait, no hassle.",
+    redirected: "/buy",
   },
   {
     icon: <KeyRound size={32} className="text-[#9C623E]" />,
@@ -29,6 +32,7 @@ const services: Service[] = [
     title: "Get Rental Properties",
     description:
       "From short-term apartments to long-term villas, rentals offer maximum flexibility for every lifestyle.",
+    redirected: "/rent",
   },
 ];
 
@@ -47,7 +51,8 @@ const WhatWeDoSection: React.FC = () => {
 
         <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, idx) => (
-            <div
+            <a
+              href={service.redirected}
               key={idx}
               className="group bg-gray-100 dark:bg-zinc-900 hover:shadow-xl rounded-xl p-6 transition duration-300 flex flex-col space-y-4 md:space-y-6 hover:scale-[1.02]"
             >
@@ -58,7 +63,7 @@ const WhatWeDoSection: React.FC = () => {
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 {service.description}
               </p>
-            </div>
+            </a>
           ))}
         </div>
       </section>

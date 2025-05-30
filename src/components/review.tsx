@@ -70,7 +70,7 @@ const ReviewSection = () => {
   return (
     <section className="relative w-full bg-white text-black dark:bg-black dark:text-white py-16 px-6 lg:px-28 font-raleway">
       <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 text-center">
-        Words From Our Valued Clients
+        Testimonials To Build Your Trust
       </h2>
 
       <Slider {...settings} className="cursor-grab">

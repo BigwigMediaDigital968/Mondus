@@ -9,15 +9,15 @@ const RealStateInsights = () => {
 
   const data = [
     {
-      title: "MONDUS TALK",
-      desc: "Explore our blogs & articles from our own real estate agents and stay up to date on the Dubai property market: latest news, expert advice, and more.",
-      button: "ALL Blogs",
+      title: "MONDUS BLOGS",
+      desc: "Explore our blogs & articles from our own real estate agents and stay up to date on Dubai property market, latest news, expert advice and more.",
+      button: "All Blogs",
       img: podcast1,
     },
     {
       title: "MONDUS BLOG",
       desc: "Stay up to date on the latest trends and developments in the Dubai real estate market with our informative articles. With insights and advice from industry experts, our blog is a valuable resource for anyone interested in the Dubai property market.",
-      button: "ALL Blogs",
+      button: "All Blogs",
       img: podcast2,
     },
   ];

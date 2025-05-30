@@ -6,8 +6,8 @@ export default function Hero() {
   const [selectedCurrency, setSelectedCurrency] = useState<
     "GBP" | "CNY" | "EUR" | "AED" | "USD" | "INR" | "RUB"
   >("AED");
-  const [minPrice, setMinPrice] = useState(40000);
-  const [maxPrice, setMaxPrice] = useState(150000000);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
 
   // Currency conversion rates for demo purposes
   const conversionRates: {

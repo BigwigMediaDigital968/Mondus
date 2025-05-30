@@ -61,7 +61,7 @@ const OffPlan = () => {
             Off Plan in Dubai
           </h1>
           <p className="text-lg md:text-2xl text-white">
-            New top-launched projects
+            Recently Launched Projects
           </p>
         </div>
       </section>

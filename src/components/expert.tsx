@@ -51,7 +51,7 @@ const RealEstateExperts: React.FC = () => {
           </h2>
 
           <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">
-            Mondus Properties is your trusted guide in the UAE real estate
+            Mondus Properties is your trusted guide in the Dubai real estate
             market. As an emerging real estate agency and investment advisor in
             Dubai, we are committed to helping clients explore ideal
             opportunities—whether they are buying, renting, or investing.

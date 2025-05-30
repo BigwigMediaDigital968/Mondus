@@ -6,7 +6,7 @@ const properties = [
     image: "https://fnst.axflare.com/community/WEBP/uYHqVeSOBZ.webp", // Replace with actual image path
     title: "Marina Living",
     location: "Dubai Marina",
-    roi: "10-12%",
+    roi: "Estimated Return On Investment 12% & Above",
     paymentPlan: "Post-handover payment plan – 30% over 2 years",
     locationDetails:
       "Parallel to Sheikh Zayed Road, 5 minutes to Jumeirah Beach",
@@ -20,7 +20,7 @@ const properties = [
     image: "https://fnst.axflare.com/community/WEBP/uYHqVeSOBZ.webp", // Replace with actual image path
     title: "Marina Living",
     location: "Dubai Marina",
-    roi: "10-12%",
+    roi: "Estimated Return On Investment 12% & Above",
     paymentPlan: "Post-handover payment plan – 30% over 2 years",
     locationDetails:
       "Parallel to Sheikh Zayed Road, 5 minutes to Jumeirah Beach",
@@ -34,7 +34,7 @@ const properties = [
     image: "https://fnst.axflare.com/community/WEBP/uYHqVeSOBZ.webp", // Replace with actual image path
     title: "Marina Living",
     location: "Dubai Marina",
-    roi: "10-12%",
+    roi: "Estimated Return On Investment 12% & Above",
     paymentPlan: "Post-handover payment plan – 30% over 2 years",
     locationDetails:
       "Parallel to Sheikh Zayed Road, 5 minutes to Jumeirah Beach",
@@ -48,7 +48,7 @@ const properties = [
     image: "https://fnst.axflare.com/community/WEBP/uYHqVeSOBZ.webp", // Replace with actual image path
     title: "Marina Living",
     location: "Dubai Marina",
-    roi: "10-12%",
+    roi: "Estimated Return On Investment 12% & Above",
     paymentPlan: "Post-handover payment plan – 30% over 2 years",
     locationDetails:
       "Parallel to Sheikh Zayed Road, 5 minutes to Jumeirah Beach",
@@ -137,15 +137,15 @@ const Exclusives = () => {
                 {/* Details section */}
                 <div className="w-full md:w-1/2 p-6 flex flex-col gap-4">
                   <div>
-                    <h4 className="text-lg font-light mb-1">ROI</h4>
-                    <p className="text-sm font-light dark:font-thin">
-                      Expected ROI – {property.roi}
-                    </p>
-                  </div>
-                  <div>
                     <h4 className="text-lg font-light mb-1">Community</h4>
                     <p className="text-sm font-light dark:font-thin">
                       {property.Community}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-light mb-1">ROI</h4>
+                    <p className="text-sm font-light dark:font-thin">
+                      {property.roi}
                     </p>
                   </div>
                   <div>

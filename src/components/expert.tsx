@@ -46,8 +46,11 @@ const RealEstateExperts: React.FC = () => {
 
         {/* Text and stats */}
         <div className="mt-8 md:mt-0 md:col-span-2">
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            REAL ESTATE EXPERTS
+          <h2 className="text-3xl md:text-3xl font-light mb-6">
+            <span className="text-[var(--primary-color)]">
+              MONDUS PROPERTIES
+            </span>{" "}
+            - YOUR REAL STATE EXPERTS
           </h2>
 
           <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">

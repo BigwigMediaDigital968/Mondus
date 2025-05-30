@@ -61,12 +61,12 @@ const CatalogCard: React.FC<CatalogCardProps> = ({
   return (
     <div className=" border border-gray-700 p-4 text-white max-w-sm">
       <h2 className="text-lg font-semibold">{title}</h2>
-      <p className="text-sm text-gray-400 mb-2">{subtitle}</p>
+      <p className="text-sm text-gray-400 mb-2 font-light">{subtitle}</p>
       <div className="flex justify-between text-sm text-[#c28b66] cursor-pointer">
-        <span className="hover:underline" onClick={handleDownload}>
+        <span className="hover:underline font-light" onClick={handleDownload}>
           DOWNLOAD
         </span>
-        <span className="hover:underline" onClick={onPreview}>
+        <span className="hover:underline font-light" onClick={onPreview}>
           PREVIEW
         </span>
       </div>

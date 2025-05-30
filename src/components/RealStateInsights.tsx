@@ -10,7 +10,7 @@ const RealStateInsights = () => {
   const data = [
     {
       title: "MONDUS TALK",
-      desc: "Listen to podcasts from our real estate agents and stay up to date on the Dubai property market: latest news, expert advice, and more.",
+      desc: "Explore our blogs & articles from our own real estate agents and stay up to date on the Dubai property market: latest news, expert advice, and more.",
       button: "ALL Blogs",
       img: podcast1,
     },

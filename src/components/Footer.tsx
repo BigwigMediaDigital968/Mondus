@@ -162,7 +162,7 @@ const Footer = () => {
           </div>
           <div className="w-full flex justify-center mt-2">
             <a
-              href="https://bigwigdigital.com"
+              href="https://www.bigwigdigital.in/"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-[var(--primary-color)] text-[var(--primary-color)] px-4 py-3 uppercase text-xs tracking-widest  text-center"
@@ -176,7 +176,7 @@ const Footer = () => {
         <div className="hidden sm:flex flex-row justify-between items-center w-full">
           <span>Mondus ©2025 All Rights Reserved</span>
           <a
-            href="https://bigwigdigital.com"
+            href="https://www.bigwigdigital.in/"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-[var(--primary-color)] text-[var(--primary-color)] px-4 py-3 uppercase text-sm tracking-widest  text-center"

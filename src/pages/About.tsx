@@ -15,8 +15,8 @@ const About = () => {
         <div className="absolute inset-0 bg-black/40 dark:bg-black/70 flex flex-col items-center justify-end py-5 text-center px-4">
           <h1 className="text-4xl md:text-5xl text-white mb-4">ABOUT MONDUS</h1>
           <p className="text-lg md:text-2xl text-white">
-            Empowering your real estate journey with expertise, trust, and
-            lasting success.
+            Empowering your real estate journey with expertise, trust,
+            reliability & ever lasting business relation.
           </p>
         </div>
       </section>
@@ -142,6 +142,18 @@ const About = () => {
               <li>In-house property management</li>
               <li>Short-term rentals</li>
               <li>Long-term rentals</li>
+            </ul>
+          </div>
+
+          {/* Service Card 6 */}
+          <div className="bg-gray-100 dark:bg-neutral-900 p-6 rounded-xl shadow-md">
+            <h3 className="text-xl text-black dark:text-white mb-3">
+              Relocation Assistance
+            </h3>
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
+              <li>Support with visa & residency processes</li>
+              <li>School & community recommendations</li>
+              <li>Help settling into your new property</li>
             </ul>
           </div>
         </div>

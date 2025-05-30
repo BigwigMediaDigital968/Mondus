@@ -3,6 +3,7 @@ import blogData from "../data/blogData.json";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import PromptConsultation from "../components/PromptConsultation";
+import blog from "../assets/blog.jpg";
 
 const Blog = () => {
   return (
@@ -11,12 +12,14 @@ const Blog = () => {
 
       <section className="relative h-screen w-full">
         <img
-          src="https://www.axcapital.ae/_ipx/s_1920x960/img/blog/blog-bg.webp"
+          src={blog}
           alt="Blog Hero"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40 dark:bg-black/70 flex flex-col items-center justify-end py-5 text-center px-4">
-          <h1 className="text-4xl md:text-6xl text-white mb-4">INSIGHTS</h1>
+          <h1 className="text-4xl md:text-6xl text-white mb-4 uppercase">
+            Our Latest Blog's
+          </h1>
           <p className="text-lg md:text-2xl text-white">
             With knowledge we build a solid foundation for a long term success
             for You

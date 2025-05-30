@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import properties from "../data/OffPlanData.json";
 
 import { useNavigate } from "react-router-dom";
-import PromptConsultation from "../components/PromptConsultation";
+import NotifyMe from "../components/NotifyMe";
 
 const PropertyCard = ({ property }: { property: (typeof properties)[0] }) => {
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ const OffPlan = () => {
           ))}
         </div>
       </section>
-      <PromptConsultation />
+      <NotifyMe />
       <Footer />
     </div>
   );

@@ -3,7 +3,7 @@ import { MapPin, BedDouble, Ruler, Plus, Bookmark } from "lucide-react";
 import buyData from "../data/BuyData.json";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
-import PromptConsultation from "../components/PromptConsultation";
+import NotifyMe from "../components/NotifyMe";
 
 const RentDetails = () => {
   const { title } = useParams<{ title: string }>();
@@ -141,7 +141,7 @@ const RentDetails = () => {
           </div>
         </div>
       </div>
-      <PromptConsultation />
+      <NotifyMe />
 
       <Footer />
     </div>

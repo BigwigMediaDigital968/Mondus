@@ -2,7 +2,6 @@ import React, { useState, useMemo } from "react";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import { Range } from "react-range";
-import PromptConsultation from "../components/PromptConsultation";
 import rentData from "../data/BuyData.json";
 import {
   BedDouble,
@@ -15,6 +14,7 @@ import {
   Ruler,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import NotifyMe from "../components/NotifyMe";
 
 const Rent: React.FC = () => {
   const [propertyType, setPropertyType] = useState("");
@@ -276,7 +276,7 @@ const Rent: React.FC = () => {
         )}
       </div>
 
-      <PromptConsultation />
+      <NotifyMe />
       <Footer />
     </div>
   );

@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import properties from "../data/OffPlanData.json";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
-import PromptConsultation from "../components/PromptConsultation";
 import { FaBath, FaBed, FaMapMarkerAlt, FaHome } from "react-icons/fa";
 import { useEffect } from "react";
+import NotifyMe from "../components/NotifyMe";
 
 const OffPlanDetails = () => {
   const { slug } = useParams();
@@ -119,7 +119,7 @@ const OffPlanDetails = () => {
         </div>
       </div>
 
-      <PromptConsultation />
+      <NotifyMe />
       <Footer />
     </div>
   );

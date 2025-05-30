@@ -93,7 +93,7 @@ const PromptConsultation = () => {
             <button
               type="submit"
               disabled={loading}
-              className="border border-[var(--primary-color)] text-[var(--primary-color)] px-4 py-2 uppercase text-sm tracking-widest hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-black transition"
+              className=" px-4 py-3 font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black  hover:opacity-90 transition"
             >
               {loading ? "Sending..." : "SEND"}
             </button>

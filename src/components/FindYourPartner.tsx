@@ -109,10 +109,25 @@ const FindYourPartner: React.FC = () => {
             <p className="text-gray-600 mb-6 max-w-md dark:text-gray-400">
               Our team is highly experienced and knowledgeable across all
               aspects of the real estate industry. We are ready to answer your
-              questions in over 30 languages. Find the perfect match for your
+              questions in over 7 languages. Find the perfect match for your
               needs and embark on your real estate journey with MONDUS
               professionals.
+              <br />
+              <br />
+              Whether you're looking to buy, sell, or invest, our advisors offer
+              personalized guidance tailored to your goals. We understand that
+              every client’s journey is unique—our multilingual experts are
+              equipped to support you through each step of the process with
+              clarity, integrity, and dedication. Trust MONDUS to turn your real
+              estate vision into reality.
             </p>
+
+            <a
+              href="/connect"
+              className="w-36  md:w-44 inline-block font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black py-3 text-center hover:opacity-90 transition"
+            >
+              CONNECT NOW
+            </a>
           </div>
 
           {/* Right Slider Section */}

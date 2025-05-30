@@ -130,7 +130,7 @@ export default function Hero() {
         </div>
 
         {/* Submit Button */}
-        <button className="w-full font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black py-3 rounded-lg  hover:opacity-90 transition">
+        <button className="w-full font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black py-3 hover:opacity-90 transition">
           Show Projects
         </button>
       </div>

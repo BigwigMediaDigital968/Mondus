@@ -4,24 +4,25 @@ import "../index.css";
 
 export default function Hero() {
   const [selectedCurrency, setSelectedCurrency] = useState<
-    "GBP" | "CNY" | "EUR" | "AED" | "USD"
+    "GBP" | "CNY" | "EUR" | "AED" | "USD" | "INR" | "RUB"
   >("AED");
   const [minPrice, setMinPrice] = useState(40000);
   const [maxPrice, setMaxPrice] = useState(150000000);
 
   // Currency conversion rates for demo purposes
   const conversionRates: {
-    [key in "GBP" | "CNY" | "EUR" | "AED" | "USD"]: number;
+    [key in "GBP" | "CNY" | "EUR" | "AED" | "USD" | "INR" | "RUB"]: number;
   } = {
     GBP: 0.22,
     CNY: 1.56,
     EUR: 0.92,
     AED: 1,
     USD: 0.27,
+    INR: 22.4,
+    RUB: 24.9,
   };
-
   const handleCurrencyChange = (
-    currency: "GBP" | "CNY" | "EUR" | "AED" | "USD"
+    currency: "GBP" | "CNY" | "EUR" | "AED" | "USD" | "INR" | "RUB"
   ) => {
     setSelectedCurrency(currency);
     const conversionRate = conversionRates[currency];
@@ -41,13 +42,16 @@ export default function Hero() {
       />
 
       {/* Left Content */}
-      <div className="font-raleway font-thin relative z-10 w-full sm:w-1/2 lg:w-1/3 px-4 sm:px-6 md:px-10 mb-8 lg:mb-0">
+      <div className="font-raleway font-thin relative z-10 w-full md:w-1/2  px-4 sm:px-6 md:px-10 mb-8 lg:mb-0">
         <h1 className="text-3xl sm:text-4xl leading-snug mb-6">
-          INVEST IN DUBAI REAL <br /> ESTATE WITH MONDUS
+          FIND YOUR PERFECT HOME OR INVEST IN DUBAI <br /> WITH{" "}
+          <span className="text-[var(--primary-color)] font-bold">
+            MONDUS PROPERTIES
+          </span>
         </h1>
-        <p className="text-lg mb-8 text-white/80">
-          We bring <span className="font-semibold">Due Diligence</span> at Your
-          service
+        <p className="text-lg mb-8 text-white/80 font-light">
+          Your most <span className="font-semibold">Trusted & Reliable</span>{" "}
+          Real Estate Partner
         </p>
       </div>
 
@@ -82,15 +86,15 @@ export default function Hero() {
           <label className="text-sm mb-2 block font-raleway font-thin">
             Currency
           </label>
-          <div className="flex flex-wrap gap-2 text-sm font-raleway font-thin">
-            {["AED", "USD", "EUR", "GBP", "CNY"].map((cur) => (
+          <div className="flex flex-wrap gap-1 text-xs font-raleway font-thin">
+            {["AED", "USD", "EUR", "GBP", "CNY", "INR", "RUB"].map((cur) => (
               <span
                 key={cur}
                 onClick={() => handleCurrencyChange(cur as any)}
-                className={`px-3 py-1 rounded-full border text-white/70 cursor-pointer ${
+                className={`px-2 py-1 rounded-full border cursor-pointer ${
                   selectedCurrency === cur
                     ? "bg-[var(--primary-color)] text-black font-semibold"
-                    : "border-gray-600 hover:border-white"
+                    : "border-gray-600 text-white/70 hover:border-white"
                 }`}
               >
                 {cur}
@@ -127,7 +131,7 @@ export default function Hero() {
 
         {/* Submit Button */}
         <button className="w-full font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black py-3 rounded-lg  hover:opacity-90 transition">
-          Show 100+ Projects
+          Show Projects
         </button>
       </div>
     </div>

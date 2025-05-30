@@ -11,7 +11,7 @@ export default function BuyRentSection() {
   };
 
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white py-16 px-6 md:px-12">
+    <div className="bg-white dark:bg-black text-black dark:text-white py-16 px-6 md:px-12 custom-gradient-lines relative">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-stretch">
         {/* Left Text Block */}
         <div className=" border border-gray-700 h-[300px] my-auto p-6 md:p-12 flex items-center">
@@ -80,7 +80,7 @@ export default function BuyRentSection() {
                   activeTab === "offplan" ? "text-black dark:text-white " : ""
                 }`}
               >
-                <a href="/offplan">OFFPLAN</a>
+                <a href="/offplan">INVEST</a>
               </h2>
               <div
                 className={`relative ml-6 h-[1px] bg-black dark:bg-white transition-all duration-300 ${

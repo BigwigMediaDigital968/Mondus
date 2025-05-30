@@ -6,7 +6,7 @@ const properties = [
     image: "https://fnst.axflare.com/community/WEBP/uYHqVeSOBZ.webp", // Replace with actual image path
     title: "Marina Living",
     location: "Dubai Marina",
-    roi: "7–8%",
+    roi: "10-12%",
     paymentPlan: "Post-handover payment plan – 30% over 2 years",
     locationDetails:
       "Parallel to Sheikh Zayed Road, 5 minutes to Jumeirah Beach",
@@ -14,12 +14,13 @@ const properties = [
     description:
       "One of the last new developments in the area with growing capital value – Dubai Marina. Just a few minutes’ away from Marina Beach, Ain Dubai, and the world-famous promenade, The Walk.",
     handover: "June 30, 2025",
+    Community: "Jumeirah Beach",
   },
   {
     image: "https://fnst.axflare.com/community/WEBP/uYHqVeSOBZ.webp", // Replace with actual image path
     title: "Marina Living",
     location: "Dubai Marina",
-    roi: "7–8%",
+    roi: "10-12%",
     paymentPlan: "Post-handover payment plan – 30% over 2 years",
     locationDetails:
       "Parallel to Sheikh Zayed Road, 5 minutes to Jumeirah Beach",
@@ -27,12 +28,13 @@ const properties = [
     description:
       "One of the last new developments in the area with growing capital value – Dubai Marina. Just a few minutes’ away from Marina Beach, Ain Dubai, and the world-famous promenade, The Walk.",
     handover: "June 30, 2025",
+    Community: "Jumeirah Beach",
   },
   {
     image: "https://fnst.axflare.com/community/WEBP/uYHqVeSOBZ.webp", // Replace with actual image path
     title: "Marina Living",
     location: "Dubai Marina",
-    roi: "7–8%",
+    roi: "10-12%",
     paymentPlan: "Post-handover payment plan – 30% over 2 years",
     locationDetails:
       "Parallel to Sheikh Zayed Road, 5 minutes to Jumeirah Beach",
@@ -40,12 +42,13 @@ const properties = [
     description:
       "One of the last new developments in the area with growing capital value – Dubai Marina. Just a few minutes’ away from Marina Beach, Ain Dubai, and the world-famous promenade, The Walk.",
     handover: "June 30, 2025",
+    Community: "Jumeirah Beach",
   },
   {
     image: "https://fnst.axflare.com/community/WEBP/uYHqVeSOBZ.webp", // Replace with actual image path
     title: "Marina Living",
     location: "Dubai Marina",
-    roi: "7–8%",
+    roi: "10-12%",
     paymentPlan: "Post-handover payment plan – 30% over 2 years",
     locationDetails:
       "Parallel to Sheikh Zayed Road, 5 minutes to Jumeirah Beach",
@@ -53,6 +56,7 @@ const properties = [
     description:
       "One of the last new developments in the area with growing capital value – Dubai Marina. Just a few minutes’ away from Marina Beach, Ain Dubai, and the world-famous promenade, The Walk.",
     handover: "June 30, 2025",
+    Community: "Jumeirah Beach",
   },
   // Add more property objects as needed
 ];
@@ -74,7 +78,7 @@ const Exclusives = () => {
     <section className="bg-white dark:bg-black text-black dark:text-white py-10 px-2 md:px-28 font-raleway font-thin custom-gradient-lines relative">
       <div className="mb-8">
         <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 md:text-center pl-6">
-          EXCLUSIVES
+          OUR EXCLUSIVES PROJECTS
         </h2>
         <p className="text-sm md:text-base pl-6 font-light dark:font-thin md:text-center">
           Discover the outstanding range of Dubai properties only with{" "}
@@ -84,7 +88,7 @@ const Exclusives = () => {
         </p>
       </div>
 
-      <div className="relative overflow-hidden">
+      <div className=" overflow-hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${offset}%)` }}
@@ -138,6 +142,12 @@ const Exclusives = () => {
                     </p>
                   </div>
                   <div>
+                    <h4 className="text-lg font-light mb-1">Community</h4>
+                    <p className="text-sm font-light dark:font-thin">
+                      {property.Community}
+                    </p>
+                  </div>
+                  <div>
                     <h4 className="text-lg font-light mb-1">PRIME LOCATION</h4>
                     <p className="text-sm font-light dark:font-thin">
                       {property.locationDetails}
@@ -163,7 +173,7 @@ const Exclusives = () => {
                   </p>
                   <div className="mt-4 flex gap-4">
                     <a href="/contact">
-                      <button className="border border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] font-light hover:text-black px-6 py-2">
+                      <button className="border border-[var(--primary-color)] hover:opacity-70 bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] font-light text-black px-6 py-2">
                         Enquire now
                       </button>
                     </a>
@@ -174,28 +184,22 @@ const Exclusives = () => {
           ))}
         </div>
 
-        {/* Navigation */}
-        <div className="flex justify-between mt-6 px-2 sm:px-6 text-black dark:text-white text-sm font-light">
-          <button
-            onClick={handlePrev}
-            disabled={index === 0}
-            className="flex items-center gap-2  disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <ChevronLeft size={20} />
-            PREV
-          </button>
-          <span className="text-black dark:text-white">
-            {index + 1} / {properties.length}
-          </span>
-          <button
-            onClick={handleNext}
-            disabled={index + 1 >= properties.length}
-            className="flex items-center gap-2  disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            NEXT
-            <ChevronRight size={20} />
-          </button>
-        </div>
+        {/* Arrows outside, vertically centered */}
+        <button
+          onClick={handlePrev}
+          disabled={index === 0}
+          className="hidden md:flex items-center justify-center absolute left-10 top-1/2 -translate-y-1/2 z-10 bg-[var(--primary-color)] border border-gray-300 dark:border-gray-700 rounded-full p-2 shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        <button
+          onClick={handleNext}
+          disabled={index + 1 >= properties.length}
+          className="hidden md:flex items-center justify-center absolute right-10 top-1/2 -translate-y-1/2 z-10 bg-[var(--primary-color)] border-gray-300 dark:border-gray-700 rounded-full p-2 shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
     </section>
   );

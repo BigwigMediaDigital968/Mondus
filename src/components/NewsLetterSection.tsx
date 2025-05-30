@@ -71,14 +71,14 @@ const NewsSubscribeSection: React.FC = () => {
             <div className="w-full flex flex-col sm:flex-row items-center gap-3">
               <input
                 type="email"
-                placeholder="Your email"
+                placeholder="Your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full sm:w-[300px] px-4 py-3  text-black dark:text-white bg-transparent border border-gray-300 focus:outline-none"
               />
               <button
                 onClick={handleSubscribe}
-                className="border border-[var(--primary-color)] text-[var(--primary-color)] px-4 py-3 uppercase text-sm tracking-widest hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-black transition"
+                className="border border-[var(--primary-color)] text-[var(--primary-color)] px-4 py-3 uppercase text-sm tracking-widest hover:opacity-70 bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black transition"
               >
                 Subscribe
               </button>

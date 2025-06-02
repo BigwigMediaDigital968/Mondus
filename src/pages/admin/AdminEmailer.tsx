@@ -1,36 +1,43 @@
 import { useEffect, useState } from "react";
 
-interface Newsletter {
+interface Attachment {
+  filename: string;
+  path: string;
   _id: string;
-  emails: string[];
+}
+
+interface Emailer {
+  _id: string;
   subject: string;
   title: string;
   content: string;
   ctaText: string;
   ctaUrl: string;
   imageUrl?: string;
-  sent: boolean;
-  scheduleAt: string;
-  sentAt?: string;
+  attachments: Attachment[];
+  recipients: string[];
+  sendToAll: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
-const NewsletterPage = () => {
-  const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
-  const [expandedEmails, setExpandedEmails] = useState<Record<string, boolean>>(
-    {}
-  );
+const AdminEmailer = () => {
+  const [emailers, setEmailers] = useState<Emailer[]>([]);
+  const [expandedRecipients, setExpandedRecipients] = useState<
+    Record<string, boolean>
+  >({});
   const [expandedContent, setExpandedContent] = useState<
     Record<string, boolean>
   >({});
 
   useEffect(() => {
-    fetch("https://mondus-backend.onrender.com/newsletter")
+    fetch("https://mondus-backend.onrender.com/emailer")
       .then((res) => res.json())
-      .then((data) => setNewsletters(data));
+      .then((data) => setEmailers(data));
   }, []);
 
-  const toggleEmails = (id: string) => {
-    setExpandedEmails((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleRecipients = (id: string) => {
+    setExpandedRecipients((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const toggleContent = (id: string) => {
@@ -39,10 +46,15 @@ const NewsletterPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white font-raleway p-4 sm:p-6">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6">Newsletters</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-6">Emailer</h1>
+        <button className="bg-[var(--primary-color)] text-black hover:opacity-80  m-4 px-4 py-2">
+          <a href="/emailer">Send Emailer</a>
+        </button>
+      </div>
 
-      {newsletters.length === 0 ? (
-        <p className="text-gray-400">No newsletters found.</p>
+      {emailers.length === 0 ? (
+        <p className="text-gray-400">No emailers found.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full table-auto border-collapse border border-gray-700 text-sm sm:text-base">
@@ -51,34 +63,30 @@ const NewsletterPage = () => {
                 <th className="px-4 py-3 border-b border-gray-700">Title</th>
                 <th className="px-4 py-3 border-b border-gray-700">Subject</th>
                 <th className="px-4 py-3 border-b border-gray-700">Content</th>
-                <th className="px-4 py-3 border-b border-gray-700">
-                  Button Text
-                </th>
-                <th className="px-4 py-3 border-b border-gray-700">
-                  Button URL
-                </th>
-                <th className="px-4 py-3 border-b border-gray-700">Status</th>
-                <th className="px-4 py-3 border-b border-gray-700">
-                  Scheduled At
-                </th>
+                <th className="px-4 py-3 border-b border-gray-700">CTA</th>
 
-                <th className="px-4 py-3 border-b border-gray-700">Emails</th>
+                <th className="px-4 py-3 border-b border-gray-700">
+                  Recipients
+                </th>
+                <th className="px-4 py-3 border-b border-gray-700">
+                  Created At
+                </th>
               </tr>
             </thead>
             <tbody>
-              {newsletters.map((n) => (
+              {emailers.map((e) => (
                 <tr
-                  key={n._id}
+                  key={e._id}
                   className="even:bg-[#111] hover:bg-[#222] transition duration-200"
                 >
-                  <td className="px-4 py-3">{n.title}</td>
-                  <td className="px-4 py-3">{n.subject}</td>
+                  <td className="px-4 py-3">{e.title}</td>
+                  <td className="px-4 py-3">{e.subject}</td>
                   <td className="px-4 py-3 max-w-xs">
-                    {expandedContent[n._id] ? (
+                    {expandedContent[e._id] ? (
                       <>
-                        {n.content}
+                        {e.content}
                         <button
-                          onClick={() => toggleContent(n._id)}
+                          onClick={() => toggleContent(e._id)}
                           className="ml-2 text-sm text-blue-400 hover:underline"
                         >
                           Show less
@@ -86,12 +94,12 @@ const NewsletterPage = () => {
                       </>
                     ) : (
                       <>
-                        {n.content.length > 80
-                          ? n.content.slice(0, 80) + "..."
-                          : n.content}
-                        {n.content.length > 80 && (
+                        {e.content.length > 80
+                          ? e.content.slice(0, 80) + "..."
+                          : e.content}
+                        {e.content.length > 80 && (
                           <button
-                            onClick={() => toggleContent(n._id)}
+                            onClick={() => toggleContent(e._id)}
                             className="ml-2 text-sm text-blue-400 hover:underline"
                           >
                             Read more
@@ -100,41 +108,31 @@ const NewsletterPage = () => {
                       </>
                     )}
                   </td>
-                  <td className="px-4 py-3">{n.ctaText}</td>
                   <td className="px-4 py-3">
-                    {" "}
-                    <a
-                      href={n.ctaUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--primary-color)] hover:underline break-all"
-                    >
-                      {n.ctaUrl}
-                    </a>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span
-                      className={`text-xs px-2 py-1 rounded-full ${
-                        n.sent ? "bg-green-600" : "bg-yellow-600"
-                      } text-white`}
-                    >
-                      {n.sent ? "Sent" : "Scheduled"}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    {new Date(n.scheduleAt).toLocaleString()}
+                    {e.ctaText && e.ctaUrl ? (
+                      <a
+                        href={e.ctaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--primary-color)] hover:underline"
+                      >
+                        {e.ctaText}
+                      </a>
+                    ) : (
+                      "-"
+                    )}
                   </td>
 
                   <td className="px-4 py-3">
-                    {expandedEmails[n._id] ? (
+                    {expandedRecipients[e._id] ? (
                       <>
                         <div className="space-y-1">
-                          {n.emails.map((email, i) => (
+                          {e.recipients.map((email, i) => (
                             <div key={i}>{email}</div>
                           ))}
                         </div>
                         <button
-                          onClick={() => toggleEmails(n._id)}
+                          onClick={() => toggleRecipients(e._id)}
                           className="text-sm text-blue-400 hover:underline mt-1"
                         >
                           Show less
@@ -143,20 +141,23 @@ const NewsletterPage = () => {
                     ) : (
                       <>
                         <div className="space-y-1">
-                          {n.emails.slice(0, 3).map((email, i) => (
+                          {e.recipients.slice(0, 3).map((email, i) => (
                             <div key={i}>{email}</div>
                           ))}
                         </div>
-                        {n.emails.length > 3 && (
+                        {e.recipients.length > 3 && (
                           <button
-                            onClick={() => toggleEmails(n._id)}
+                            onClick={() => toggleRecipients(e._id)}
                             className="text-sm text-blue-400 hover:underline mt-1"
                           >
-                            +{n.emails.length - 3} more
+                            +{e.recipients.length - 3} more
                           </button>
                         )}
                       </>
                     )}
+                  </td>
+                  <td className="px-4 py-3">
+                    {new Date(e.createdAt).toLocaleString()}
                   </td>
                 </tr>
               ))}
@@ -168,4 +169,4 @@ const NewsletterPage = () => {
   );
 };
 
-export default NewsletterPage;
+export default AdminEmailer;

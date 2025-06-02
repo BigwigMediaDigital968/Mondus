@@ -1,283 +1,160 @@
-import React, { useState, useMemo } from "react";
-import Navbar from "../components/Nav";
-import Footer from "../components/Footer";
-import { Range } from "react-range";
-import rentData from "../data/BuyData.json";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import {
   BedDouble,
-  Bookmark,
   Mail,
   MapPin,
   MessageCircle,
   Phone,
-  Plus,
   Ruler,
 } from "lucide-react";
+import { Bath } from "lucide-react";
 import { Link } from "react-router-dom";
-import NotifyMe from "../components/NotifyMe";
+
+// Lazy load components
+const Navbar = lazy(() => import("../components/Nav"));
+const Footer = lazy(() => import("../components/Footer"));
+const NotifyMe = lazy(() => import("../components/NotifyMe"));
 
 const Rent: React.FC = () => {
-  const [propertyType, setPropertyType] = useState("");
-  const [bedrooms, setBedrooms] = useState("");
-  const [areaRange, setAreaRange] = useState([500, 5000]);
-  const [priceRange, setPriceRange] = useState([500000, 50000000]);
+  const [rentData, setSentData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredProperties = useMemo(() => {
-    return rentData.filter((property) => {
-      // Clean and convert price and area
-      const priceAED = Number(property.price.replace(/[^\d]/g, ""));
-      const areaSqft = Number(property.area.replace(/[^\d]/g, ""));
-      const propertyBedrooms = Number(property.bedrooms || 0);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://mondus-backend.onrender.com/api/properties/rent"
+        );
+        const data = await response.json();
+        setSentData(data);
+      } catch (error) {
+        console.error("Error fetching rent properties:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      const matchesType = propertyType
-        ? property.propertyType === propertyType
-        : true;
+    fetchData();
+  }, []);
 
-      const matchesBedrooms = bedrooms
-        ? propertyBedrooms === Number(bedrooms)
-        : true;
-
-      const matchesPrice =
-        priceAED >= priceRange[0] && priceAED <= priceRange[1];
-
-      const matchesArea = areaSqft >= areaRange[0] && areaSqft <= areaRange[1];
-
-      return matchesType && matchesBedrooms && matchesPrice && matchesArea;
-    });
-  }, [propertyType, bedrooms, priceRange, areaRange]);
+  const properties = rentData;
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <div className="mb-16 md:mb-28 pt-5">
-        <Navbar />
+        <Suspense
+          fallback={<div className="text-center py-4">Loading navbar...</div>}
+        >
+          <Navbar />
+        </Suspense>
       </div>
 
       <h1 className="text-2xl text-center">PROPERTIES FOR RENT IN DUBAI</h1>
 
-      {/* Filters */}
-      <div className="w-full md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 px-4 py-6">
-        {/* Property Type */}
-        <div className="flex flex-col">
-          <label className="mb-1 text-sm">Property Type</label>
-          <select
-            value={propertyType}
-            onChange={(e) => setPropertyType(e.target.value)}
-            className="bg-white dark:bg-black border border-gray-400 dark:border-gray-600 px-4 py-2 rounded text-black dark:text-white"
-          >
-            <option value="">Any</option>
-            <option value="Apartment">Apartment</option>
-            <option value="Villa">Villa</option>
-            <option value="Townhouse">Townhouse</option>
-            <option value="Penthouse">Penthouse</option>
-          </select>
-        </div>
-
-        {/* Bedrooms */}
-        <div className="flex flex-col">
-          <label className="mb-1 text-sm">Bedrooms</label>
-          <select
-            value={bedrooms}
-            onChange={(e) => setBedrooms(e.target.value)}
-            className="bg-white dark:bg-black border border-gray-400 dark:border-gray-600 px-4 py-2 rounded text-black dark:text-white"
-          >
-            <option value="">Any</option>
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {num}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Area Range */}
-        <div className="flex flex-col">
-          <label className="mb-1 text-sm">Area (sqft)</label>
-          <div className=" font-sans border border-gray-400 dark:border-gray-600 rounded px-4 py-2 bg-white dark:bg-black relative">
-            <div className="flex justify-between text-xs mb-2">
-              <span>{areaRange[0].toLocaleString()}</span>
-              <span>{areaRange[1].toLocaleString()}</span>
-            </div>
-            <div className="absolute left-4 right-4 bottom-0">
-              <Range
-                step={100}
-                min={500}
-                max={5000}
-                values={areaRange}
-                onChange={setAreaRange}
-                renderTrack={({ props, children }) => (
-                  <div
-                    {...props}
-                    className="h-1 bg-gray-300 dark:bg-gray-700 rounded"
-                    style={{
-                      ...props.style,
-                      background: `linear-gradient(to right, #ccc ${
-                        ((areaRange[0] - 500) / (5000 - 500)) * 100
-                      }%, var(--primary-color) ${
-                        ((areaRange[0] - 500) / (5000 - 500)) * 100
-                      }%, var(--primary-color) ${
-                        ((areaRange[1] - 500) / (5000 - 500)) * 100
-                      }%, #ccc ${
-                        ((areaRange[1] - 500) / (5000 - 500)) * 100
-                      }%)`,
-                    }}
-                  >
-                    {children}
-                  </div>
-                )}
-                renderThumb={({ props }) => (
-                  <div
-                    {...props}
-                    className="w-4 h-4 bg-[var(--primary-color)] rounded-full shadow"
-                  />
-                )}
-              />
-            </div>
+      {/* Property Grid Section */}
+      <div className="relative w-full md:w-[90%] mx-auto px-4 py-8">
+        {loading ? (
+          <div className="flex justify-center items-center min-h-[300px]">
+            <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
           </div>
-        </div>
-
-        {/* Price Range */}
-        <div className="flex flex-col">
-          <label className="mb-1 text-sm">Price (AED)</label>
-          <div className=" font-sans border border-gray-400 dark:border-gray-600 rounded px-4 py-2 bg-white dark:bg-black relative">
-            <div className="flex justify-between text-xs mb-2">
-              <span>{priceRange[0].toLocaleString()}</span>
-              <span>{priceRange[1].toLocaleString()}</span>
-            </div>
-            <div className="absolute left-4 right-4 bottom-0">
-              <Range
-                step={50000}
-                min={500000}
-                max={50000000}
-                values={priceRange}
-                onChange={setPriceRange}
-                renderTrack={({ props, children }) => (
-                  <div
-                    {...props}
-                    className="h-1 bg-gray-300 dark:bg-gray-700 rounded"
-                    style={{
-                      ...props.style,
-                      background: `linear-gradient(to right, #ccc ${
-                        (priceRange[0] / 50000000) * 100
-                      }%, var(--primary-color) ${
-                        (priceRange[0] / 50000000) * 100
-                      }%, var(--primary-color) ${
-                        (priceRange[1] / 50000000) * 100
-                      }%, #ccc ${(priceRange[1] / 50000000) * 100}%)`,
-                    }}
-                  >
-                    {children}
-                  </div>
-                )}
-                renderThumb={({ props }) => (
-                  <div
-                    {...props}
-                    className="w-4 h-4 bg-[var(--primary-color)] rounded-full shadow"
-                  />
-                )}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Properties Listing */}
-      <div className="relative w-full md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8">
-        {filteredProperties.length === 0 ? (
-          <p className="text-center col-span-full text-gray-900">
-            No properties found with the selected filters.
-          </p>
+        ) : properties.length === 0 ? (
+          <p className="text-center text-gray-900">No properties found.</p>
         ) : (
-          filteredProperties.map((property, id) => (
-            <Link
-              to={`/rent/${property.title
-                .toLowerCase()
-                .replace(/\s+/g, "-")
-                .replace(/[^a-z0-9\-]/g, "")}`}
-              key={id}
-              className="h-full"
-            >
-              <div className="bg-gray-100 dark:bg-neutral-900 shadow rounded overflow-hidden border border-gray-300 dark:border-gray-800 flex flex-col h-full">
-                {/* Image Section */}
-                <div className="relative">
-                  <img
-                    src={property.images?.[0] || "/placeholder.jpg"}
-                    alt={property.title}
-                    className="w-full h-56 object-cover"
-                  />
-                  <div className="absolute top-2 right-2 flex gap-2">
-                    <button className="bg-white dark:bg-black p-1 rounded-full shadow text-black dark:text-white">
-                      <span className="text-sm">
-                        <Plus />
-                      </span>
-                    </button>
-                    <button className="bg-white dark:bg-black p-1 rounded-full shadow text-black dark:text-white">
-                      <span className="text-xs">
-                        <Bookmark />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Property Info */}
-                <div className="space-y-1 px-4 py-2 flex-grow">
-                  <h3 className="text-lg">{property.title}</h3>
-                  <p className="text-sm flex items-center gap-1 text-gray-600 dark:text-gray-400">
-                    <MapPin className="w-4 h-4" />
-                    {property.location}
-                  </p>
-                  <p className="text-sm">{property.propertyType}</p>
-
-                  {/* Icons Section */}
-                  <div className="flex items-center text-sm gap-4 py-1">
-                    <div className="flex items-center gap-1">
-                      <BedDouble className="w-4 h-4" />
-                      <span>{property.bedrooms}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Ruler className="w-4 h-4" />
-                      <span>{property.area}</span>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {properties.map((property, id) => (
+              <Link to={`/buy/${property.id}`} key={id} className="h-full">
+                <div className="bg-gray-100 dark:bg-neutral-900 shadow rounded overflow-hidden border border-gray-300 dark:border-gray-800 flex flex-col h-full">
+                  {/* Lazy image */}
+                  <div className="relative">
+                    <img
+                      loading="lazy"
+                      src={
+                        property.properties?.more_photo?.key_0?.src ||
+                        "/placeholder.jpg"
+                      }
+                      alt={property.title}
+                      className="w-full h-56 object-cover"
+                    />
                   </div>
 
-                  <p className="text-lg font-bold text-[var(--primary-color)]">
-                    {property.price}
-                  </p>
-                </div>
+                  <div className="space-y-1 px-4 py-2 flex-grow">
+                    <h3 className="text-lg">
+                      {property.properties.link_subarea}
+                    </h3>
+                    <p className="text-sm flex items-center gap-1 text-gray-600 dark:text-gray-400">
+                      <MapPin className="w-4 h-4" />
+                      {property.properties.link_district}
+                    </p>
+                    <p className="text-sm">
+                      {property.properties.property_type}
+                    </p>
 
-                {/* Contact Icons */}
-                <div className="border-t border-gray-300 dark:border-white/20 mt-auto flex justify-around items-center text-[var(--primary-color)] py-2 text-sm divide-x dark:divide-white/20 divide-gray-300">
-                  <a
-                    href={`tel:+9750000000`}
-                    className="flex-1 flex justify-center items-center gap-1"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Phone className="w-4 h-4" />
-                  </a>
-                  <a
-                    href={`mailto:info@example.com`}
-                    className="flex-1 flex justify-center items-center gap-1"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Mail className="w-4 h-4" />
-                  </a>
-                  <a
-                    href={`https://wa.me/9750000000`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex justify-center items-center gap-1"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                  </a>
+                    <div className="flex items-center text-sm gap-4 py-1">
+                      <div className="flex items-center gap-1">
+                        <BedDouble className="w-4 h-4" />
+                        <span>{property.properties.bedrooms_number}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Bath className="w-4 h-4" />
+                        <span>{property.properties.bathrooms_number}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Ruler className="w-4 h-4" />
+                        <span>{property.properties.bua_area_size} sqft</span>
+                      </div>
+                    </div>
+
+                    <p className="text-lg font-bold text-[var(--primary-color)]">
+                      {property.price}
+                    </p>
+                  </div>
+
+                  {/* Contact Icons */}
+                  <div className="border-t border-gray-300 dark:border-white/20 mt-auto flex justify-around items-center text-[var(--primary-color)] py-2 text-sm divide-x dark:divide-white/20 divide-gray-300">
+                    <a
+                      href={`tel:${property.properties.link_to_employee.phone}`}
+                      className="flex-1 flex justify-center items-center gap-1"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Phone className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={`mailto:${property.properties.link_to_employee.email}`}
+                      className="flex-1 flex justify-center items-center gap-1"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Mail className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={`https://wa.me/${property.properties.link_to_employee.phone}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex justify-center items-center gap-1"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))
+              </Link>
+            ))}
+          </div>
         )}
       </div>
 
-      <NotifyMe />
-      <Footer />
+      <Suspense
+        fallback={
+          <div className="text-center py-4">Loading notify section...</div>
+        }
+      >
+        <NotifyMe />
+      </Suspense>
+
+      <Suspense
+        fallback={<div className="text-center py-4">Loading footer...</div>}
+      >
+        <Footer />
+      </Suspense>
     </div>
   );
 };

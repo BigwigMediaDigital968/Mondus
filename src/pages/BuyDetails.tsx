@@ -1,18 +1,71 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { MapPin, BedDouble, Ruler, Plus, Bookmark } from "lucide-react";
-import buyData from "../data/BuyData.json";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import NotifyMe from "../components/NotifyMe";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+interface Property {
+  detail_text: string;
+  id: string;
+  name: string;
+  price: string;
+  properties: {
+    link_to_employee: any;
+    property_type: string;
+    bedrooms_number: number;
+    bathrooms_number: number;
+    bua_area_size: string;
+    link_subarea: string;
+    more_photo: {
+      key_0: { src: string };
+      key_1?: { src: string };
+      key_2?: { src: string };
+    };
+    description: string;
+    featuresAndAmenities: string[];
+  };
+}
 
 const BuyDetails = () => {
-  const { title } = useParams<{ title: string }>();
-  const decodedTitle = title?.replace(/-/g, " ").toLowerCase();
-  //   const [selectedCurrency, setSelectedCurrency] = useState("AED");
+  const { id } = useParams<{ id: string }>();
+  const [property, setProperty] = useState<Property | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const property = buyData.find(
-    (item) => item.title.toLowerCase().replace(/\s+/g, " ") === decodedTitle
-  );
+  useEffect(() => {
+    const fetchProperty = async () => {
+      try {
+        const response = await fetch(
+          "https://mondus-backend.onrender.com/api/properties/sale"
+        );
+        const data: Property[] = await response.json();
+
+        // Find the property with the matching ID
+        const matchedProperty = data.find((item) => item.id === id);
+        setProperty(matchedProperty || null);
+      } catch (error) {
+        console.error("Error fetching property:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) fetchProperty();
+  }, [id]);
+
+  if (loading) return <div className="p-6">Loading...</div>;
+  if (!property) return <div className="p-6">Property not found.</div>;
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   if (!property) {
     return (
@@ -22,42 +75,62 @@ const BuyDetails = () => {
     );
   }
 
+  const images = Object.values(property.properties.more_photo || {})
+    .map((img) => img?.src)
+    .filter(Boolean);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true, // Enable auto scroll
+    autoplaySpeed: 2000,
+    pauseonhover: false, // Scroll every 3 seconds
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          arrows: false,
+        },
+      },
+    ],
+  };
+
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <div className="mb-16 md:mb-28 pt-5">
         <Navbar />
       </div>
 
-      <div className="w-full md:w-[90%] mx-auto p-4 space-y-8">
-        {/* Image Section */}
-        <div className="flex flex-col md:flex-row gap-4 h-[400px]">
-          <div className="w-full md:w-2/3 h-full">
-            <img
-              src={property.images[0]}
-              alt="Main"
-              className="w-full h-full object-cover rounded-md"
-            />
-          </div>
-          <div className="w-full md:w-1/3 hidden md:flex flex-col gap-2">
-            <img
-              src={property.images[1]}
-              alt="Side 1"
-              className="w-full h-1/2 object-cover rounded-md"
-            />
-            <img
-              src={property.images[2]}
-              alt="Side 2"
-              className="w-full h-1/2 object-cover rounded-md"
-            />
-          </div>
+      <div className="w-full px-4 md:w-[90%] mx-auto p-4 space-y-8 overflow-visible relative">
+        {/* Images */}
+        <div className="w-full">
+          <Slider {...settings}>
+            {images.map((src, index) => (
+              <div key={index} className="px-2">
+                <img
+                  src={src}
+                  alt={`Property image ${index + 1}`}
+                  className="w-full h-[300px] object-cover rounded-md"
+                />
+              </div>
+            ))}
+          </Slider>
         </div>
 
-        {/* Title & Price */}
+        {/* Title and Actions */}
         <div className="flex justify-between items-center gap-4">
-          {/* Title */}
-          <h1 className="text-2xl font-bold">{property.title}</h1>
-
-          {/* Action Icons */}
+          <h1 className="text-2xl font-bold">{property.name}</h1>
           <div className="flex gap-2">
             <button className="bg-white dark:bg-neutral-800 p-2 rounded-full border dark:border-white/20 shadow text-black dark:text-white">
               <Plus className="w-4 h-4" />
@@ -68,82 +141,95 @@ const BuyDetails = () => {
           </div>
         </div>
 
+        {/* Price */}
         <p className="text-xl font-bold text-[var(--primary-color)]">
           {property.price}
         </p>
 
-        {/* Details Row */}
+        {/* Details */}
         <div className="flex flex-wrap gap-6 items-center text-sm text-gray-700 dark:text-gray-300">
           <p className="flex items-center gap-1">
             <MapPin className="w-4 h-4" />
-            {property.location}
+            {property.properties.link_subarea}
           </p>
-          <p className="flex items-center gap-1">{property.propertyType}</p>
+          <p>{property.properties.property_type}</p>
           <p className="flex items-center gap-1">
             <BedDouble className="w-4 h-4" />
-            {property.bedrooms} Bedrooms
+            {property.properties.bedrooms_number} Bedrooms
           </p>
           <p className="flex items-center gap-1">
             <Ruler className="w-4 h-4" />
-            {property.area}
+            {property.properties.bua_area_size} sqft
           </p>
         </div>
 
-        {/* Features & Amenities */}
+        {/* Features & Description */}
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Left Column: Features & Description */}
           <div className="md:w-2/3 space-y-6">
-            {/* Features & Amenities */}
             <div>
               <h2 className="text-lg font-semibold mb-2">
                 Features & Amenities
               </h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
-                {property.featuresAndAmenities.map((item, idx) => (
+                {property.properties.featuresAndAmenities?.map((item, idx) => (
                   <li key={idx}>{item}</li>
-                ))}
+                )) || <li>Not listed</li>}
               </ul>
             </div>
 
-            {/* Description */}
             <div>
               <h2 className="text-lg font-semibold mb-2">Description</h2>
-              <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
-                {property.description}
-              </p>
+              <div
+                className="text-gray-700 dark:text-gray-300 whitespace-pre-line"
+                dangerouslySetInnerHTML={{
+                  __html: property.detail_text || "No description available.",
+                }}
+              />
             </div>
           </div>
 
-          {/* Right Column: Consultant Box */}
+          {/* Consultant Sidebar */}
           <div className="md:w-1/3 w-full border border-gray-200 dark:border-white/20 p-4 rounded-md bg-white dark:bg-neutral-900 shadow">
             <div className="flex flex-col items-center text-center space-y-4">
-              <img
-                src="https://randomuser.me/api/portraits/men/32.jpg"
-                alt="Consultant"
-                className="w-20 h-20 rounded-full object-cover"
-              />
               <div>
                 <h3 className="text-lg font-semibold text-black dark:text-white">
-                  John Doe
+                  {property.properties.link_to_employee.full_name}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Senior Property Consultant
                 </p>
               </div>
               <div className="flex flex-col gap-2 w-full">
-                <button className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition">
+                <a
+                  className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition"
+                  href={`tel:${property.properties.link_to_employee.phone}`}
+                  onClick={(e) => e.stopPropagation()}
+                >
                   Call Now
-                </button>
-                <button className="border border-[var(--primary-color)] text-[var(--primary-color)] py-2 rounded hover:bg-[var(--primary-color)] hover:text-white transition">
-                  Message
-                </button>
+                </a>
+                <a
+                  className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition"
+                  href={`mailto:${property.properties.link_to_employee.email}`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Email
+                </a>
+
+                <a
+                  href={`https://wa.me/${property.properties.link_to_employee.phone}`}
+                  onClick={(e) => e.stopPropagation()}
+                  target="blank"
+                  className="border border-[var(--primary-color)] text-[var(--primary-color)] py-2 rounded hover:bg-[var(--primary-color)] hover:text-white transition"
+                >
+                  Watsapp
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <NotifyMe />
 
+      <NotifyMe />
       <Footer />
     </div>
   );

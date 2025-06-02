@@ -18,8 +18,12 @@ const AdminLayout = () => {
     { icon: <FaEnvelope />, label: "Newsletter", to: "/admin/newsletter" },
     { icon: <FaMailBulk />, label: "Emailer", to: "/admin/emailer" },
     { icon: <FaUsers />, label: "Subscriber", to: "/admin/subscriber" },
-    { icon: <FaCommentDots />, label: "Contacts", to: "/admin/contacts" },
-    { icon: <FaClipboardList />, label: "Requests", to: "/admin/request" },
+    { icon: <FaCommentDots />, label: "Leads", to: "/admin/contacts" },
+    {
+      icon: <FaClipboardList />,
+      label: "Call Back Leads",
+      to: "/admin/request",
+    },
   ];
 
   return (

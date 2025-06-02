@@ -22,13 +22,15 @@ import About from "./pages/About";
 import NewsletterForm from "./pages/Newsletter";
 import Emailer from "./pages/Emailer";
 
-import AdminLayout from "./pages/AdminLayout";
-import Dashboard from "./pages/Dashboard";
-import NewsletterPage from "./pages/AdminNewsletter";
-import EmailerPage from "./pages/AdminEmailer";
-import AdminSubscriber from "./pages/AdminSubscriber";
-import AdminContactRequest from "./pages/AdminContactRequest";
+import AdminLayout from "./pages/admin/AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import NewsletterPage from "./pages/admin/AdminNewsletter";
+import EmailerPage from "./pages/admin/AdminEmailer";
+import AdminSubscriber from "./pages/admin/AdminSubscriber";
+import AdminContactRequest from "./pages/admin/AdminContactRequest";
 import AwardsPage from "./pages/AwardsPage";
+import AdminNotify from "./pages/admin/AdminNotify";
+import Chatbot from "./components/Chatbot";
 
 function App() {
   return (
@@ -62,8 +64,10 @@ function App() {
           <Route path="emailer" element={<EmailerPage />} />
           <Route path="subscriber" element={<AdminSubscriber />} />
           <Route path="contacts" element={<AdminContactRequest />} />
+          <Route path="request" element={<AdminNotify />} />
         </Route>
       </Routes>
+      <Chatbot />
     </Router>
   );
 }

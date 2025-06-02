@@ -31,6 +31,9 @@ const AdminSubscriber = () => {
                 <th className="px-4 py-3 border-b border-gray-700">
                   Subscribed At
                 </th>
+                <th className="px-4 py-3 border-b border-gray-700">
+                  Send Mail
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -42,6 +45,14 @@ const AdminSubscriber = () => {
                   <td className="px-4 py-3">{subscriber.email}</td>
                   <td className="px-4 py-3">
                     {new Date(subscriber.createdAt).toLocaleString()}
+                  </td>
+                  <td className="px-4 py-3">
+                    <a
+                      href={`mailto:${subscriber.email}`}
+                      className="text-blue-400 hover:underline"
+                    >
+                      Send Mail
+                    </a>
                   </td>
                 </tr>
               ))}

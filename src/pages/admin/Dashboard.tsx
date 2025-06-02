@@ -5,6 +5,7 @@ const Dashboard = () => {
   const [newsletterCount, setNewsletterCount] = useState(0);
   const [emailerCount, setEmailerCount] = useState(0);
   const [contactCount, setContactCount] = useState(0);
+  const [leadsCount, setLeadsCount] = useState(0);
 
   useEffect(() => {
     fetch("https://mondus-backend.onrender.com/subscribers")
@@ -22,6 +23,10 @@ const Dashboard = () => {
     fetch("https://mondus-backend.onrender.com/api/consultation")
       .then((res) => res.json())
       .then((data) => setContactCount(data.length));
+
+    fetch("https://mondus-backend.onrender.com/api/notify")
+      .then((res) => res.json())
+      .then((data) => setLeadsCount(data.length));
   }, []);
 
   return (
@@ -31,7 +36,8 @@ const Dashboard = () => {
         <StatCard title="Subscribers" count={subscriberCount} />
         <StatCard title="Newsletters" count={newsletterCount} />
         <StatCard title="Emailers" count={emailerCount} />
-        <StatCard title="Contact Requests" count={contactCount} />
+        <StatCard title="Leads" count={contactCount} />
+        <StatCard title="Call Back Leads" count={leadsCount} />
       </div>
     </div>
   );

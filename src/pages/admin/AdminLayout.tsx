@@ -4,9 +4,10 @@ import {
   FaMailBulk,
   FaUsers,
   FaCommentDots,
+  FaClipboardList,
 } from "react-icons/fa";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import logo from "../assets/mondus.png";
+import logo from "../../assets/logo mondus new (1).gif";
 
 const AdminLayout = () => {
   const location = useLocation();
@@ -17,7 +18,12 @@ const AdminLayout = () => {
     { icon: <FaEnvelope />, label: "Newsletter", to: "/admin/newsletter" },
     { icon: <FaMailBulk />, label: "Emailer", to: "/admin/emailer" },
     { icon: <FaUsers />, label: "Subscriber", to: "/admin/subscriber" },
-    { icon: <FaCommentDots />, label: "Contacts", to: "/admin/contacts" },
+    { icon: <FaCommentDots />, label: "Leads", to: "/admin/contacts" },
+    {
+      icon: <FaClipboardList />,
+      label: "Call Back Leads",
+      to: "/admin/request",
+    },
   ];
 
   return (
@@ -32,7 +38,7 @@ const AdminLayout = () => {
       {/* Sidebar for Desktop */}
       <aside className="hidden lg:flex lg:flex-col w-64 bg-[#111] shadow-md p-4 space-y-4">
         <a href="/">
-          <img src={logo} alt="logo" className="h-14 w-auto mx-auto mb-2" />
+          <img src={logo} alt="logo" className="h-20 w-auto mx-auto mb-2" />
         </a>
         <nav className="flex flex-col gap-2 text-sm">
           {navItems.map(({ icon, label, to }) => (

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { MapPin, BedDouble, Ruler, Plus, Bookmark } from "lucide-react";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
@@ -9,11 +9,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 interface Property {
+  geopoints: any;
   detail_text: string;
   id: string;
   name: string;
   price: string;
   properties: {
+    link_city: ReactNode;
+    link_district: ReactNode;
+    geopoints: any;
     link_to_employee: any;
     property_type: string;
     bedrooms_number: number;
@@ -106,6 +110,9 @@ const BuyDetails = () => {
     ],
   };
 
+  const [lng, lat] =
+    property.properties.geopoints?.split(",").map(Number) || [];
+
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <div className="mb-16 md:mb-28 pt-5">
@@ -130,7 +137,10 @@ const BuyDetails = () => {
 
         {/* Title and Actions */}
         <div className="flex justify-between items-center gap-4">
-          <h1 className="text-2xl font-bold">{property.name}</h1>
+          <h2 className="text-2xl font-bold">
+            {property.properties.link_subarea}
+          </h2>
+
           <div className="flex gap-2">
             <button className="bg-white dark:bg-neutral-800 p-2 rounded-full border dark:border-white/20 shadow text-black dark:text-white">
               <Plus className="w-4 h-4" />
@@ -139,6 +149,7 @@ const BuyDetails = () => {
               <Bookmark className="w-4 h-4" />
             </button>
           </div>
+          <h1 className="text-2xl font-bold">{property.name}</h1>
         </div>
 
         {/* Price */}
@@ -150,8 +161,9 @@ const BuyDetails = () => {
         <div className="flex flex-wrap gap-6 items-center text-sm text-gray-700 dark:text-gray-300">
           <p className="flex items-center gap-1">
             <MapPin className="w-4 h-4" />
-            {property.properties.link_subarea}
+            {property.properties.link_district}
           </p>
+          <p>{property.properties.link_city}</p>
           <p>{property.properties.property_type}</p>
           <p className="flex items-center gap-1">
             <BedDouble className="w-4 h-4" />
@@ -189,46 +201,63 @@ const BuyDetails = () => {
           </div>
 
           {/* Consultant Sidebar */}
-          <div className="md:w-1/3 w-full border border-gray-200 dark:border-white/20 p-4 rounded-md bg-white dark:bg-neutral-900 shadow">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold text-black dark:text-white">
-                  {property.properties.link_to_employee.full_name}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Senior Property Consultant
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 w-full">
-                <a
-                  className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition"
-                  href={`tel:${property.properties.link_to_employee.phone}`}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Call Now
-                </a>
-                <a
-                  className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition"
-                  href={`mailto:${property.properties.link_to_employee.email}`}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Email
-                </a>
-
-                <a
-                  href={`https://wa.me/${property.properties.link_to_employee.phone}`}
-                  onClick={(e) => e.stopPropagation()}
-                  target="blank"
-                  className="border border-[var(--primary-color)] text-[var(--primary-color)] py-2 rounded hover:bg-[var(--primary-color)] hover:text-white transition"
-                >
-                  Watsapp
-                </a>
+          <div className="md:w-1/3 w-full">
+            <div className=" border border-gray-200 dark:border-white/20 p-4 rounded-md bg-white dark:bg-neutral-900 shadow">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-black dark:text-white">
+                    {property.properties.link_to_employee.full_name}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Senior Property Consultant
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2 w-full">
+                  <a
+                    className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition"
+                    href={`tel:${property.properties.link_to_employee.phone}`}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Call Now
+                  </a>
+                  <a
+                    className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition"
+                    href={`mailto:${property.properties.link_to_employee.email}`}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Email
+                  </a>
+                  <a
+                    href={`https://wa.me/${property.properties.link_to_employee.phone}`}
+                    onClick={(e) => e.stopPropagation()}
+                    target="blank"
+                    className="border border-[var(--primary-color)] text-[var(--primary-color)] py-2 rounded hover:bg-[var(--primary-color)] hover:text-white transition"
+                  >
+                    Whatsapp
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
+      {/* Map */}
+      {lat && lng && (
+        <div className="pt-4 px-16">
+          <h2 className="text-lg font-semibold mb-2">Property Location</h2>
+          <div className="w-full h-[300px] rounded-md overflow-hidden border dark:border-white/20">
+            <iframe
+              src={`https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`}
+              width="100%"
+              height="100%"
+              className="border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      )}
       <NotifyMe />
       <Footer />
     </div>

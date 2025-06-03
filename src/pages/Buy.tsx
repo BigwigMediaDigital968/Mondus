@@ -22,14 +22,23 @@ const Buy: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://mondus-backend.onrender.com/api/properties/sale"
-        );
-        const data = await response.json();
-        setSentData(data);
+        const cachedData = localStorage.getItem("saleProperties");
+        if (cachedData) {
+          // Use cached data
+          setSentData(JSON.parse(cachedData));
+          setLoading(false);
+        } else {
+          // Fetch fresh data and cache it
+          const response = await fetch(
+            "https://mondus-backend.onrender.com/api/properties/sale"
+          );
+          const data = await response.json();
+          setSentData(data);
+          localStorage.setItem("saleProperties", JSON.stringify(data));
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching sale properties:", error);
-      } finally {
         setLoading(false);
       }
     };

@@ -15,21 +15,30 @@ const Navbar = lazy(() => import("../components/Nav"));
 const Footer = lazy(() => import("../components/Footer"));
 const NotifyMe = lazy(() => import("../components/NotifyMe"));
 
-const Rent: React.FC = () => {
-  const [rentData, setSentData] = useState<any[]>([]);
+const Buy: React.FC = () => {
+  const [saleData, setSentData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://mondus-backend.onrender.com/api/properties/rent"
-        );
-        const data = await response.json();
-        setSentData(data);
+        const cachedData = localStorage.getItem("rentProperties");
+        if (cachedData) {
+          // Use cached data
+          setSentData(JSON.parse(cachedData));
+          setLoading(false);
+        } else {
+          // Fetch fresh data and cache it
+          const response = await fetch(
+            "https://mondus-backend.onrender.com/api/properties/rent"
+          );
+          const data = await response.json();
+          setSentData(data);
+          localStorage.setItem("rentProperties", JSON.stringify(data));
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching rent properties:", error);
-      } finally {
         setLoading(false);
       }
     };
@@ -37,7 +46,7 @@ const Rent: React.FC = () => {
     fetchData();
   }, []);
 
-  const properties = rentData;
+  const properties = saleData;
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
@@ -49,7 +58,7 @@ const Rent: React.FC = () => {
         </Suspense>
       </div>
 
-      <h1 className="text-2xl text-center">PROPERTIES FOR RENT IN DUBAI</h1>
+      <h1 className="text-2xl text-center">PROPERTIES FOR SALE IN DUBAI</h1>
 
       {/* Property Grid Section */}
       <div className="relative w-full md:w-[90%] mx-auto px-4 py-8">
@@ -62,7 +71,7 @@ const Rent: React.FC = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {properties.map((property, id) => (
-              <Link to={`/buy/${property.id}`} key={id} className="h-full">
+              <Link to={`/rent/${property.id}`} key={id} className="h-full">
                 <div className="bg-gray-100 dark:bg-neutral-900 shadow rounded overflow-hidden border border-gray-300 dark:border-gray-800 flex flex-col h-full">
                   {/* Lazy image */}
                   <div className="relative">
@@ -159,4 +168,4 @@ const Rent: React.FC = () => {
   );
 };
 
-export default Rent;
+export default Buy;

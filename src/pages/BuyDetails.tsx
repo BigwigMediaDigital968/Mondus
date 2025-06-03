@@ -40,27 +40,48 @@ const BuyDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const cached = localStorage.getItem("saleProperties");
+
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      const found = parsed.find((p: any) => p.id.toString() === id);
+
+      if (found) {
+        setProperty(found);
+        setLoading(false);
+        return;
+      }
+    }
+
+    // fallback: fetch specific property if not found in cache
     const fetchProperty = async () => {
       try {
-        const response = await fetch(
-          "https://mondus-backend.onrender.com/api/properties/sale"
+        const res = await fetch(
+          `https://mondus-backend.onrender.com/api/properties/sale/${id}`
         );
-        const data: Property[] = await response.json();
-
-        // Find the property with the matching ID
-        const matchedProperty = data.find((item) => item.id === id);
-        setProperty(matchedProperty || null);
-      } catch (error) {
-        console.error("Error fetching property:", error);
+        const data = await res.json();
+        setProperty(data);
+      } catch (err) {
+        console.error("Error fetching property:", err);
       } finally {
         setLoading(false);
       }
     };
 
-    if (id) fetchProperty();
+    fetchProperty();
   }, [id]);
 
-  if (loading) return <div className="p-6">Loading...</div>;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-white dark:bg-black">
+        <div className="w-12 h-12 border-4 border-[var(--primary-color)] border-t-transparent dark:border-white dark:border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
   if (!property) return <div className="p-6">Property not found.</div>;
 
   if (loading) {
@@ -174,7 +195,7 @@ const BuyDetails = () => {
         {/* Features & Description */}
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-2/3 space-y-6">
-            <div>
+            {/* <div>
               <h2 className="text-lg font-semibold mb-2">
                 Features & Amenities
               </h2>
@@ -183,7 +204,7 @@ const BuyDetails = () => {
                   <li key={idx}>{item}</li>
                 )) || <li>Not listed</li>}
               </ul>
-            </div>
+            </div> */}
 
             <div>
               <h2 className="text-lg font-semibold mb-2">Description</h2>

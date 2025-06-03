@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { ReactNode, useEffect, useState } from "react";
-import { MapPin, BedDouble, Ruler, Plus, Bookmark } from "lucide-react";
+import { MapPin, BedDouble, Ruler, Bath } from "lucide-react";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import NotifyMe from "../components/NotifyMe";
@@ -136,20 +136,12 @@ const BuyDetails = () => {
         </div>
 
         {/* Title and Actions */}
-        <div className="flex justify-between items-center gap-4">
-          <h2 className="text-2xl font-bold">
+        <div className="flex justify-between items-center gap-7">
+          <h2 className="md:text-2xl font-bold text-sm">
             {property.properties.link_subarea}
           </h2>
 
-          <div className="flex gap-2">
-            <button className="bg-white dark:bg-neutral-800 p-2 rounded-full border dark:border-white/20 shadow text-black dark:text-white">
-              <Plus className="w-4 h-4" />
-            </button>
-            <button className="bg-white dark:bg-neutral-800 p-2 rounded-full border dark:border-white/20 shadow text-black dark:text-white">
-              <Bookmark className="w-4 h-4" />
-            </button>
-          </div>
-          <h1 className="text-2xl font-bold">{property.name}</h1>
+          <h1 className="md:text-2xl font-bold text-sm">{property.name}</h1>
         </div>
 
         {/* Price */}
@@ -168,6 +160,10 @@ const BuyDetails = () => {
           <p className="flex items-center gap-1">
             <BedDouble className="w-4 h-4" />
             {property.properties.bedrooms_number} Bedrooms
+          </p>
+          <p className="flex items-center gap-1">
+            <Bath className="w-4 h-4" />
+            {property.properties.bathrooms_number} Bathrooms
           </p>
           <p className="flex items-center gap-1">
             <Ruler className="w-4 h-4" />

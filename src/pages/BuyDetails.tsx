@@ -1,6 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { MapPin, BedDouble, Ruler, Bath, Building } from "lucide-react";
+import {
+  MapPin,
+  BedDouble,
+  Ruler,
+  Bath,
+  Building,
+  ChevronRight,
+  ChevronLeft,
+} from "lucide-react";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import NotifyMe from "../components/NotifyMe";
@@ -67,16 +75,36 @@ const BuyDetails = () => {
   const [lng, lat] =
     property.properties.geopoints?.split(",").map(Number) || [];
 
+  const SampleNextArrow = ({ onClick }: { onClick?: () => void }) => (
+    <div
+      onClick={onClick}
+      className="absolute top-1/2 right-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
+    >
+      <ChevronRight size={48} />
+    </div>
+  );
+
+  const SamplePrevArrow = ({ onClick }: { onClick?: () => void }) => (
+    <div
+      onClick={onClick}
+      className="absolute top-1/2 left-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
+    >
+      <ChevronLeft size={48} />
+    </div>
+  );
+
   const settings = {
+    centerMode: true,
+    centerPadding: "20%", // shows 20% of next/prev image
+    slidesToShow: 1,
     dots: false,
     infinite: true,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    arrows: false,
-    pauseOnHover: false,
+    speed: 500,
+    pauseOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
 
   return (
@@ -84,14 +112,14 @@ const BuyDetails = () => {
       <Navbar />
 
       {/* Hero Image Slider */}
-      <div className="h-[90vh] w-full">
+      <div className="w-full py-8">
         <Slider {...settings}>
           {images.map((src, index) => (
-            <div key={index} className="h-[90vh] w-full">
+            <div key={index} className="px-2">
               <img
                 src={src}
-                alt={`Property image ${index + 1}`}
-                className="h-full w-full object-cover"
+                alt={`Image ${index}`}
+                className="rounded-lg object-cover h-[90vh]  w-full shadow-md"
               />
             </div>
           ))}

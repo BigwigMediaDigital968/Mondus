@@ -1,6 +1,14 @@
 import { useParams } from "react-router-dom";
-import { ReactNode, useEffect, useState } from "react";
-import { MapPin, BedDouble, Ruler, Bath } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  MapPin,
+  BedDouble,
+  Ruler,
+  Bath,
+  Building,
+  ChevronRight,
+  ChevronLeft,
+} from "lucide-react";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import NotifyMe from "../components/NotifyMe";
@@ -8,44 +16,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-interface Property {
-  geopoints: any;
-  detail_text: string;
-  id: string;
-  name: string;
-  price: string;
-  properties: {
-    link_city: ReactNode;
-    link_district: ReactNode;
-    geopoints: any;
-    link_to_employee: any;
-    property_type: string;
-    bedrooms_number: number;
-    bathrooms_number: number;
-    bua_area_size: string;
-    link_subarea: string;
-    more_photo: {
-      key_0: { src: string };
-      key_1?: { src: string };
-      key_2?: { src: string };
-    };
-    description: string;
-    featuresAndAmenities: string[];
-  };
-}
-
-const BuyDetails = () => {
+const RentDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const [property, setProperty] = useState<Property | null>(null);
+  const [property, setProperty] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const cached = localStorage.getItem("rentProperties");
-
     if (cached) {
       const parsed = JSON.parse(cached);
       const found = parsed.find((p: any) => p.id.toString() === id);
-
       if (found) {
         setProperty(found);
         setLoading(false);
@@ -53,7 +33,6 @@ const BuyDetails = () => {
       }
     }
 
-    // fallback: fetch specific property if not found in cache
     const fetchProperty = async () => {
       try {
         const res = await fetch(
@@ -73,16 +52,7 @@ const BuyDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-white dark:bg-black">
-        <div className="w-12 h-12 border-4 border-[var(--primary-color)] border-t-transparent dark:border-white dark:border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
-  if (!property) return <div className="p-6">Property not found.</div>;
+  }, []);
 
   if (loading) {
     return (
@@ -94,191 +64,178 @@ const BuyDetails = () => {
 
   if (!property) {
     return (
-      <div className="text-center p-10 text-gray-500 dark:text-gray-400">
-        Property not found.
-      </div>
+      <div className="text-center text-gray-500 p-10">Property not found.</div>
     );
   }
 
   const images = Object.values(property.properties.more_photo || {})
-    .map((img) => img?.src)
+    .map((img: any) => img?.src)
     .filter(Boolean);
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true, // Enable auto scroll
-    autoplaySpeed: 2000,
-    pauseonhover: false, // Scroll every 3 seconds
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          arrows: false,
-        },
-      },
-    ],
-  };
 
   const [lng, lat] =
     property.properties.geopoints?.split(",").map(Number) || [];
 
+  const SampleNextArrow = ({ onClick }: { onClick?: () => void }) => (
+    <div
+      onClick={onClick}
+      className="absolute top-1/2 right-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
+    >
+      <ChevronRight size={48} />
+    </div>
+  );
+
+  const SamplePrevArrow = ({ onClick }: { onClick?: () => void }) => (
+    <div
+      onClick={onClick}
+      className="absolute top-1/2 left-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
+    >
+      <ChevronLeft size={48} />
+    </div>
+  );
+
+  const settings = {
+    centerMode: true,
+    centerPadding: "20%", // shows 20% of next/prev image
+    slidesToShow: 1,
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 500,
+    pauseOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
-      <div className="mb-16 md:mb-28 pt-5">
-        <Navbar />
+    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway">
+      <Navbar />
+
+      {/* Hero Image Slider */}
+      <div className="w-full py-8">
+        <Slider {...settings}>
+          {images.map((src, index) => (
+            <div key={index} className="px-2">
+              <img
+                src={src}
+                alt={`Image ${index}`}
+                className="rounded-lg object-cover h-[90vh]  w-full shadow-md"
+              />
+            </div>
+          ))}
+        </Slider>
       </div>
 
-      <div className="w-full px-4 md:w-[90%] mx-auto p-4 space-y-8 overflow-visible relative">
-        {/* Images */}
-        <div className="w-full">
-          <Slider {...settings}>
-            {images.map((src, index) => (
-              <div key={index} className="px-2">
-                <img
-                  src={src}
-                  alt={`Property image ${index + 1}`}
-                  className="w-full h-[300px] object-cover rounded-md"
-                />
-              </div>
-            ))}
-          </Slider>
+      {/* Main Info */}
+      <div className="max-w-7xl mx-auto px-6 py-12 space-y-10">
+        <div className="flex flex-col md:flex-row gap-5 justify-between md:items-center space-y-4 md:space-y-0">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-semibold">
+              {property.name}
+            </h1>
+            <p className="text-gray-700 dark:text-gray-300 mt-5 text-md">
+              {property.properties.link_city},{" "}
+              {property.properties.link_district}
+            </p>
+          </div>
+          <div className="text-2xl text-[var(--primary-color)] font-bold">
+            ₹ {property.price}
+          </div>
         </div>
 
-        {/* Title and Actions */}
-        <div className="flex justify-between items-center gap-7">
-          <h2 className="md:text-2xl font-bold text-sm">
+        {/* Specs */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-gray-700 dark:text-gray-300 text-md">
+          <div className="flex items-center gap-2">
+            <MapPin size={18} />
             {property.properties.link_subarea}
-          </h2>
-
-          <h1 className="md:text-2xl font-bold text-sm">{property.name}</h1>
-        </div>
-
-        {/* Price */}
-        <p className="text-xl font-bold text-[var(--primary-color)]">
-          {property.price}
-        </p>
-
-        {/* Details */}
-        <div className="flex flex-wrap gap-6 items-center text-sm text-gray-700 dark:text-gray-300">
-          <p className="flex items-center gap-1">
-            <MapPin className="w-4 h-4" />
-            {property.properties.link_district}
-          </p>
-          <p>{property.properties.link_city}</p>
-          <p>{property.properties.property_type}</p>
-          <p className="flex items-center gap-1">
-            <BedDouble className="w-4 h-4" />
+          </div>
+          <div className="flex items-center gap-2">
+            <BedDouble size={18} />
             {property.properties.bedrooms_number} Bedrooms
-          </p>
-          <p className="flex items-center gap-1">
-            <Bath className="w-4 h-4" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Bath size={18} />
             {property.properties.bathrooms_number} Bathrooms
-          </p>
-          <p className="flex items-center gap-1">
-            <Ruler className="w-4 h-4" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Ruler size={18} />
             {property.properties.bua_area_size} sqft
-          </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Building size={18} />
+            {property.properties.property_type}
+          </div>
         </div>
 
-        {/* Features & Description */}
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="md:w-2/3 space-y-6">
-            {/* <div>
-              <h2 className="text-lg font-semibold mb-2">
-                Features & Amenities
-              </h2>
-              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
-                {property.properties.featuresAndAmenities?.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                )) || <li>Not listed</li>}
-              </ul>
-            </div> */}
+        {/* Description and Consultant */}
+        <div className="grid md:grid-cols-3 gap-12">
+          <div className="md:col-span-2">
+            <h2 className="text-xl font-semibold mb-2">Property Description</h2>
+            <div
+              className="text-gray-800 dark:text-gray-300 leading-relaxed whitespace-pre-line"
+              dangerouslySetInnerHTML={{
+                __html: property.detail_text || "No description available.",
+              }}
+            />
+          </div>
 
-            <div>
-              <h2 className="text-lg font-semibold mb-2">Description</h2>
-              <div
-                className="text-gray-700 dark:text-gray-300 whitespace-pre-line"
-                dangerouslySetInnerHTML={{
-                  __html: property.detail_text || "No description available.",
-                }}
+          <div>
+            <div className="border border-gray-200 dark:border-white/10 p-6 rounded-md shadow bg-white dark:bg-neutral-900">
+              <h3 className="text-lg font-semibold mb-1">
+                {property.properties.link_to_employee.full_name}
+              </h3>
+              <p className="text-sm text-gray-500 mb-4">
+                Senior Property Consultant
+              </p>
+              <div className="flex flex-col gap-3">
+                <a
+                  href={`tel:${property.properties.link_to_employee.phone}`}
+                  className="bg-[var(--primary-color)] text-white py-2 rounded text-center"
+                >
+                  📞 Call
+                </a>
+                <a
+                  href={`mailto:${property.properties.link_to_employee.email}`}
+                  className="bg-[var(--primary-color)] text-white py-2 rounded text-center"
+                >
+                  📧 Email
+                </a>
+                <a
+                  href={`https://wa.me/${property.properties.link_to_employee.phone}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border border-[var(--primary-color)] text-[var(--primary-color)] py-2 rounded text-center hover:bg-[var(--primary-color)] hover:text-white transition"
+                >
+                  💬 WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Map */}
+        {lat && lng && (
+          <div className="pt-8">
+            <h2 className="text-xl font-semibold mb-2">Location</h2>
+            <div className="h-[300px] w-full rounded-md overflow-hidden">
+              <iframe
+                src={`https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`}
+                width="100%"
+                height="100%"
+                className="border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
           </div>
-
-          {/* Consultant Sidebar */}
-          <div className="md:w-1/3 w-full">
-            <div className=" border border-gray-200 dark:border-white/20 p-4 rounded-md bg-white dark:bg-neutral-900 shadow">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-black dark:text-white">
-                    {property.properties.link_to_employee.full_name}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Senior Property Consultant
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 w-full">
-                  <a
-                    className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition"
-                    href={`tel:${property.properties.link_to_employee.phone}`}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Call Now
-                  </a>
-                  <a
-                    className="bg-[var(--primary-color)] text-white py-2 rounded hover:opacity-90 transition"
-                    href={`mailto:${property.properties.link_to_employee.email}`}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Email
-                  </a>
-                  <a
-                    href={`https://wa.me/${property.properties.link_to_employee.phone}`}
-                    onClick={(e) => e.stopPropagation()}
-                    target="blank"
-                    className="border border-[var(--primary-color)] text-[var(--primary-color)] py-2 rounded hover:bg-[var(--primary-color)] hover:text-white transition"
-                  >
-                    Whatsapp
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
-      {/* Map */}
-      {lat && lng && (
-        <div className="pt-4 px-16">
-          <h2 className="text-lg font-semibold mb-2">Property Location</h2>
-          <div className="w-full h-[300px] rounded-md overflow-hidden border dark:border-white/20">
-            <iframe
-              src={`https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`}
-              width="100%"
-              height="100%"
-              className="border-0"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </div>
-      )}
+
       <NotifyMe />
       <Footer />
     </div>
   );
 };
 
-export default BuyDetails;
+export default RentDetails;

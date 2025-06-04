@@ -15,7 +15,7 @@ const Navbar = lazy(() => import("../components/Nav"));
 const Footer = lazy(() => import("../components/Footer"));
 const NotifyMe = lazy(() => import("../components/NotifyMe"));
 
-const Buy: React.FC = () => {
+const Rent: React.FC = () => {
   const [saleData, setSentData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -168,4 +168,4 @@ const Buy: React.FC = () => {
   );
 };
 
-export default Buy;
+export default Rent;

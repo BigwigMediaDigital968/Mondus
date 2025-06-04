@@ -78,7 +78,7 @@ const BuyDetails = () => {
   const SampleNextArrow = ({ onClick }: { onClick?: () => void }) => (
     <div
       onClick={onClick}
-      className="absolute top-1/2 right-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
+      className="absolute hidden md:block top-1/2 right-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
     >
       <ChevronRight size={48} />
     </div>
@@ -87,7 +87,7 @@ const BuyDetails = () => {
   const SamplePrevArrow = ({ onClick }: { onClick?: () => void }) => (
     <div
       onClick={onClick}
-      className="absolute top-1/2 left-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
+      className="absolute hidden md:block top-1/2 left-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
     >
       <ChevronLeft size={48} />
     </div>
@@ -178,7 +178,8 @@ const BuyDetails = () => {
         </div>
 
         {/* Description and Consultant */}
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-12 relative">
+          {/* Left Section (scrolls normally) */}
           <div className="md:col-span-2">
             <h2 className="text-xl font-semibold mb-2">Property Description</h2>
             <div
@@ -189,7 +190,8 @@ const BuyDetails = () => {
             />
           </div>
 
-          <div>
+          {/* Right Sticky Consultant Section */}
+          <div className="sticky top-36 self-start">
             <div className="border border-gray-200 dark:border-white/10 p-6 rounded-md shadow bg-white dark:bg-neutral-900">
               <h3 className="text-lg font-semibold mb-1">
                 {property.properties.link_to_employee.full_name}

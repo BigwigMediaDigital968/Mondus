@@ -95,7 +95,7 @@ const BuyDetails = () => {
 
   const settings = {
     centerMode: true,
-    centerPadding: "20%", // shows 20% of next/prev image
+    centerPadding: "20%", // desktop: peek sides
     slidesToShow: 1,
     dots: false,
     infinite: true,
@@ -105,6 +105,16 @@ const BuyDetails = () => {
     pauseOnHover: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 640, // below 640px (mobile)
+        settings: {
+          centerMode: false, // turn off center mode
+          centerPadding: "0px", // no side preview
+          slidesToShow: 1, // full‐width slide
+        },
+      },
+    ],
   };
 
   return (
@@ -119,7 +129,7 @@ const BuyDetails = () => {
               <img
                 src={src}
                 alt={`Image ${index}`}
-                className="rounded-lg object-cover h-[90vh]  w-full shadow-md"
+                className="rounded-lg object-cover md:h-[90vh]  w-full shadow-md"
               />
             </div>
           ))}

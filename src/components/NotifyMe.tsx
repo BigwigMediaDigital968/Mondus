@@ -8,6 +8,7 @@ const NotifyMe = () => {
     name: "",
     email: "",
     phone: "",
+    countryCode: "+971",
   });
 
   const [step, setStep] = useState(1);
@@ -22,13 +23,14 @@ const NotifyMe = () => {
   const validateEmail = (email: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const validatePhone = (phone: string) => /^[0-9]{10}$/.test(phone);
+  const validatePhone = (phone: string) => /^[0-9]{6,14}$/.test(phone);
 
   const handleSendOtp = async (e: any) => {
     e.preventDefault();
     setMessage("");
 
-    const { name, email, phone } = formData;
+    const { name, email, phone, countryCode } = formData;
+    const fullPhone = `${countryCode}${phone}`;
 
     if (!name || !email || !phone) {
       setMessage("❌ All fields are required.");
@@ -52,7 +54,7 @@ const NotifyMe = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({ ...formData, phone: fullPhone }),
         }
       );
 
@@ -76,13 +78,15 @@ const NotifyMe = () => {
     setLoading(true);
     setMessage("");
 
+    const fullPhone = `${formData.countryCode}${formData.phone}`;
+
     try {
       const res = await fetch(
         "https://mondus-backend.onrender.com/api/verifyOtp/notifyme",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, otp }),
+          body: JSON.stringify({ ...formData, phone: fullPhone, otp }),
         }
       );
 
@@ -98,6 +102,7 @@ const NotifyMe = () => {
           name: "",
           phone: "",
           email: "",
+          countryCode: "+971",
         });
         setOtp("");
         setStep(1);
@@ -195,7 +200,6 @@ const NotifyMe = () => {
                     type="text"
                     name="name"
                     placeholder="Your Name"
-                    aria-label="Your Name"
                     value={formData.name}
                     onChange={handleChange}
                     className="border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
@@ -212,7 +216,6 @@ const NotifyMe = () => {
                     type="email"
                     name="email"
                     placeholder="Your Email"
-                    aria-label="Your Email"
                     value={formData.email}
                     onChange={handleChange}
                     className="border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
@@ -221,20 +224,29 @@ const NotifyMe = () => {
                 </div>
 
                 <div className="flex flex-col">
-                  <label htmlFor="phone" className="mb-1 text-sm">
-                    Your Phone
-                  </label>
-                  <input
-                    id="phone"
-                    type="text"
-                    name="phone"
-                    placeholder="Your Phone"
-                    aria-label="Your Phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
-                    required
-                  />
+                  <label className="mb-1 text-sm">Phone Number</label>
+                  <div className="flex">
+                    <select
+                      name="countryCode"
+                      value={formData.countryCode}
+                      onChange={handleChange}
+                      className="border px-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
+                    >
+                      <option value="+971">+971 (UAE)</option>
+                      <option value="+91">+91 (India)</option>
+                      <option value="+44">+44 (UK)</option>
+                      <option value="+1">+1 (USA)</option>
+                    </select>
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="flex-1 border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
+                      required
+                    />
+                  </div>
                 </div>
               </>
             )}
@@ -248,7 +260,6 @@ const NotifyMe = () => {
                   id="otp"
                   type="text"
                   placeholder="Enter OTP"
-                  aria-label="OTP"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                   className="border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"

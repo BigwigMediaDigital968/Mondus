@@ -4,10 +4,11 @@ import { FaWhatsapp } from "react-icons/fa";
 const PromptConsultation = () => {
   const [formData, setFormData] = useState({
     name: "",
+    countryCode: "+971", // default to UAE
     phone: "",
     email: "",
   });
-  const [step, setStep] = useState(1); // Step 1: user inputs, Step 2: enter OTP
+  const [step, setStep] = useState(1);
   const [otp, setOtp] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,14 +16,19 @@ const PromptConsultation = () => {
   const validateEmail = (email: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const validatePhone = (phone: string) => /^\d{7,15}$/.test(phone); // simple check for 7 to 15 digits
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSendOtp = async (e: any) => {
     e.preventDefault();
     setMessage("");
-    const { name, email, phone } = formData;
+    const { name, email, phone, countryCode } = formData;
 
     if (!name || !phone || !email) {
       setMessage("❌ All fields are required.");
@@ -34,14 +40,25 @@ const PromptConsultation = () => {
       return;
     }
 
+    if (!validatePhone(phone)) {
+      setMessage("❌ Invalid phone number.");
+      return;
+    }
+
+    const fullPhone = countryCode + phone;
     setLoading(true);
+
     try {
       const res = await fetch(
         "https://mondus-backend.onrender.com/api/send-otp",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            name,
+            email,
+            phone: fullPhone,
+          }),
         }
       );
 
@@ -64,6 +81,7 @@ const PromptConsultation = () => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
+    const fullPhone = formData.countryCode + formData.phone;
 
     try {
       const res = await fetch(
@@ -71,17 +89,21 @@ const PromptConsultation = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, otp }),
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: fullPhone,
+            otp,
+          }),
         }
       );
 
       const data = await res.json();
 
       if (res.ok) {
-        // Store in sessionStorage
         sessionStorage.setItem("formData", JSON.stringify(formData));
         setMessage("✅ OTP verified. Data submitted successfully.");
-        setFormData({ name: "", phone: "", email: "" });
+        setFormData({ name: "", phone: "", email: "", countryCode: "+971" });
         setOtp("");
         setStep(1);
       } else {
@@ -120,15 +142,30 @@ const PromptConsultation = () => {
                   required
                   className="bg-white dark:bg-black text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-b border-gray-400 dark:border-gray-500 outline-none px-2 py-2"
                 />
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Your Phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="bg-white dark:bg-black text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-b border-gray-400 dark:border-gray-500 outline-none px-2 py-2"
-                />
+
+                <div className="flex gap-2 col-span-1">
+                  <select
+                    name="countryCode"
+                    value={formData.countryCode}
+                    onChange={handleChange}
+                    className="bg-white dark:bg-black text-black dark:text-white border-b border-gray-400 dark:border-gray-500 outline-none px-2 py-2"
+                  >
+                    <option value="+971">🇦🇪 +971</option>
+                    <option value="+91">🇮🇳 +91</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                  </select>
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-white dark:bg-black text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border-b border-gray-400 dark:border-gray-500 outline-none px-2 py-2"
+                  />
+                </div>
+
                 <input
                   type="email"
                   name="email"

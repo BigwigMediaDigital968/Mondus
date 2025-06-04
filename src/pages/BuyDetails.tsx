@@ -78,7 +78,7 @@ const BuyDetails = () => {
   const SampleNextArrow = ({ onClick }: { onClick?: () => void }) => (
     <div
       onClick={onClick}
-      className="absolute top-1/2 right-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
+      className="absolute hidden md:block top-1/2 right-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
     >
       <ChevronRight size={48} />
     </div>
@@ -87,7 +87,7 @@ const BuyDetails = () => {
   const SamplePrevArrow = ({ onClick }: { onClick?: () => void }) => (
     <div
       onClick={onClick}
-      className="absolute top-1/2 left-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
+      className="absolute hidden md:block top-1/2 left-4 z-10 transform -translate-y-1/2 bg-white dark:bg-black text-[var(--primary-color)] p-2 rounded-full shadow cursor-pointer hover:scale-105 transition"
     >
       <ChevronLeft size={48} />
     </div>

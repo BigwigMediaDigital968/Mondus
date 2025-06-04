@@ -189,7 +189,7 @@ const Exclusives = () => {
         <button
           onClick={handlePrev}
           disabled={index === 0}
-          className="flex items-center justify-center absolute left-2 md:left-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)]  p-2 shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
+          className="flex items-center justify-center absolute left-0 md:left-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)]  p-2 shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
         >
           <ChevronLeft size={80} />
         </button>
@@ -197,7 +197,7 @@ const Exclusives = () => {
         <button
           onClick={handleNext}
           disabled={index + 1 >= properties.length}
-          className="flex items-center justify-center absolute right-2 md:right-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)]   p-2 shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
+          className="flex items-center justify-center absolute right-0 md:right-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)]   p-2 shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
         >
           <ChevronRight size={80} />
         </button>

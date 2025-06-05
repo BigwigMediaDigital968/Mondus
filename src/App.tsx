@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { Landing } from "./pages/Landing";
 import AgentDetail from "./pages/AgentDetail";
 import AgentsSection from "./components/Agents";
@@ -30,13 +35,20 @@ import AdminSubscriber from "./pages/admin/AdminSubscriber";
 import AdminContactRequest from "./pages/admin/AdminContactRequest";
 import AwardsPage from "./pages/AwardsPage";
 import AdminNotify from "./pages/admin/AdminNotify";
+
 import Chatbot from "./components/Chatbot";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiPhone } from "react-icons/fi";
+import ChatbotLead from "./pages/admin/ChatbotLead";
 
-function App() {
+// ✅ Custom wrapper to access location inside App
+function AppWrapper() {
+  const location = useLocation();
+
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
   return (
-    <Router>
+    <>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/buy" element={<Buy />} />
@@ -67,10 +79,15 @@ function App() {
           <Route path="subscriber" element={<AdminSubscriber />} />
           <Route path="contacts" element={<AdminContactRequest />} />
           <Route path="request" element={<AdminNotify />} />
+          <Route path="chatleads" element={<ChatbotLead />} />
         </Route>
       </Routes>
-      <Chatbot />
-      <div className=" fixed bottom-0 left-0 w-full flex md:hidden z-[9999]">
+
+      {/* ✅ Show chatbot only on non-admin routes */}
+      {!isAdminRoute && <Chatbot />}
+
+      {/* Sticky bottom bar on mobile (always shown) */}
+      <div className="fixed bottom-0 left-0 w-full flex md:hidden z-[9999]">
         <div className="w-1/2 bg-[var(--primary-color)] text-white text-center py-3">
           <a
             href="tel:+971521110795"
@@ -92,6 +109,15 @@ function App() {
           </a>
         </div>
       </div>
+    </>
+  );
+}
+
+// ✅ Main App entry using Router
+function App() {
+  return (
+    <Router>
+      <AppWrapper />
     </Router>
   );
 }

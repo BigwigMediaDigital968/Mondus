@@ -1,52 +1,106 @@
 import { useEffect, useState } from "react";
+import {
+  FaUserAlt,
+  FaNewspaper,
+  FaEnvelope,
+  FaPhone,
+  FaBell,
+} from "react-icons/fa";
+
+const GRADIENTS = [
+  "from-indigo-500 via-purple-500 to-pink-500",
+  "from-sky-500 via-blue-500 to-indigo-600",
+  "from-green-500 via-emerald-500 to-teal-500",
+  "from-orange-500 via-amber-500 to-yellow-500",
+  "from-rose-500 via-pink-500 to-red-500",
+];
 
 const Dashboard = () => {
-  const [subscriberCount, setSubscriberCount] = useState(0);
-  const [newsletterCount, setNewsletterCount] = useState(0);
-  const [emailerCount, setEmailerCount] = useState(0);
-  const [contactCount, setContactCount] = useState(0);
-  const [leadsCount, setLeadsCount] = useState(0);
+  const [counts, setCounts] = useState({
+    subscribers: 0,
+    newsletters: 0,
+    emailers: 0,
+    leads: 0,
+    callbacks: 0,
+  });
 
   useEffect(() => {
-    fetch("https://mondus-backend.onrender.com/subscribers")
-      .then((res) => res.json())
-      .then((data) => setSubscriberCount(data.length));
-
-    fetch("https://mondus-backend.onrender.com/newsletter")
-      .then((res) => res.json())
-      .then((data) => setNewsletterCount(data.length));
-
-    fetch("https://mondus-backend.onrender.com/emailer")
-      .then((res) => res.json())
-      .then((data) => setEmailerCount(data.length));
-
-    fetch("https://mondus-backend.onrender.com/api/consultation")
-      .then((res) => res.json())
-      .then((data) => setContactCount(data.length));
-
-    fetch("https://mondus-backend.onrender.com/api/notify")
-      .then((res) => res.json())
-      .then((data) => setLeadsCount(data.length));
+    Promise.all([
+      fetch("https://mondus-backend.onrender.com/subscribers").then((r) =>
+        r.json()
+      ),
+      fetch("https://mondus-backend.onrender.com/newsletter").then((r) =>
+        r.json()
+      ),
+      fetch("https://mondus-backend.onrender.com/emailer").then((r) =>
+        r.json()
+      ),
+      fetch("https://mondus-backend.onrender.com/api/consultation").then((r) =>
+        r.json()
+      ),
+      fetch("https://mondus-backend.onrender.com/api/notify").then((r) =>
+        r.json()
+      ),
+    ]).then(
+      ([subscribers, newsletters, emailers, leads, callbacks]: unknown[]) => {
+        setCounts({
+          subscribers: (subscribers as any[]).length,
+          newsletters: (newsletters as any[]).length,
+          emailers: (emailers as any[]).length,
+          leads: (leads as any[]).length,
+          callbacks: (callbacks as any[]).length,
+        });
+      }
+    );
   }, []);
 
+  const cards = [
+    { title: "Subscribers", icon: <FaUserAlt />, count: counts.subscribers },
+    { title: "Newsletters", icon: <FaNewspaper />, count: counts.newsletters },
+    { title: "Emailers", icon: <FaEnvelope />, count: counts.emailers },
+    { title: "Leads", icon: <FaPhone />, count: counts.leads },
+    {
+      title: "Call Back Leads",
+      icon: <FaBell />,
+      count: counts.callbacks,
+    },
+  ];
+
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold mb-4">Admin Dashboard</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard title="Subscribers" count={subscriberCount} />
-        <StatCard title="Newsletters" count={newsletterCount} />
-        <StatCard title="Emailers" count={emailerCount} />
-        <StatCard title="Leads" count={contactCount} />
-        <StatCard title="Call Back Leads" count={leadsCount} />
+    <section className="px-4 py-8 space-y-8">
+      <h2 className="text-2xl font-bold text-center">Admin Dashboard</h2>
+
+      {/* 3-column flex wrap layout */}
+      <div className="flex flex-wrap justify-center gap-6">
+        {cards.map((card, idx) => (
+          <StatCard
+            key={card.title}
+            {...card}
+            gradient={GRADIENTS[idx % GRADIENTS.length]}
+          />
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 
-const StatCard = ({ title, count }: { title: string; count: number }) => (
-  <div className="bg-[#222] p-4 rounded shadow text-center">
-    <h3 className="text-lg font-semibold">{title}</h3>
-    <p className="text-2xl font-bold text-[var(--primary-color)]">{count}</p>
+const StatCard = ({
+  title,
+  icon,
+  count,
+  gradient,
+}: {
+  title: string;
+  icon: JSX.Element;
+  count: number;
+  gradient: string;
+}) => (
+  <div
+    className={`w-[250px] h-[170px] rounded-2xl shadow-lg p-5 flex flex-col items-center justify-center text-white bg-gradient-to-br ${gradient}`}
+  >
+    <div className="text-4xl mb-2">{icon}</div>
+    <h3 className="text-lg font-semibold mb-1">{title}</h3>
+    <p className="text-3xl font-bold">{count}</p>
   </div>
 );
 

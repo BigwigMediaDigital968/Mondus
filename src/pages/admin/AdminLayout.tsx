@@ -5,6 +5,7 @@ import {
   FaUsers,
   FaCommentDots,
   FaClipboardList,
+  FaRobot,
 } from "react-icons/fa";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logo mondus new (1).gif";
@@ -23,6 +24,11 @@ const AdminLayout = () => {
       icon: <FaClipboardList />,
       label: "Call Back Leads",
       to: "/admin/request",
+    },
+    {
+      icon: <FaRobot />,
+      label: "Chat Leads",
+      to: "/admin/chatleads",
     },
   ];
 

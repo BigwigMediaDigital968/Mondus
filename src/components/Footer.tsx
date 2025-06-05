@@ -24,7 +24,9 @@ const Footer = () => {
             <div className="w-20 border-t border-[var(--primary-color)]" />
           </div>
         </div>
-        <h2 className="text-2xl font-thin mt-10 md:mt-0">CONTACTS</h2>
+        <h2 className="hidden md:block text-2xl font-thin mt-10 md:mt-0">
+          CONTACTS
+        </h2>
       </div>
 
       {/* Mid horizontal line */}
@@ -67,11 +69,11 @@ const Footer = () => {
         </div>
 
         {/* Middle: QR Code Image */}
-        <div className="flex  lg:justify-center items-center ">
+        <div className="flex justify-center lg:justify-center items-center order-second md:-mt-20 lg:order-none">
           <img
             src={qrImage}
             alt="QR Code"
-            className="w-32 h-32 object-contain rounded-md shadow-md md:-mt-16"
+            className="w-32 h-32 object-contain rounded-md shadow-md"
           />
         </div>
 

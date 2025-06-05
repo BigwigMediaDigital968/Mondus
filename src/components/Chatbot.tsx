@@ -25,11 +25,14 @@ const Chatbot: React.FC = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/api/chatbot", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input }),
-      });
+      const res = await fetch(
+        "https://mondus-backend.onrender.com/api/chatbot",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: input }),
+        }
+      );
 
       const data = await res.json();
 

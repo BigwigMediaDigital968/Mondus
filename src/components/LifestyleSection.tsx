@@ -75,7 +75,7 @@ const LifeStyleSection = () => {
             <button
               onClick={handlePrev}
               disabled={startIndex === 0}
-              className="absolute left-2 md:left-10 top-1/2 -translate-y-1/2 text-[var(--primary-color)] z-20 p-2 shadow-md rounded-full disabled:opacity-50"
+              className="absolute left-2 md:left-10 top-1/2 -translate-y-1/2 text-[var(--primary-color)] z-20 p-2 disabled:opacity-50"
             >
               <ChevronLeft size={70} />
             </button>
@@ -121,7 +121,7 @@ const LifeStyleSection = () => {
             <button
               onClick={handleNext}
               disabled={startIndex >= maxIndex}
-              className="absolute right-2 md:right-10 top-1/2 -translate-y-1/2 text-[var(--primary-color)] z-20 p-2 shadow-md rounded-full disabled:opacity-50"
+              className="absolute right-2 md:right-10 top-1/2 -translate-y-1/2 text-[var(--primary-color)] z-20 p-2 disabled:opacity-50"
             >
               <ChevronRight size={70} />
             </button>

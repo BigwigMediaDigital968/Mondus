@@ -225,17 +225,46 @@ const NotifyMe = () => {
 
                 <div className="flex flex-col">
                   <label className="mb-1 text-sm">Phone Number</label>
-                  <div className="flex">
+                  <div className="flex flex-wrap w-full">
                     <select
                       name="countryCode"
                       value={formData.countryCode}
                       onChange={handleChange}
-                      className="border px-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
+                      className="w-[30%] mix-w-[100%] md:min-w-[90px] border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
                     >
-                      <option value="+971">+971 (UAE)</option>
-                      <option value="+91">+91 (India)</option>
+                      <option value="+1">+1 (US)</option>
                       <option value="+44">+44 (UK)</option>
-                      <option value="+1">+1 (USA)</option>
+                      <option value="+91">+91 (IN)</option>
+                      <option value="+971">+971 (UAE)</option>
+                      <option value="+61">+61 (AU)</option>
+                      <option value="+81">+81 (JP)</option>
+                      <option value="+49">+49 (DE)</option>
+                      <option value="+33">+33 (FR)</option>
+                      <option value="+86">+86 (CN)</option>
+                      <option value="+39">+39 (IT)</option>
+                      <option value="+7">+7 (RU)</option>
+                      <option value="+34">+34 (ES)</option>
+                      <option value="+46">+46 (SE)</option>
+                      <option value="+31">+31 (NL)</option>
+                      <option value="+41">+41 (CH)</option>
+                      <option value="+65">+65 (SG)</option>
+                      <option value="+63">+63 (PH)</option>
+                      <option value="+92">+92 (PK)</option>
+                      <option value="+880">+880 (BD)</option>
+                      <option value="+82">+82 (KR)</option>
+                      <option value="+62">+62 (ID)</option>
+                      <option value="+55">+55 (BR)</option>
+                      <option value="+351">+351 (PT)</option>
+                      <option value="+20">+20 (EG)</option>
+                      <option value="+27">+27 (ZA)</option>
+                      <option value="+90">+90 (TR)</option>
+                      <option value="+966">+966 (SA)</option>
+                      <option value="+973">+973 (BH)</option>
+                      <option value="+974">+974 (QA)</option>
+                      <option value="+968">+968 (OM)</option>
+                      <option value="+964">+964 (IQ)</option>
+                      <option value="+962">+962 (JO)</option>
+                      <option value="+961">+961 (LB)</option>
                     </select>
                     <input
                       type="text"
@@ -243,7 +272,7 @@ const NotifyMe = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="flex-1 border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
+                      className="flex-1 min-w-[150px] border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
                       required
                     />
                   </div>

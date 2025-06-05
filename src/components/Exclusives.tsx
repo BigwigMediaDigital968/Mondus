@@ -98,14 +98,14 @@ const Exclusives = () => {
       {/* Custom arrows for desktop */}
       <button
         onClick={() => sliderRef.current?.slickPrev()}
-        className="hidden md:flex items-center justify-center absolute left-0 md:left-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)] p-2 shadow-md"
+        className="hidden md:flex items-center justify-center absolute left-0 md:left-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)] p-2 "
       >
         <ChevronLeft size={60} />
       </button>
 
       <button
         onClick={() => sliderRef.current?.slickNext()}
-        className="hidden md:flex items-center justify-center absolute right-0 md:right-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)] p-2 shadow-md"
+        className="hidden md:flex items-center justify-center absolute right-0 md:right-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)] p-2"
       >
         <ChevronRight size={60} />
       </button>

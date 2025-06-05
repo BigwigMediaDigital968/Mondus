@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FiMenu, FiSun, FiMoon } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import logo from "../assets/logo mondus new (1).gif";
-import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Youtube } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 
 declare global {
@@ -16,7 +16,6 @@ declare global {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
-  const [showSocialLinks, setShowSocialLinks] = useState(false);
 
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme")
@@ -131,7 +130,7 @@ const Navbar = () => {
               <div className="flex items-center space-x-6">
                 <div className="flex items-center space-x-6">
                   <a
-                    href="https://wa.me/971521110795"
+                    href="https://wa.me/+971521110795"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -209,7 +208,7 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         {isOpen && (
-          <div className="md:hidden fixed inset-0 z-[9999] bg-white dark:bg-black flex flex-col pl-2 pr-5 pb-6 pt-3">
+          <div className="md:hidden fixed inset-0 z-[999] bg-white dark:bg-black flex flex-col pl-2 pr-5 pb-6 pt-3">
             <div className="flex justify-between items-center mb-6">
               <img src={logo} alt="Mondus Logo" className="w-48" />
               <button
@@ -247,77 +246,6 @@ const Navbar = () => {
 
             {/* Bottom Buttons */}
             {/* Bottom Buttons */}
-            <div className="absolute bottom-0 left-0 w-full flex flex-col">
-              {showSocialLinks && (
-                <div
-                  className={`w-full flex flex-col px-4 py-4 transition-all duration-300 ${
-                    darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
-                  }`}
-                >
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 py-2 border-b border-gray-300"
-                  >
-                    <Facebook size={18} />
-                    Facebook
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 py-2 border-b border-gray-300"
-                  >
-                    <Instagram size={18} />
-                    Instagram
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 py-2 border-b border-gray-300"
-                  >
-                    <Twitter size={18} />
-                    Twitter
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 py-2 border-b border-gray-300"
-                  >
-                    <Linkedin size={18} />
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://youtube.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 py-2"
-                  >
-                    <Youtube size={18} />
-                    YouTube
-                  </a>
-                </div>
-              )}
-
-              <div className="w-full flex">
-                <div className="w-1/2 bg-[var(--primary-color)] text-white text-center py-3">
-                  <button
-                    onClick={() => setShowSocialLinks((prev) => !prev)}
-                    className="w-full"
-                  >
-                    {showSocialLinks ? "Hide" : "Follow Us"}
-                  </button>
-                </div>
-                <div className="w-1/2 bg-black dark:bg-white text-white dark:text-black text-center py-3 border-l border-[var(--primary-color)]">
-                  <a href="tel:+1234567890" className="w-full block">
-                    Call Us
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         )}
       </nav>

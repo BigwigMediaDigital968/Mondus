@@ -56,7 +56,7 @@ export default function Hero() {
       </div>
 
       {/* Right Form */}
-      <div className="relative z-10 w-full sm:w-11/12 lg:w-[420px] bg-[#121212]/90 p-8 rounded-2xl shadow-xl border border-[#333] backdrop-blur-md space-y-6 mt-5">
+      <div className="relative w-full sm:w-11/12 lg:w-[420px] bg-[#121212]/90 p-8 rounded-2xl shadow-xl border border-[#333] backdrop-blur-md space-y-6 mt-5">
         {/* Dropdowns */}
         <div className="space-y-4 font-raleway font-thin">
           <div>

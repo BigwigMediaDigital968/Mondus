@@ -31,6 +31,8 @@ import AdminContactRequest from "./pages/admin/AdminContactRequest";
 import AwardsPage from "./pages/AwardsPage";
 import AdminNotify from "./pages/admin/AdminNotify";
 import Chatbot from "./components/Chatbot";
+import { FaWhatsapp } from "react-icons/fa";
+import { FiPhone } from "react-icons/fi";
 
 function App() {
   return (
@@ -68,6 +70,28 @@ function App() {
         </Route>
       </Routes>
       <Chatbot />
+      <div className=" fixed bottom-0 left-0 w-full flex md:hidden z-[9999]">
+        <div className="w-1/2 bg-[var(--primary-color)] text-white text-center py-3">
+          <a
+            href="tel:+971521110795"
+            className="w-full flex items-center justify-center gap-2"
+          >
+            <FiPhone size={18} />
+            Call Us
+          </a>
+        </div>
+        <div className="w-1/2 bg-white text-green-500 text-center py-3 border-l border-white">
+          <a
+            href="https://wa.me/+971521110795"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2"
+          >
+            <FaWhatsapp size={18} />
+            WhatsApp
+          </a>
+        </div>
+      </div>
     </Router>
   );
 }

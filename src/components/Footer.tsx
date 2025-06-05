@@ -33,7 +33,7 @@ const Footer = () => {
       {/* Main content */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between px-6 sm:px-12 lg:px-6 gap-8 pb-10 font-light dark:font-thin ">
         {/* Left: Navigation Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-6">
           {[
             [
               { label: "Buy", path: "/buy" },
@@ -67,11 +67,11 @@ const Footer = () => {
         </div>
 
         {/* Middle: QR Code Image */}
-        <div className="flex justify-center lg:justify-center items-center ">
+        <div className="flex  lg:justify-center items-center ">
           <img
             src={qrImage}
             alt="QR Code"
-            className="w-32 h-32 object-contain rounded-md shadow-md -mt-16"
+            className="w-32 h-32 object-contain rounded-md shadow-md md:-mt-16"
           />
         </div>
 
@@ -145,7 +145,7 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-6 py-6 text-xs text-gray-600 dark:text-gray-400 flex flex-col gap-2">
         {/* Mobile View (visible on small screens only) */}
-        <div className="flex flex-col sm:hidden gap-2">
+        <div className="flex flex-col sm:hidden gap-2 pb-16">
           <div className="flex flex-row justify-between items-center flex-wrap gap-2">
             <span>Mondus ©2025 All Rights Reserved</span>
             <div className="flex gap-4">

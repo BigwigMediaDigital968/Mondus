@@ -1,4 +1,9 @@
+import { useRef } from "react";
 import Slider from "react-slick";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const properties = [
   {
@@ -61,6 +66,8 @@ const properties = [
 ];
 
 const Exclusives = () => {
+  const sliderRef = useRef<Slider | null>(null);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -69,7 +76,7 @@ const Exclusives = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    arrows: false,
+    arrows: false, // We’ll use custom arrows
     pauseOnHover: false,
   };
 
@@ -77,7 +84,7 @@ const Exclusives = () => {
     <section className="bg-white dark:bg-black text-black dark:text-white py-10 px-2 md:px-28 font-raleway font-thin custom-gradient-lines relative">
       <div className="mb-8">
         <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 md:text-center pl-6">
-          OUR EXCLUSIVES PROJECTS
+          OUR EXCLUSIVE PROJECTS
         </h2>
         <p className="text-sm md:text-base pl-6 font-light dark:font-thin md:text-center">
           Discover the outstanding range of <span>Dubai</span> real estate only
@@ -88,7 +95,22 @@ const Exclusives = () => {
         </p>
       </div>
 
-      <Slider {...settings}>
+      {/* Custom arrows for desktop */}
+      <button
+        onClick={() => sliderRef.current?.slickPrev()}
+        className="hidden md:flex items-center justify-center absolute left-0 md:left-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)] p-2 shadow-md"
+      >
+        <ChevronLeft size={60} />
+      </button>
+
+      <button
+        onClick={() => sliderRef.current?.slickNext()}
+        className="hidden md:flex items-center justify-center absolute right-0 md:right-10 top-1/2 -translate-y-1/2 z-10 text-[var(--primary-color)] p-2 shadow-md"
+      >
+        <ChevronRight size={60} />
+      </button>
+
+      <Slider ref={sliderRef} {...settings}>
         {properties.map((property, idx) => (
           <div key={idx} className="px-4">
             <div className="flex flex-col md:flex-row bg-gray-50 dark:bg-[#1A1A1A] rounded-lg overflow-hidden">

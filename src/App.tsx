@@ -69,8 +69,7 @@ function AppWrapper() {
         <Route path="/careers" element={<Career />} />
         <Route path="/area-guides" element={<AreaGuide />} />
         <Route path="/area-guides/:title" element={<AreaGuideDetails />} />
-        <Route path="/newsletter" element={<NewsletterForm />} />
-        <Route path="/emailer" element={<Emailer />} />
+
         <Route path="/awards" element={<AwardsPage />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
@@ -80,6 +79,8 @@ function AppWrapper() {
           <Route path="contacts" element={<AdminContactRequest />} />
           <Route path="request" element={<AdminNotify />} />
           <Route path="chatleads" element={<ChatbotLead />} />
+          <Route path="sendnewsletter" element={<NewsletterForm />} />
+          <Route path="sendemailer" element={<Emailer />} />
         </Route>
       </Routes>
 

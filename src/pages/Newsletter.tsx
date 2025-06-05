@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../index.css";
-import logo from "../assets/mondus.png";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -93,16 +92,7 @@ const NewsletterForm = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navbar */}
-      <nav className="bg-gray-900 shadow px-6">
-        <a href="admin">
-          <img
-            src={logo}
-            alt="Mondus Logo"
-            className="h-20"
-            draggable="false"
-          />
-        </a>
-      </nav>
+
       <h2 className="text-3xl font-semibold text-center mt-5">
         📬 Send Newsletter
       </h2>

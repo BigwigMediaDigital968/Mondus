@@ -79,7 +79,7 @@ const Dashboard = () => {
       <h2 className="text-2xl font-bold text-center">Admin Dashboard</h2>
 
       {/* 3-column flex wrap layout */}
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 justify-items-center">
         {cards.map((card, idx) => (
           <StatCard
             key={card.title}
@@ -104,10 +104,10 @@ const StatCard = ({
   gradient: string;
 }) => (
   <div
-    className={`w-[250px] h-[170px] rounded-2xl shadow-lg p-5 flex flex-col items-center justify-center text-white bg-gradient-to-br ${gradient}`}
+    className={`w-full max-w-sm rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center text-white bg-gradient-to-br ${gradient}`}
   >
-    <div className="text-4xl mb-2">{icon}</div>
-    <h3 className="text-lg font-semibold mb-1">{title}</h3>
+    <div className="text-4xl mb-3">{icon}</div>
+    <h3 className="text-lg font-semibold mb-1 text-center">{title}</h3>
     <p className="text-3xl font-bold">{count}</p>
   </div>
 );

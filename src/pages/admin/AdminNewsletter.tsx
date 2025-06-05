@@ -43,7 +43,7 @@ const NewsletterPage = () => {
       <div className="sticky top-0 z-20 bg-black p-4 sm:p-6 border-b border-gray-700 flex justify-between items-center">
         <h1 className="text-2xl sm:text-3xl font-bold">Newsletters</h1>
         <a
-          href="/newsletter"
+          href="/admin/sendnewsletter"
           className="bg-[var(--primary-color)] text-black hover:opacity-80 px-4 py-2 rounded"
         >
           Send Newsletter

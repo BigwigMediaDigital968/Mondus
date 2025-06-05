@@ -3,8 +3,8 @@ import {
   FaUserAlt,
   FaNewspaper,
   FaEnvelope,
-  FaPhone,
   FaBell,
+  FaPhoneAlt,
 } from "react-icons/fa";
 
 const GRADIENTS = [
@@ -55,10 +55,18 @@ const Dashboard = () => {
   }, []);
 
   const cards = [
-    { title: "Subscribers", icon: <FaUserAlt />, count: counts.subscribers },
-    { title: "Newsletters", icon: <FaNewspaper />, count: counts.newsletters },
-    { title: "Emailers", icon: <FaEnvelope />, count: counts.emailers },
-    { title: "Leads", icon: <FaPhone />, count: counts.leads },
+    {
+      title: "Newsletter Subscribers",
+      icon: <FaUserAlt />,
+      count: counts.subscribers,
+    },
+    {
+      title: "Sent Newsletters",
+      icon: <FaNewspaper />,
+      count: counts.newsletters,
+    },
+    { title: "Sent Emailers", icon: <FaEnvelope />, count: counts.emailers },
+    { title: "Leads", icon: <FaPhoneAlt />, count: counts.leads },
     {
       title: "Call Back Leads",
       icon: <FaBell />,

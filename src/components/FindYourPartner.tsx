@@ -123,7 +123,7 @@ const FindYourPartner: React.FC = () => {
             </p>
 
             <a
-              href="/connect"
+              href="/AgentsSection"
               className="w-36  md:w-44 inline-block font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black py-3 text-center hover:opacity-90 transition"
             >
               CONNECT NOW

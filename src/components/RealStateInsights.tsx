@@ -133,7 +133,7 @@ const RealStateInsights = () => {
               <p className="mt-4 text-gray-700 dark:text-gray-300">
                 {item.desc}
               </p>
-              <a href="/chronicle">
+              <a href="/insights">
                 <button className="mt-6  px-6 py-2 font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black  hover:opacity-90 transition">
                   {item.button}
                 </button>

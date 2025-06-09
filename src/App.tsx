@@ -61,8 +61,8 @@ function AppWrapper() {
         <Route path="/offplan" element={<OffPlan />} />
         <Route path="/offplan/:slug" element={<OffPlanDetails />} />
         <Route path="/sell" element={<Sell />} />
-        <Route path="/insights" element={<Blog />} />
-        <Route path="/insights/:slug" element={<BlogDetails />} />
+        <Route path="/blogs" element={<Blog />} />
+        <Route path="/blogs/:slug" element={<BlogDetails />} />
         <Route path="/catalogs" element={<CatalogSection />} />
         <Route path="/developers" element={<Developers />} />
         <Route path="/contact" element={<Contact />} />

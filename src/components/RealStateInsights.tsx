@@ -1,26 +1,35 @@
 import { useEffect, useRef, useState } from "react";
-import podcast1 from "../assets/podcast1.webp";
-import podcast2 from "../assets/podcast2.webp";
+import axios from "axios";
 import "../index.css";
+
+interface BlogPost {
+  _id: string;
+  title: string;
+  excerpt: string; // short description for carousel
+  coverImage: string;
+  slug: string;
+  // add other fields if needed
+}
 
 const RealStateInsights = () => {
   const [index, setIndex] = useState(0);
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const data = [
-    {
-      title: "MONDUS BLOGS",
-      desc: "Explore our blogs & articles from our own real estate agents and stay up to date on Dubai property market, latest news, expert advice and more.",
-      button: "All Blogs",
-      img: podcast1,
-    },
-    {
-      title: "MONDUS BLOG",
-      desc: "Stay up to date on the latest trends and developments in the Dubai real estate market with our informative articles. With insights and advice from industry experts, our blog is a valuable resource for anyone interested in the Dubai property market.",
-      button: "All Blogs",
-      img: podcast2,
-    },
-  ];
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await axios.get(
+          "https://mondus-backend.onrender.com/api/blogs/viewblog"
+        );
+        setBlogs(res.data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   // Scroll to specific slide when clicking dots
   const scrollToSlide = (i: number) => {
@@ -70,7 +79,7 @@ const RealStateInsights = () => {
     let closestIndex = 0;
     let closestOffset = Infinity;
 
-    data.forEach((_, i) => {
+    blogs.forEach((_, i) => {
       const slide = document.getElementById(`slide-${i}`);
       if (!slide) return;
 
@@ -94,7 +103,7 @@ const RealStateInsights = () => {
     return () => {
       carousel.removeEventListener("scroll", handleScroll);
     };
-  }, [index]);
+  }, [index, blogs]);
 
   return (
     <div className="px-4 py-10 bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin relative custom-gradient-lines">
@@ -116,36 +125,40 @@ const RealStateInsights = () => {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        {data.map((item, i) => (
-          <div
-            id={`slide-${i}`}
-            key={i}
-            className="min-w-full lg:min-w-[100%] border border-gray-300 dark:border-gray-600 flex flex-col lg:flex-row snap-center"
-          >
-            <img
-              src={item.img}
-              className="w-full lg:w-1/2 object-cover"
-              alt={item.title}
-              draggable="false"
-            />
-            <div className="p-8 bg-white dark:bg-black flex flex-col justify-center">
-              <h3 className="text-2xl font-thin">{item.title}</h3>
-              <p className="mt-4 text-gray-700 dark:text-gray-300">
-                {item.desc}
-              </p>
-              <a href="/insights">
-                <button className="mt-6  px-6 py-2 font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black  hover:opacity-90 transition">
-                  {item.button}
-                </button>
-              </a>
+        {blogs.length === 0 ? (
+          <p className="text-center w-full py-20">Loading blogs...</p>
+        ) : (
+          blogs.map((item, i) => (
+            <div
+              id={`slide-${i}`}
+              key={item._id}
+              className="min-w-full lg:min-w-[100%] border border-gray-300 dark:border-gray-600 flex flex-col lg:flex-row snap-center"
+            >
+              <img
+                src={item.coverImage}
+                className="w-full lg:w-1/2 object-cover"
+                alt={item.title}
+                draggable={false}
+              />
+              <div className="p-8 bg-white dark:bg-black flex flex-col justify-center">
+                <h3 className="text-2xl font-thin">{item.title}</h3>
+                <p className="mt-4 text-gray-700 dark:text-gray-300">
+                  {item.excerpt || "No description available."}
+                </p>
+                <a href={`/blogs/${item.slug}`}>
+                  <button className="mt-6 px-6 py-2 font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black hover:opacity-90 transition">
+                    Read More
+                  </button>
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       {/* Navigation Dots */}
       <div className="flex justify-center mt-4 gap-2">
-        {data.map((_, i) => (
+        {blogs.map((_, i) => (
           <button
             key={i}
             type="button"

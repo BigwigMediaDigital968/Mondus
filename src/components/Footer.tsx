@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import logo from "../assets/logo mondus new (1).gif";
+import logo from "../assets/logo mondus new (4).gif";
 import qrImage from "../assets/URL QR Code (2).png";
 
 const Footer = () => {

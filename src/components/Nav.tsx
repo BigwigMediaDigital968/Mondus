@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiSun, FiMoon } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import logo from "../assets/logo mondus new (1).gif";
+import logo from "../assets/logo mondus new (4).gif";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 

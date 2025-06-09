@@ -40,6 +40,7 @@ import Chatbot from "./components/Chatbot";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiPhone } from "react-icons/fi";
 import ChatbotLead from "./pages/admin/ChatbotLead";
+import AdminBlog from "./pages/admin/AdminBlog";
 
 // ✅ Custom wrapper to access location inside App
 function AppWrapper() {
@@ -81,6 +82,7 @@ function AppWrapper() {
           <Route path="chatleads" element={<ChatbotLead />} />
           <Route path="sendnewsletter" element={<NewsletterForm />} />
           <Route path="sendemailer" element={<Emailer />} />
+          <Route path="blogs" element={<AdminBlog />} />
         </Route>
       </Routes>
 

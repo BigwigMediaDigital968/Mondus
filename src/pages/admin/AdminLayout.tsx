@@ -12,6 +12,7 @@ import {
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../assets/logo mondus new (1).gif";
+import { NotebookPen } from "lucide-react";
 
 const AdminLayout = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ const AdminLayout = () => {
       to: "/admin/request",
     },
     { icon: <FaRobot />, label: "Chat Leads", to: "/admin/chatleads" },
+    { icon: <NotebookPen />, label: "Blogs", to: "/admin/blogs" },
   ];
 
   return (

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet";
 
 interface BlogType {
   title: string;
@@ -57,8 +58,12 @@ const BlogDetails = () => {
 
   return (
     <div className="bg-white text-black dark:bg-black dark:text-white min-h-screen">
+      <Helmet>
+        <title>{blog?.title}</title>
+      </Helmet>
       <Navbar />
-      <div className="p-8 max-w-3xl mx-auto pt-40">
+
+      <div className="p-8 max-w-5xl mx-auto pt-40">
         <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
         <p className="text-gray-600 mb-2">
           By {blog.author} - {new Date(blog.datePublished).toLocaleDateString()}
@@ -71,7 +76,7 @@ const BlogDetails = () => {
         />
 
         <div
-          className="prose max-w-none mb-6"
+          className="prose prose-lg dark:prose-invert max-w-none mb-6"
           dangerouslySetInnerHTML={{ __html: blog.content }}
         />
       </div>

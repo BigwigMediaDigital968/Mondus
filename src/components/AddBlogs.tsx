@@ -50,7 +50,23 @@ const AddBlog = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    // Auto-generate slug if the title is changing and the slug hasn't been manually modified
+    if (name === "title") {
+      const autoSlug = value
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, "") // remove special chars
+        .trim()
+        .replace(/\s+/g, "-"); // replace spaces with -
+
+      setFormData((prev) => ({
+        ...prev,
+        title: value,
+        slug: existingBlog ? prev.slug : autoSlug, // don't overwrite if editing
+      }));
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

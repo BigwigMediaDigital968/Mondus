@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import logo from "../../assets/logo mondus new (1).gif";
+import logo from "../../assets/logo mondus new (4).gif";
 import { NotebookPen } from "lucide-react";
 
 const AdminLayout = () => {

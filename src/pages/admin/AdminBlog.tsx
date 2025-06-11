@@ -1,4 +1,4 @@
-import { Edit, Trash } from "lucide-react";
+import { Edit, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import AddBlog from "../../components/AddBlogs";
 import ReactQuill from "react-quill";
@@ -37,6 +37,7 @@ const AdminBlog = () => {
   const [showContentEditor, setShowContentEditor] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
   const [editorContent, setEditorContent] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const fetchBlogs = async () => {
     setLoading(true);
@@ -177,7 +178,7 @@ const AdminBlog = () => {
                         onClick={() => handleDelete(blog.slug)}
                         className="text-red-600 hover:text-red-700"
                       >
-                        <Trash size={16} />
+                        <Trash2 size={16} />
                       </button>
                     </td>
                   </tr>
@@ -217,10 +218,14 @@ const AdminBlog = () => {
                 Cancel
               </button>
               <button
+                disabled={saving}
                 onClick={async () => {
+                  if (!selectedBlog) return;
+
+                  setSaving(true);
                   try {
                     const res = await fetch(
-                      `https://mondus-backend.onrender.com/api/blogs/${selectedBlog?.slug}`,
+                      `https://mondus-backend.onrender.com/api/blogs/${selectedBlog.slug}`,
                       {
                         method: "PUT",
                         headers: {
@@ -243,11 +248,17 @@ const AdminBlog = () => {
                     alert(
                       "An error occurred while updating the blog. Please try again."
                     );
+                  } finally {
+                    setSaving(false);
                   }
                 }}
-                className="px-4 py-1 text-sm bg-[var(--primary-color)] text-white rounded hover:opacity-80"
+                className={`px-4 py-1 text-sm rounded text-white ${
+                  saving
+                    ? "bg-[var(--primary-color)] cursor-not-allowed"
+                    : "bg-[var(--primary-color)] hover:opacity-80"
+                }`}
               >
-                Save Changes
+                {saving ? "Saving..." : "Save Changes"}
               </button>
             </div>
           </div>

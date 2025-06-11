@@ -221,7 +221,7 @@ const PromptConsultation = () => {
             <button
               type="submit"
               disabled={loading}
-              className="border border-[var(--primary-color)] bg-gradient-to-r from-[var(--primary-color)] via-[#e3c5b5] to-[var(--primary-color)] px-4 py-2 uppercase text-sm tracking-widest hover:opacity-80 text-black transition"
+              className="font-sans border border-[var(--primary-color)] bg-gradient-to-r from-[var(--primary-color)] via-[#e3c5b5] to-[var(--primary-color)] px-4 py-2 uppercase text-sm tracking-widest hover:opacity-80 text-black transition"
             >
               {loading
                 ? "Please wait..."

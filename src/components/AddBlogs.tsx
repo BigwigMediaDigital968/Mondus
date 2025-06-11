@@ -31,6 +31,7 @@ const AddBlog = ({
     tags: existingBlog?.tags || "",
     coverImage: null as File | null,
   });
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (existingBlog) {
@@ -77,6 +78,7 @@ const AddBlog = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
     const blogData = new FormData();
     blogData.append("title", formData.title);
     blogData.append("slug", formData.slug);
@@ -111,6 +113,8 @@ const AddBlog = ({
       }
     } catch (err) {
       alert(`Error ${existingBlog ? "updating" : "adding"} blog`);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -190,9 +194,20 @@ const AddBlog = ({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-[var(--primary-color)] text-white rounded"
+              className={`px-4 py-2 text-white rounded ${
+                submitting
+                  ? "bg-[var(--primary-color)] cursor-not-allowed"
+                  : "bg-[var(--primary-color)] hover:opacity-90"
+              }`}
+              disabled={submitting}
             >
-              {existingBlog ? "Update" : "Submit"}
+              {submitting
+                ? existingBlog
+                  ? "Updating..."
+                  : "Adding..."
+                : existingBlog
+                ? "Update"
+                : "Submit"}
             </button>
           </div>
         </form>

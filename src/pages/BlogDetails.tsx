@@ -1,36 +1,85 @@
 import { useParams } from "react-router-dom";
-import blogData from "../data/blogData.json";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
-import PromptConsultation from "../components/PromptConsultation";
-import { useEffect } from "react";
+import { Helmet } from "react-helmet";
+
+interface BlogType {
+  title: string;
+  coverImage: string;
+  author: string;
+  datePublished: string;
+  content: string;
+  slug: string;
+}
 
 const BlogDetails = () => {
-  const { slug } = useParams();
-  const blog = blogData.find((b) => b.slug === slug);
-
-  if (!blog) return <p className="text-center my-10">Blog not found.</p>;
+  const { slug } = useParams<{ slug: string }>();
+  const [blog, setBlog] = useState<BlogType | null>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const fetchBlog = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const res = await axios.get(
+          `https://mondus-backend.onrender.com/api/blogs/viewblog`
+        );
+        const blogList: BlogType[] = res.data;
+        console.log("Fetched blogs:", blogList);
+
+        const found = blogList.find((b) => b.slug === slug);
+        console.log("Found blog:", found);
+
+        if (!found) {
+          setError("Blog not found");
+        } else {
+          setBlog(found);
+        }
+      } catch (err) {
+        console.error(err);
+        setError("Error fetching blog");
+      }
+      setLoading(false);
+    };
+
+    if (slug) {
+      fetchBlog();
+    }
+  }, [slug]);
+
+  if (loading) return <div className="pt-40 text-center">Loading...</div>;
+  if (error)
+    return <div className="pt-40 text-center text-red-600">{error}</div>;
+  if (!blog) return null;
 
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
-      <div className="mb-16 md:mb-24 pt-5">
-        <Navbar />
-      </div>
-      <div className="w-full md:w-[90%] mx-auto px-4 my-10">
-        <h1 className="text-4xl mb-2">{blog.title}</h1>
-        <p className=" mb-4">{blog.date}</p>
+    <div className="bg-white text-black dark:bg-black dark:text-white min-h-screen">
+      <Helmet>
+        <title>{blog?.title}</title>
+      </Helmet>
+      <Navbar />
+
+      <div className="p-8 max-w-5xl mx-auto pt-40">
+        <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
+        <p className="text-gray-600 mb-2">
+          By {blog.author} - {new Date(blog.datePublished).toLocaleDateString()}
+        </p>
+
         <img
-          src={blog.image}
-          alt={blog.title}
-          className="w-full h-96 object-cover rounded mb-6"
+          src={blog.coverImage}
+          className="mb-4 w-full rounded"
+          alt={`Cover image for ${blog.title}`}
         />
-        <div className="whitespace-pre-line leading-7">{blog.content}</div>
+
+        <div
+          className="prose prose-lg dark:prose-invert max-w-none mb-6"
+          dangerouslySetInnerHTML={{ __html: blog.content }}
+        />
       </div>
-      <PromptConsultation />
       <Footer />
     </div>
   );

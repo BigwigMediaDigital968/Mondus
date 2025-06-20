@@ -5,6 +5,7 @@ import {
   FaEnvelope,
   FaBell,
   FaPhoneAlt,
+  FaBook,
 } from "react-icons/fa";
 
 const GRADIENTS = [
@@ -13,6 +14,7 @@ const GRADIENTS = [
   "from-green-500 via-emerald-500 to-teal-500",
   "from-orange-500 via-amber-500 to-yellow-500",
   "from-rose-500 via-pink-500 to-red-500",
+  "from-indigo-500 via-purple-500 to-pink-500",
 ];
 
 const Dashboard = () => {
@@ -22,6 +24,7 @@ const Dashboard = () => {
     emailers: 0,
     leads: 0,
     callbacks: 0,
+    blogs: 0,
   });
 
   useEffect(() => {
@@ -41,14 +44,25 @@ const Dashboard = () => {
       fetch("https://mondus-backend.onrender.com/api/notify").then((r) =>
         r.json()
       ),
+      fetch("https://mondus-backend.onrender.com/api/blogs/viewblog").then(
+        (r) => r.json()
+      ),
     ]).then(
-      ([subscribers, newsletters, emailers, leads, callbacks]: unknown[]) => {
+      ([
+        subscribers,
+        newsletters,
+        emailers,
+        leads,
+        callbacks,
+        blogs,
+      ]: unknown[]) => {
         setCounts({
           subscribers: (subscribers as any[]).length,
           newsletters: (newsletters as any[]).length,
           emailers: (emailers as any[]).length,
           leads: (leads as any[]).length,
           callbacks: (callbacks as any[]).length,
+          blogs: (blogs as any[]).length,
         });
       }
     );
@@ -71,6 +85,11 @@ const Dashboard = () => {
       title: "Call Back Leads",
       icon: <FaBell />,
       count: counts.callbacks,
+    },
+    {
+      title: "Blogs Data",
+      icon: <FaBook />,
+      count: counts.blogs,
     },
   ];
 

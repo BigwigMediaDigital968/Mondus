@@ -18,6 +18,12 @@ const NotifyMe = lazy(() => import("../components/NotifyMe"));
 const Buy: React.FC = () => {
   const [saleData, setSentData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [bedroomFilter, setBedroomFilter] = useState<string>("");
+  const [bathroomFilter, setBathroomFilter] = useState<string>("");
+  const [subareaFilter, setSubareaFilter] = useState<string>("");
+  const [propertyTypeFilter, setPropertyTypeFilter] = useState<string>("");
+  const [minAreaFilter, setMinAreaFilter] = useState<string>("");
+  const [maxAreaFilter, setMaxAreaFilter] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +40,7 @@ const Buy: React.FC = () => {
           );
           const data = await response.json();
           setSentData(data);
+          console.log(data);
           localStorage.setItem("saleProperties", JSON.stringify(data));
           setLoading(false);
         }
@@ -45,8 +52,51 @@ const Buy: React.FC = () => {
 
     fetchData();
   }, []);
+  const uniquePropertyTypes = Array.from(
+    new Set(saleData.map((p) => p.properties.property_type))
+  ).filter(Boolean);
 
-  const properties = saleData;
+  const uniqueSubareas = Array.from(
+    new Set(saleData.map((p) => p.properties.link_subarea))
+  ).filter(Boolean);
+
+  const properties = saleData.filter((property) => {
+    const bedrooms = Number(property.properties.bedrooms_number || 0);
+    const bathrooms = Number(property.properties.bathrooms_number || 0);
+    const subarea = property.properties.link_subarea;
+    const propertyType = property.properties.property_type;
+    const buaArea = Number(property.properties.bua_area_size || 0);
+
+    const bedroomMatch =
+      !bedroomFilter ||
+      (bedroomFilter === "4"
+        ? bedrooms >= 4
+        : bedrooms === Number(bedroomFilter));
+
+    const bathroomMatch =
+      !bathroomFilter ||
+      (bathroomFilter === "4"
+        ? bathrooms >= 4
+        : bathrooms === Number(bathroomFilter));
+
+    const subareaMatch = !subareaFilter || subarea === subareaFilter;
+
+    const propertyTypeMatch =
+      !propertyTypeFilter || propertyType === propertyTypeFilter;
+
+    const minAreaMatch = !minAreaFilter || buaArea >= Number(minAreaFilter);
+
+    const maxAreaMatch = !maxAreaFilter || buaArea <= Number(maxAreaFilter);
+
+    return (
+      bedroomMatch &&
+      bathroomMatch &&
+      subareaMatch &&
+      propertyTypeMatch &&
+      minAreaMatch &&
+      maxAreaMatch
+    );
+  });
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
@@ -59,6 +109,77 @@ const Buy: React.FC = () => {
       </div>
 
       <h1 className="text-2xl text-center">PROPERTIES FOR SALE IN DUBAI</h1>
+      <div className="flex flex-wrap justify-center gap-4 mt-4 px-4">
+        {/* Bedroom Dropdown */}
+        <select
+          className="border p-2 rounded dark:bg-neutral-800 dark:text-white"
+          value={bedroomFilter}
+          onChange={(e) => setBedroomFilter(e.target.value)}
+        >
+          <option value="">Select Bedrooms</option>
+          <option value="1">1 Bedroom</option>
+          <option value="2">2 Bedrooms</option>
+          <option value="3">3 Bedrooms</option>
+          <option value="4">4+ Bedrooms</option>
+        </select>
+
+        {/* Bathroom Dropdown */}
+        <select
+          className="border p-2 rounded dark:bg-neutral-800 dark:text-white"
+          value={bathroomFilter}
+          onChange={(e) => setBathroomFilter(e.target.value)}
+        >
+          <option value="">Select Bathrooms</option>
+          <option value="1">1 Bathroom</option>
+          <option value="2">2 Bathrooms</option>
+          <option value="3">3 Bathrooms</option>
+          <option value="4">4+ Bathrooms</option>
+        </select>
+
+        {/* Subarea Dropdown */}
+        <select
+          className="border p-2 rounded dark:bg-neutral-800 dark:text-white"
+          value={subareaFilter}
+          onChange={(e) => setSubareaFilter(e.target.value)}
+        >
+          <option value="">Select Subarea</option>
+          {uniqueSubareas.map((subarea, index) => (
+            <option key={index} value={subarea}>
+              {subarea}
+            </option>
+          ))}
+        </select>
+
+        {/* Property Type Dropdown */}
+        <select
+          className="border p-2 rounded dark:bg-neutral-800 dark:text-white"
+          value={propertyTypeFilter}
+          onChange={(e) => setPropertyTypeFilter(e.target.value)}
+        >
+          <option value="">Select Property Type</option>
+          {uniquePropertyTypes.map((type, index) => (
+            <option key={index} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+
+        {/* BUA Area Range Inputs */}
+        <input
+          type="number"
+          className="border p-2 rounded w-28 dark:bg-neutral-800 dark:text-white"
+          placeholder="Min sqft"
+          value={minAreaFilter}
+          onChange={(e) => setMinAreaFilter(e.target.value)}
+        />
+        <input
+          type="number"
+          className="border p-2 rounded w-28 dark:bg-neutral-800 dark:text-white"
+          placeholder="Max sqft"
+          value={maxAreaFilter}
+          onChange={(e) => setMaxAreaFilter(e.target.value)}
+        />
+      </div>
 
       {/* Property Grid Section */}
       <div className="relative w-full md:w-[90%] mx-auto px-4 py-8">

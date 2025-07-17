@@ -122,7 +122,7 @@ const BuyDetails = () => {
       <Navbar />
 
       {/* Hero Image Slider */}
-      <div className="w-full py-8">
+      <div className="w-full py-8 mt-16">
         <Slider {...settings}>
           {images.map((src, index) => (
             <div key={index} className="px-2">

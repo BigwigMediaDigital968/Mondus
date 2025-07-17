@@ -122,7 +122,7 @@ const RentDetails = () => {
       <Navbar />
 
       {/* Hero Image Slider */}
-      <div className="w-full py-8">
+      <div className="w-full py-8 mt-16">
         <Slider {...settings}>
           {images.map((src, index) => (
             <div key={index} className="px-2">
@@ -137,7 +137,7 @@ const RentDetails = () => {
       </div>
 
       {/* Main Info */}
-      <div className="max-w-7xl mx-auto px-6 py-12 space-y-10">
+      <div className="max-w-7xl mx-auto px-6 py-7 space-y-10">
         <div className="flex flex-col md:flex-row gap-5 justify-between md:items-center space-y-4 md:space-y-0">
           <div>
             <h1 className="text-2xl md:text-3xl font-semibold">

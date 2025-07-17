@@ -29,15 +29,14 @@ const ListProperty = () => {
               List Your Property
             </h2>
             <p className="text-gray-800 font-light dark:font-thin dark:text-gray-200 mb-8 text-lg leading-relaxed text-justify">
-              Ready to sell or rent your property? Listing with us is quick,
-              easy, and designed to get your property in front of the right
-              buyers or tenants. Our platform gives you the tools and exposure
-              you need to maximize interest and secure the best deal. As trusted
-              real estate brokers in Dubai, we ensure your listing is showcased
-              to a wide audience of qualified prospects. Whether you're a
-              first-time seller or a seasoned investor, our expertise will help
-              you turn your property into a successful transaction. Start today,
-              and let us guide you through every step of the process!
+              Hunting for the best way to sell or rent your property in Dubai?
+              Mondus Properties makes the process simple as possible. If you own
+              an apartment for rent in Dubai or wish to sell it, our expert
+              support and trusted platform ensure your listing reaches serious
+              buyers and tenants quickly. Our team of experienced real estate
+              agents in Dubai offers highest exposure, smart pricing, and
+              qualified leads. List your property with Mondus Properties and
+              experience real estate done right from start to finish.
             </p>
 
             <button

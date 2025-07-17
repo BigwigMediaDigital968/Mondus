@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FiMenu, FiSun, FiMoon } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import logo from "../assets/logo mondus new (4).gif";
-import { Facebook, Instagram, Youtube } from "lucide-react";
+import { ChevronDown, Facebook, Instagram, Youtube } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 
 declare global {
@@ -12,6 +12,8 @@ declare global {
     google: any;
   }
 }
+
+// [Keep the imports and useState/useEffect code the same]
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,15 +36,16 @@ const Navbar = () => {
   }, [darkMode]);
 
   const navItems = [
+    { label: "Blogs", path: "/blogs" },
+    { label: "Catalogs", path: "/catalogs" },
+    { label: "About Us", path: "/about" },
+  ];
+
+  const dropdownItems = [
     { label: "Buy", path: "/buy" },
     { label: "Rent", path: "/rent" },
     { label: "Sell", path: "/sell" },
     { label: "Off-Plan", path: "/offplan" },
-    { label: "Blogs", path: "/blogs" },
-    { label: "Catalogs", path: "/catalogs" },
-    { label: "Agents", path: "/AgentsSection" },
-    { label: "Awards", path: "/awards" },
-    { label: "About Us", path: "/about" },
   ];
 
   useEffect(() => {
@@ -108,16 +111,39 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <div className="h-20 pr-6 mr-6 border-r border-gray-600 dark:border-gray-400 flex items-center">
                   <a href="/">
-                    <img src={logo} alt="AX Logo" className="h-20" />
+                    <img src={logo} alt="Mondus Logo" className="h-20" />
                   </a>
                 </div>
-                <div className="flex items-center gap-8">
+                <div className="flex  items-center gap-8">
+                  {/* Dropdown */}
+                  <div className="relative group inline-flex items-center">
+                    <a className="relative flex items-center gap-1 text-sm text-inherit transition-colors hover:text-[var(--primary-color)] cursor-pointer">
+                      I am looking to <ChevronDown size={16} />
+                    </a>
+
+                    <div
+                      className={`absolute  mt-2 top-10 -left-10 w-40 bg-white dark:bg-black text-black dark:text-white shadow-lg rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50`}
+                    >
+                      {dropdownItems.map((item, index) => (
+                        <a
+                          key={index}
+                          href={item.path}
+                          onClick={() => setActiveItem(item.label)}
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[var(--primary-color)] border-b-[0.5px] border-[var(--primary-color)]"
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Other nav items */}
                   {navItems.map((item, index) => (
                     <a
                       key={index}
                       href={item.path}
                       onClick={() => setActiveItem(item.label)}
-                      className={`relative pb-2 text-sm text-inherit transition-colors hover:text-[var(--primary-color)] ${
+                      className={`relative  text-sm text-inherit transition-colors hover:text-[var(--primary-color)] ${
                         activeItem === item.label ? "font-light text-md" : ""
                       }`}
                     >
@@ -127,21 +153,19 @@ const Navbar = () => {
                 </div>
               </div>
 
+              {/* Right Icons */}
               <div className="flex items-center space-x-6">
-                <div className="flex items-center space-x-6">
-                  <a
-                    href="https://wa.me/+971521110795"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaWhatsapp className="text-[var(--primary-color)] text-2xl cursor-pointer font-light" />
-                  </a>
-                </div>
+                <a
+                  href="https://wa.me/+971521110795"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaWhatsapp className="text-[var(--primary-color)] text-2xl cursor-pointer font-light" />
+                </a>
                 <div className="relative group">
                   <span className="text-sm text-[var(--primary-color)] font-medium cursor-pointer py-8">
                     Follow Us
                   </span>
-
                   <div
                     className={`absolute top-12 -right-16 min-w-[150px] rounded shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto ${
                       darkMode
@@ -174,9 +198,8 @@ const Navbar = () => {
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
                     >
                       <FaTiktok />
-                      Tiktok
+                      TikTok
                     </a>
-
                     <a
                       href="https://www.youtube.com/@MondusPropertiesOfficial"
                       target="_blank"
@@ -184,7 +207,7 @@ const Navbar = () => {
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
                     >
                       <Youtube size={16} />
-                      Youtube
+                      YouTube
                     </a>
                   </div>
                 </div>
@@ -192,8 +215,6 @@ const Navbar = () => {
                   <a href="tel:+971521110794">Call Us</a>
                 </span>
                 <div className="w-px h-6 bg-gray-400 dark:bg-gray-600"></div>
-                {/* <FiPlus className="text-inherit text-xl" />
-                <FiBookmark className="text-inherit text-xl" /> */}
                 <button
                   onClick={() => setDarkMode(!darkMode)}
                   className="text-xl text-inherit transition-colors"
@@ -206,7 +227,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu (unchanged) */}
         {isOpen && (
           <div className="md:hidden fixed inset-0 z-[999] bg-white dark:bg-black flex flex-col pl-2 pr-5 pb-6 pt-3">
             <div className="flex justify-between items-center mb-6">
@@ -220,7 +241,7 @@ const Navbar = () => {
             </div>
 
             <div className="flex flex-col space-y-4 px-5">
-              {navItems.map((item, index) => (
+              {[...dropdownItems, ...navItems].map((item, index) => (
                 <Link
                   key={index}
                   to={item.path}
@@ -234,18 +255,6 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-
-            {/* <div className="flex mt-6 border border-[var(--primary-color)]">
-              <div className="w-1/2 flex justify-center items-center border-r border-[var(--primary-color)] py-3">
-                <FiPlus className="text-xl text-[var(--primary-color)]" />
-              </div>
-              <div className="w-1/2 flex justify-center items-center py-3">
-                <FiBookmark className="text-xl text-[var(--primary-color)]" />
-              </div>
-            </div> */}
-
-            {/* Bottom Buttons */}
-            {/* Bottom Buttons */}
           </div>
         )}
       </nav>

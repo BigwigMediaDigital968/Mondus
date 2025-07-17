@@ -11,9 +11,9 @@ import {
 const RealEstateExperts: React.FC = () => {
   return (
     <div className="bg-white py-12 text-black dark:bg-black dark:text-white transition-colors font-raleway">
-      <div className="w-11/12 mx-auto grid md:grid-cols-3 gap-4 md:gap-8 items-center p-4 md:p-16">
+      <div className="w-11/12 mx-auto grid md:grid-cols-2 gap-4 md:gap-8 items-center p-4 md:p-16">
         {/* Image section */}
-        <div className="relative w-full md:col-span-1 flex justify-center">
+        <div className="relative w-full h-[400px] flex justify-center">
           <img
             src="https://www.axcapital.ae/_ipx/_/img/real-estate-experts.webp"
             alt="Real Estate Experts"
@@ -45,38 +45,31 @@ const RealEstateExperts: React.FC = () => {
         </div>
 
         {/* Text and stats */}
-        <div className="mt-8 md:mt-0 md:col-span-2">
+        <div className="mt-8 md:mt-0">
           <h2 className="text-3xl md:text-3xl font-light mb-6">
+            Luxury Living Starts with{" "}
             <span className="text-[var(--primary-color)]">
               MONDUS PROPERTIES
             </span>{" "}
-            - YOUR REAL STATE EXPERTS
           </h2>
 
           <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">
-            Mondus Properties is your trusted guide in the Dubai real estate
-            market. As an emerging real estate agency and investment advisor in
-            Dubai, we are committed to helping clients explore ideal
-            opportunities—whether they are buying, renting, or investing.
-          </p>
-          <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">
-            Our extensive real estate collection includes some of Dubai’s most
-            desirable properties, located in the most sought-after
-            neighborhoods. Whether you're a first-time buyer, a seasoned
-            investor, or searching for your dream home, we provide access to
-            exclusive listings and a seamless experience tailored to your needs.
-          </p>
-          <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">
-            With a dedicated team of industry experts, we prioritize
-            transparency, trust, and personalized service. Our deep
-            understanding of the Dubai market ensures you make informed and
-            strategic decisions. Let Mondus Properties help you turn your dream
-            home into a reality.
+            Still searching for your dream home or a secure investment property
+            in Dubai? Explore apartments for sale in UAE, premium Palm Jumeirah
+            villa listings, and exclusive options from Damac Dubai and Emaar
+            Company. We provide full guidance on Dubai house price trends and
+            accurate property rates in Dubai. Recognized as the No. 1 real
+            estate company in Dubai, Mondus Properties helps you invest in real
+            estate with confidence. With professional industry experts and
+            experienced agents, we give you exactly the guidance, insights, and
+            listings you need to make the right move. Find your home in Dubai
+            for sale or secure a high-return investment property Dubai with
+            expert support every step of the way!
           </p>
 
           <a href="/contact">
             <button className="border px-6 py-3 transition mb-8 border-[var(--primary-color)] text-black hover:opacity-70 bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579]">
-              Enquire Now
+              Talk to an Expert
             </button>
           </a>
         </div>
@@ -85,44 +78,44 @@ const RealEstateExperts: React.FC = () => {
       <div className="grid grid-cols-3 md:grid-cols-6 text-center gap-6 w-11/12 mx-auto">
         <div>
           <FaBuilding className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
-          <h3 className="text-2xl font-sans">5000+</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Listed Properties
+          <h3 className="text-2xl font-sans"> 8,000+</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 whitespace-pre-wrap">
+            {"Verified Listings \n Across Dubai"}
           </p>
         </div>
         <div>
           <FaGlobe className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
-          <h3 className="text-2xl font-sans">7+</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Languages Spoken
+          <h3 className="text-2xl font-sans">10+</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 whitespace-pre-wrap">
+            {"Languages Spoken for \n Global Clients"}
           </p>
         </div>
         <div>
           <FaUsers className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
-          <h3 className="text-2xl font-sans">120+</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Property Consultants
+          <h3 className="text-2xl font-sans">150+</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 whitespace-pre-wrap">
+            {"Dedicated Property \n Advisors"}
           </p>
         </div>
         <div>
           <FaHandshake className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
-          <h3 className="text-2xl font-sans">500+</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Properties Sold
+          <h3 className="text-2xl font-sans">1200+</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 whitespace-pre-wrap">
+            {"Properties Successfully \n Sold"}
           </p>
         </div>
         <div>
           <FaHome className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
-          <h3 className="text-2xl font-sans">2000+</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Rental Options
+          <h3 className="text-2xl font-sans">3500+</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 whitespace-pre-wrap">
+            {"Active Rental \n Listings"}
           </p>
         </div>
         <div>
           <FaChartLine className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
-          <h3 className="text-2xl font-sans">5B+</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Turn Over
+          <h3 className="text-2xl font-sans">7B+ AED</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 whitespace-pre-wrap">
+            {"Real Estate \n Portfolio Value"}
           </p>
         </div>
       </div>

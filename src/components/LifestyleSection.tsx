@@ -61,11 +61,11 @@ const LifeStyleSection = () => {
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white py-12 relative">
-      <h2 className="text-center text-3xl md:text-4xl font-light mb-2 text-black dark:text-gray-100 font-raleway">
-        DUBAI LIFESTYLE
+      <h2 className="uppercase text-center text-3xl md:text-4xl font-light mb-2 text-black dark:text-gray-100 font-raleway">
+        Live the Dubai Lifestyle
       </h2>
       <p className="text-center text-gray-700 dark:text-gray-300 mb-8">
-        Wide range options for any lifestyle. Make your choice with us
+        Find homes that fit your pace, taste, and goals.
       </p>
 
       <div className="max-w-7xl mx-auto px-6">

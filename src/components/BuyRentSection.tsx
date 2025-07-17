@@ -98,8 +98,9 @@ export default function BuyRentSection() {
             </div>
 
             <p className="text-gray-500 mt-8 text-sm md:text-base leading-relaxed max-w-md">
-              With a comprehensive portfolio of properties and countless offers,
-              we cover all your real estate needs.
+              Find your next home, secure a rental, or make your first smart
+              investment. Our curated portfolio covers all your real estate
+              goals in Dubai.
             </p>
           </div>
         </div>

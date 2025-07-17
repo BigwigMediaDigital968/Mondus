@@ -31,28 +31,27 @@ export default function Hero() {
   // };
 
   return (
-    <div className="md:min-h-screen bg-black text-white flex flex-col pt-28 pb-10 md:pt-5 lg:flex-row items-center justify-between px-6 sm:px-10 relative overflow-hidden dark:bg-black dark:text-white">
+    <div className="md:h-[80vh] bg-black text-white flex flex-col pt-28 pb-10 md:pt-5 lg:flex-row items-center justify-between px-6 sm:px-10 relative overflow-hidden dark:bg-black dark:text-white">
       {/* Background Image */}
       <img
         src={hero}
         alt="Dubai Tower"
-        className="absolute inset-0 w-full h-full object-cover opacity-70 z-0"
+        className="absolute inset-0 w-full md:h-[80vh] object-cover opacity-70 z-0"
         style={{ background: "var(--bg-primary-gradient)" }}
         draggable="false"
       />
 
       {/* Left Content */}
-      <div className="font-raleway font-thin relative z-10 w-full md:w-1/2  px-4 sm:px-6 md:px-10 mb-8 lg:mb-0">
-        <h1 className="text-3xl sm:text-4xl leading-snug mb-6">
-          FIND YOUR PERFECT HOME OR INVEST IN DUBAI <br /> WITH{" "}
+      <div className="font-raleway font-light relative z-10 w-full md:w-1/2  px-4  md:px-10 mb-8 lg:mb-0">
+        <h1 className="text-2xl md:text-3xl font-sans font-semibold mb-5">
+          Dream It. Live It. Own Your Home in Dubai.
+        </h1>
+        <h1 className="text-xl md:text-3xl leading-snug mb-6 uppercase">
+          Luxury homes, prime investments and expert guidance WITH{" "}
           <span className="text-[var(--primary-color)] font-bold">
             MONDUS PROPERTIES
           </span>
         </h1>
-        <p className="text-lg mb-8 text-white/80 font-light">
-          Your most <span className="font-semibold">Trusted & Reliable</span>{" "}
-          Real Estate Partner
-        </p>
       </div>
 
       {/* Right Form */}

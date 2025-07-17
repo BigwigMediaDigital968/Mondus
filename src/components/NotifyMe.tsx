@@ -122,11 +122,10 @@ const NotifyMe = () => {
       <div className="w-11/12 mx-auto bg-gradient-to-r from-[var(--primary-color)] via-gray-900 to-[var(--primary-color)] p-[1px]">
         <div className="bg-white dark:bg-black p-8 md:p-12">
           <h2 className="text-2xl md:text-3xl font-light text-center mb-2">
-            Help me find my dream home or investment property
+            Schedule Your Consultation
           </h2>
           <p className="text-sm md:text-base text-center text-gray-600 dark:text-gray-400 mb-8 font-light">
-            Fill in your preferences and we’ll notify you as soon as we have
-            something that matches.
+            Complete the form and we’ll be in touch right away.
           </p>
 
           <form

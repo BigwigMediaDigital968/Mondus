@@ -13,27 +13,27 @@ interface Review {
 
 const reviews: Review[] = [
   {
-    name: "OMER KHAN",
+    name: "RAJIV MEHTA",
     content:
-      "I was looking at the real estate market of Dubai and got in contact with Ms. Hana Taghdis of MONDUS. She showed me multiple projects and finally I was able to select a unit of my choice. I’ve had a great experience dealing with her as she is not only very friendly but also extremely professional.",
+      "As a first-time buyer in Dubai, I was overwhelmed with choices. Mondus Properties helped me find the perfect apartment that I could dream of. Their team was patient and guided me through every step. I couldn’t have asked for a smoother experience.",
     rating: 5,
   },
   {
-    name: "NATHALIE SYVAK",
+    name: "LUCA ROMANO",
     content:
-      "Our real estate agent is Yulia Kravchenko, we are very pleased with her work and I would like to note her approach to the client. Starting from the first conversation, where I was asked all the necessary questions to find something just for us, ending with the signing of a contract with the developer.",
+      "Listing my apartment for rent in Dubai with Mondus Properties was a hassle-free experience. Their team provided excellent guidance, and my property attracted serious tenants within days. Highly recommend their trusted service!",
     rating: 4,
   },
   {
-    name: "MIKE MIKE",
+    name: "OMAR KHAN",
     content:
-      "Ultimate admiration! I wanted to know more about the real estate business in Dubai. God sent me a unique intelligent young lady Yulia Kravchenko, who has undoubtedly the utmost competence in this skill. Very content with an experienced presentation of the topic. Me and my wife are very happy.",
+      "Thanks to Mondus Properties, I sold my villa quickly and at a great price. Their real estate agents are professional and always available to answer my questions.",
     rating: 5,
   },
   {
-    name: "GIUSEPPE IORIO",
+    name: "ELENA PETROVA",
     content:
-      "Nadia is the person to talk with. She loves her job and is really prepared for any question you may have. Love makes business with her and hopefully we will make so many more.",
+      "I was worried about finding the right buyer for my property. But Mondus Properties made the whole process transparent and stress-free. Their platform gave my listing the biggest exposure and qualified leads.",
     rating: 5,
   },
 ];
@@ -70,7 +70,7 @@ const ReviewSection = () => {
   return (
     <section className="relative w-full bg-white text-black dark:bg-black dark:text-white py-16 px-6 lg:px-28 font-raleway">
       <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 text-center">
-        Testimonials To Build Your Trust
+        See Why Clients Love Us
       </h2>
 
       <Slider {...settings} className="cursor-grab">

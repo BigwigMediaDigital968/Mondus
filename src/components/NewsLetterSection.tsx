@@ -58,14 +58,15 @@ const NewsSubscribeSection: React.FC = () => {
           {/* Left Section */}
           <div>
             <h2 className="text-2xl md:text-4xl font-thin text-black dark:text-white mt-2">
-              Sign up for exclusive <br /> offers from us
+              Sign up for exclusive <br />
+              Property Offers
             </h2>
           </div>
 
           {/* Right Section */}
           <div className=" flex flex-col  gap-4">
             <p className="text-center lg:text-left text-base">
-              Sign up to our newsletter for all the latest news and events.
+              Get early access to promotions and listings.
             </p>
 
             <div className="w-full flex flex-col sm:flex-row items-center gap-3">

@@ -52,7 +52,7 @@ const AwardsSection = () => {
     <div className="w-full py-16 bg-white dark:bg-black text-center cursor-pointer font-raleway font-thin gradient-top relative">
       {/* Title */}
       <h2 className="text-3xl md:text-4xl font-light mb-10 text-black dark:text-gray-100 text-center">
-        Awards & Recognitions
+        Awards & Achievements
       </h2>
 
       {/* Awards List - Scrollable */}
@@ -85,12 +85,12 @@ const AwardsSection = () => {
         </div>
       </div>
       {/* View All Button */}
-      <a
+      {/* <a
         href="/awards"
         className="inline-block font-light px-8 py-2 text-lg bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black  hover:opacity-90 transition mt-5"
       >
         View All
-      </a>
+      </a> */}
     </div>
   );
 };

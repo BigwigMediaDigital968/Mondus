@@ -13,25 +13,25 @@ const services: Service[] = [
   {
     icon: <Building2 size={32} className="text-[#9C623E]" />,
     label: "Offplan Properties",
-    title: "Get Offplan Properties",
+    title: "Offplan Properties",
     description:
-      "Off-plan properties in Dubai are sold before completion, often with flexible plans and higher returns on investment.",
+      "Off-plan properties in Dubai are ideal for buyers and investors wanting lower entry prices and flexible payment options. These properties are purchased before completion, offering the potential for higher returns. With the right support, you can explore trusted developments and secure investment properties tailored to your goals.",
     redirected: "/offplan",
   },
   {
     icon: <Home size={32} className="text-[#9C623E]" />,
     label: "Ready Properties",
-    title: "Get Ready Properties",
+    title: "Ready Properties",
     description:
-      "Ready-to-move-in properties available for viewing and instant handover — no wait, no hassle.",
+      "Ready properties allow for instant viewing, faster handover, and a hassle-free buying experience. If you're looking for a home in Dubai for sale, these options offer convenience and certainty. Our team ensures a smooth process so you can settle in quickly, without construction delays or wait times.",
     redirected: "/buy",
   },
   {
     icon: <KeyRound size={32} className="text-[#9C623E]" />,
     label: "Rental Properties",
-    title: "Get Rental Properties",
+    title: "Rental Properties",
     description:
-      "From short-term apartments to long-term villas, rentals offer maximum flexibility for every lifestyle.",
+      "Rental properties in Dubai UAE offer flexibility for short-term or long-term needs. Our listings include a wide range of rental properties in Dubai UAE, offering the flexibility to suit your lifestyle, budget, and future plans. Apartments, villas, and serviced units are all available with expert guidance to help you find the perfect fit.",
     redirected: "/rent",
   },
 ];
@@ -41,11 +41,11 @@ const WhatWeDoSection: React.FC = () => {
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway custom-gradient-lines relative">
       <section className="max-w-7xl px-6 py-16 mx-auto">
         <div className="mb-6">
-          <p className="text-sm tracking-wider text-[#9C623E] font-semibold uppercase">
+          <p className="text-md mb-2 tracking-wider text-[#9C623E] font-semibold uppercase">
             Our Services
           </p>
-          <h2 className="text-3xl md:text-4xl font-light text-black dark:text-gray-100">
-            We Help You Find and Buy Your Exact Match
+          <h2 className="text-2xl md:text-3xl font-light text-black dark:text-gray-100">
+            Buy Your Ideal Property in Dubai with Trusted Experts
           </h2>
         </div>
 

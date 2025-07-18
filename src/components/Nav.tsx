@@ -116,25 +116,32 @@ const Navbar = () => {
                 </div>
                 <div className="flex  items-center gap-8">
                   {/* Dropdown */}
-                  <div className="relative group inline-flex items-center">
-                    <a className="relative flex items-center gap-1 text-sm text-inherit transition-colors hover:text-[var(--primary-color)] cursor-pointer">
+                  <div
+                    className="relative h-20 inline-flex items-center"
+                    onMouseEnter={() => setIsOpen(true)}
+                    onMouseLeave={() => setIsOpen(false)}
+                  >
+                    <span className="relative flex items-center gap-1 text-sm text-inherit transition-colors hover:text-[var(--primary-color)] cursor-pointer">
                       I am looking to <ChevronDown size={16} />
-                    </a>
+                    </span>
 
-                    <div
-                      className={`absolute  mt-2 top-10 -left-10 w-40 bg-white dark:bg-black text-black dark:text-white shadow-lg rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50`}
-                    >
-                      {dropdownItems.map((item, index) => (
-                        <a
-                          key={index}
-                          href={item.path}
-                          onClick={() => setActiveItem(item.label)}
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[var(--primary-color)] border-b-[0.5px] border-[var(--primary-color)]"
-                        >
-                          {item.label}
-                        </a>
-                      ))}
-                    </div>
+                    {isOpen && (
+                      <div className="absolute mt-2 top-16 -left-10 w-40 bg-white dark:bg-black text-black dark:text-white shadow-lg rounded z-50">
+                        {dropdownItems.map((item, index) => (
+                          <a
+                            key={index}
+                            href={item.path}
+                            onClick={() => {
+                              setActiveItem(item.label);
+                              setIsOpen(false); // Optional: close dropdown on click
+                            }}
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[var(--primary-color)] border-b-[0.5px] border-[var(--primary-color)]"
+                          >
+                            {item.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Other nav items */}

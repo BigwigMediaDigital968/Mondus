@@ -18,14 +18,13 @@ const About = () => {
         <div className="absolute inset-0 bg-black/40 dark:bg-black/70 flex flex-col items-center justify-end py-5 text-center px-4">
           <h1 className="text-4xl md:text-5xl text-white mb-4">ABOUT MONDUS</h1>
           <p className="text-lg md:text-2xl text-white">
-            Empowering your real estate journey with expertise, trust,
-            reliability & ever lasting business relation.
+            Smart property solutions. Real relationships.
           </p>
         </div>
       </section>
 
       <section className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin py-16">
-        <div className="w-[90%] px-5 mx-auto space-y-16">
+        <div className="w-11/12 md:w-5/6 px-5 mx-auto space-y-16">
           {/* Chairman Section */}
           <div className="flex flex-col md:flex-row items-center gap-10">
             {/* Image */}
@@ -46,14 +45,17 @@ const About = () => {
                 Sandeep Chachra
               </h4>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Sandeep Chachra, a leader who founded Mondus Properties, is a
-                well-respected figure in the real estate and hospitality
-                industries. He began his career in hospitality, learning client
-                needs and service excellence, before launching a brokerage
-                office and building a strong portfolio in India. His transition
-                to Dubai marked a turning point where he brought innovation and
-                experience. Today, Mondus Properties thrives in the Dubai
-                market, a testament to his vision and leadership.
+                Sandeep Chachra brings over two decades of experience across
+                hospitality and real estate. Starting his career in
+                client-focused hospitality roles, he developed a strong
+                foundation in service and operations. He later established a
+                successful real estate brokerage in India, building a diverse
+                portfolio through hands-on market engagement. His move to Dubai
+                was driven by a vision to offer transparent and growth-oriented
+                property solutions. As the founder of Mondus Properties, Sandeep
+                leads with integrity and a deep understanding of real estate in
+                Dubai, helping clients find the right investment property in
+                Dubai at the right time.
               </p>
             </div>
           </div>
@@ -76,13 +78,15 @@ const About = () => {
                 Diksha Khatri
               </h4>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Ms. Diksha Khatri, Co-Founder and Managing Director of Mondus
-                Properties, combines experience from hospitality and real estate
-                to lead the company with strategy and service excellence. Her
-                strengths in market analysis and client relations have been key
-                in growing the firm and building trust among clients. Diksha’s
-                leadership ensures Mondus Properties continues to be a rising
-                name in Dubai’s real estate sector.
+                As the Co-Founder and Managing Director of Mondus Properties,
+                Diksha Khatri brings a sharp business sense shaped by her
+                background in both hospitality and real estate. Her focus on
+                data-driven decision-making and client-first service has helped
+                position Mondus Properties as a trusted player in Dubai's
+                property market. With an eye for identifying the right
+                investment opportunities in Dubai, Diksha continues to lead the
+                firm with clarity, commitment, and a vision for sustainable
+                growth.
               </p>
             </div>
           </div>
@@ -104,18 +108,15 @@ const About = () => {
                 Hindustani Bhau
               </h4>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Hindustani Bhau, as the CEO of Mondus Properties and a renowned
-                YouTuber and influencer, brings a unique blend of bold
-                leadership and authenticity to the company. Known for his
-                fearless approach and larger-than-life personality, he has a
-                history of standing his ground, even in the face of resistance
-                and hostility. This unwavering resilience is a powerful asset in
-                his entrepreneurial journey, equipping him to lead Mondus
-                Properties with strength, decisiveness, and integrity. His
-                commitment to overcoming challenges ensures that the company
-                remains adaptable, competitive, and firmly rooted in
-                professionalism, driving Mondus Properties to new heights in the
-                industry.
+                As CEO of Mondus Properties, Hindustani Bhau brings an
+                unconventional yet impactful leadership style shaped by his
+                journey as a popular YouTuber and influencer. His bold presence
+                and authenticity translate into a dynamic business approach in
+                the real estate space. With a growing focus on real estate in
+                Dubai, he combines influence with strategic vision to guide the
+                company’s expansion. Bhau’s resilience and ability to thrive
+                under pressure make him a strong force in managing the
+                competitive Dubai property market.
               </p>
             </div>
           </div>
@@ -123,7 +124,7 @@ const About = () => {
       </section>
 
       <section className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin py-16">
-        <div className="w-[90%] px-5 mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div className="w-11/12 md:w-5/6 px-5 mx-auto grid md:grid-cols-2 gap-12 items-center">
           {/* LEFT SIDE: About Content */}
           <div>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
@@ -161,7 +162,7 @@ const About = () => {
               alt="Luxury Property"
               className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center p-6 text-white text-center">
+            {/* <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center p-6 text-white text-center">
               <h4 className="text-2xl font-bold mb-6">Why Choose Us?</h4>
               <ul className="space-y-3 text-left">
                 <li className="flex items-start gap-2">
@@ -181,13 +182,13 @@ const About = () => {
                   <span>Guidance from Start to Finish</span>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
       <section className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin py-16">
-        <div className="w-[90%] px-5 mx-auto text-center mb-12">
+        <div className="w-11/12 md:w-5/6 px-5 mx-auto text-center mb-12">
           <h2 className="text-4xl md:text-5xl text-black dark:text-white mb-4">
             Our Services
           </h2>
@@ -197,29 +198,26 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 w-11/12 md:w-5/6 mx-auto">
           {/* Service Card 1 */}
           <div className="bg-gray-100 dark:bg-neutral-900 p-6 rounded-xl shadow-md">
             <h3 className="text-xl text-black dark:text-white mb-3">
               Consulting
             </h3>
             <p className="text-gray-700 dark:text-gray-300 text-sm">
-              We share our vast experience in Dubai’s real estate market and
-              provide expert insights on buying, selling, and renting. Suitable
-              for investors, businesses, and home seekers.
+              Expert advice for buying, selling, or investing in Dubai real
+              estate.
             </p>
           </div>
 
           {/* Service Card 2 */}
           <div className="bg-gray-100 dark:bg-neutral-900 p-6 rounded-xl shadow-md">
             <h3 className="text-xl text-black dark:text-white mb-3">
-              Selecting & Viewing Property
+              Property Selection & Viewing
             </h3>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
-              <li>Tailored property searches based on your needs</li>
-              <li>Virtual property tours via video communication</li>
-              <li>Diverse options from top developers</li>
-            </ul>
+            <p className="text-gray-700 dark:text-gray-300 text-sm">
+              Tailored searches and virtual tours from top developers.
+            </p>
           </div>
 
           {/* Service Card 3 */}
@@ -227,12 +225,9 @@ const About = () => {
             <h3 className="text-xl text-black dark:text-white mb-3">
               Deal Support
             </h3>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
-              <li>Preparation & notarization of documents</li>
-              <li>Joint deal negotiation</li>
-              <li>Mortgage assistance</li>
-              <li>Help with bank accounts, transfers, FX</li>
-            </ul>
+            <p className="text-gray-700 dark:text-gray-300 text-sm">
+              Help with documentation, negotiation, and mortgage coordination.
+            </p>
           </div>
 
           {/* Service Card 4 */}
@@ -240,22 +235,19 @@ const About = () => {
             <h3 className="text-xl text-black dark:text-white mb-3">
               After-Sales Service
             </h3>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
-              <li>Property insurance support</li>
-              <li>Utility service activation</li>
-            </ul>
+            <p className="text-gray-700 dark:text-gray-300 text-sm">
+              Support with insurance, utilities, and move-in essentials.
+            </p>
           </div>
 
           {/* Service Card 5 */}
           <div className="bg-gray-100 dark:bg-neutral-900 p-6 rounded-xl shadow-md">
             <h3 className="text-xl text-black dark:text-white mb-3">
-              Property & Business Management
+              Property Management
             </h3>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
-              <li>In-house property management</li>
-              <li>Short-term rentals</li>
-              <li>Long-term rentals</li>
-            </ul>
+            <p className="text-gray-700 dark:text-gray-300 text-sm">
+              Short and long-term rental management with complete care.
+            </p>
           </div>
 
           {/* Service Card 6 */}
@@ -263,11 +255,10 @@ const About = () => {
             <h3 className="text-xl text-black dark:text-white mb-3">
               Relocation Assistance
             </h3>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
-              <li>Support with visa & residency processes</li>
-              <li>School & community recommendations</li>
-              <li>Help settling into your new property</li>
-            </ul>
+            <p className="text-gray-700 dark:text-gray-300 text-sm">
+              Support for local setup, residency, and visas for hassle-free
+              relocation.
+            </p>
           </div>
         </div>
       </section>

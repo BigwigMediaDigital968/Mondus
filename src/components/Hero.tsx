@@ -31,7 +31,7 @@ export default function Hero() {
   // };
 
   return (
-    <div className="md:h-[80vh] bg-black text-white flex flex-col pt-28 pb-10 md:pt-5 lg:flex-row items-center justify-between px-6 sm:px-10 relative overflow-hidden dark:bg-black dark:text-white">
+    <div className="md:h-[100vh] bg-black text-white flex flex-col pt-28 pb-10 md:pt-5 lg:flex-row items-center justify-between px-6 sm:px-10 relative overflow-hidden dark:bg-black dark:text-white">
       {/* Background Image */}
       <img
         src={hero}

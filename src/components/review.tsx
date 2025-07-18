@@ -68,9 +68,10 @@ const ReviewSection = () => {
   };
 
   return (
-    <section className="relative w-full bg-white text-black dark:bg-black dark:text-white py-16 px-6 lg:px-28 font-raleway">
+    <section className="relative w-full bg-white text-black dark:bg-black dark:text-white py-16 px-6 lg:px-28 font-raleway custom-gradient-lines">
       <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 text-center">
-        See Why Clients Love Us
+        See Why Clients{" "}
+        <span className="text-[var(--primary-color)]">Love Us</span>
       </h2>
 
       <Slider {...settings} className="cursor-grab">

@@ -60,7 +60,7 @@ const LifeStyleSection = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white py-12 relative">
+    <div className="bg-white dark:bg-black text-black dark:text-white py-12 relative custom-gradient-lines">
       <h2 className="uppercase text-center text-3xl md:text-4xl font-light mb-2 text-black dark:text-gray-100 font-raleway">
         Live the Dubai Lifestyle
       </h2>

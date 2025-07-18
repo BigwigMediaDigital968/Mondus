@@ -5,6 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import logo from "../assets/logo mondus new (4).gif";
 import { ChevronDown, Facebook, Instagram, Youtube } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
+import LanguageSelector from "./LanguageSelector";
 
 declare global {
   interface Window {
@@ -90,6 +91,9 @@ const Navbar = () => {
               </a>
 
               <div className="flex gap-4">
+                <div className="notranslate">
+                  <LanguageSelector />
+                </div>
                 <button
                   onClick={() => setDarkMode(!darkMode)}
                   className="text-xl text-inherit"
@@ -162,6 +166,9 @@ const Navbar = () => {
 
               {/* Right Icons */}
               <div className="flex items-center space-x-6">
+                <div className="notranslate">
+                  <LanguageSelector />
+                </div>
                 <a
                   href="https://wa.me/+971521110795"
                   target="_blank"
@@ -174,17 +181,15 @@ const Navbar = () => {
                     Follow Us
                   </span>
                   <div
-                    className={`absolute top-12 -right-16 min-w-[150px] rounded shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto ${
-                      darkMode
-                        ? "bg-gray-800 text-white"
-                        : "bg-white text-black"
-                    }`}
+                    className={`absolute top-12 -right-16 min-w-[150px] rounded shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto border-b border-[var(--primary-color)]
+    ${darkMode ? "bg-black text-white" : "bg-white text-black"}
+   `}
                   >
                     <a
                       href="https://www.facebook.com/p/Mondus-Group-61554982800603"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-[var(--primary-color)] hover:text-white border-b border-[var(--primary-color)]"
                     >
                       <Facebook size={16} />
                       Facebook
@@ -193,7 +198,7 @@ const Navbar = () => {
                       href="https://www.instagram.com/mondusproperties/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-[var(--primary-color)] hover:text-white border-b border-[var(--primary-color)]"
                     >
                       <Instagram size={16} />
                       Instagram
@@ -202,7 +207,7 @@ const Navbar = () => {
                       href="https://www.tiktok.com/@mondus.properties"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-[var(--primary-color)] hover:text-white border-b border-[var(--primary-color)]"
                     >
                       <FaTiktok />
                       TikTok
@@ -211,7 +216,7 @@ const Navbar = () => {
                       href="https://www.youtube.com/@MondusPropertiesOfficial"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 hover:text-white"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-[var(--primary-color)] hover:text-white border-b border-[var(--primary-color)]"
                     >
                       <Youtube size={16} />
                       YouTube
@@ -266,12 +271,7 @@ const Navbar = () => {
         )}
       </nav>
 
-      {!isOpen && (
-        <div
-          id="google_translate_element"
-          className="fixed z-[999] right-[90px] top-6 translate-x-0 md:right-[260px] md:top-[22px] md:-translate-x-1/2"
-        />
-      )}
+      <div id="google_translate_element" className="hidden" />
     </>
   );
 };

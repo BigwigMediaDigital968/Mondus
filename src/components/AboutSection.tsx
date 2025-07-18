@@ -6,7 +6,7 @@ export default function AboutSection() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="bg-white dark:bg-black text-black dark:text-white px-4 py-12 md:py-20 flex justify-center relative overflow-hidden  font-raleway font-light dark:font-thin">
+    <section className="bg-white dark:bg-black text-black dark:text-white px-4 py-12 md:py-20 flex justify-center relative overflow-hidden  font-raleway font-light dark:font-thin custom-gradient-lines">
       <div className="p-[1px] bg-gradient-to-r from-[var(--primary-color)] via-black to-[var(--primary-color)] max-w-7xl w-full">
         <div className="bg-white dark:bg-black p-6 md:p-12 ">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-light tracking-wide text-[var(--primary-color)] mb-6">
@@ -23,9 +23,9 @@ export default function AboutSection() {
 
           <p className="text-sm md:text-base  mb-6 text-justify">
             Our team is comprised of experts of over 40 nationalities,
-            collectively speaking 30 languages, allowing us to communicate with
+            collectively speaking 10+ languages, allowing us to communicate with
             clients, understand their needs, and respond to any requests. With
-            over 500 real estate professionals on our team, we are passionate
+            over 150+ real estate professionals on our team, we are passionate
             about improving our professional skills.
           </p>
 
@@ -43,7 +43,7 @@ export default function AboutSection() {
               <div className="mt-6 space-y-4 text-sm md:text-base ">
                 <p>
                   Our database is constantly being updated and includes over
-                  5,000 properties, allowing our customers to choose a home to
+                  8,000 properties, allowing our customers to choose a home to
                   their taste in any of the emirates. Permanent partners of the
                   real estate agency MONDUS PROPERTIES include over 100 trusted
                   developers.
@@ -52,7 +52,7 @@ export default function AboutSection() {
                   We offer our clients off-plan properties in Dubai, as well as
                   homes in popular development projects that already have an
                   excellent reputation. In the year 2022 alone, our team members
-                  closed 10,000 successful deals with over 7,000 clients.
+                  closed 1000 successful deals with over 700 clients.
                 </p>
                 <p>
                   Information technology is only just emerging in the Dubai real

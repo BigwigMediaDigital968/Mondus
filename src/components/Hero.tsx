@@ -43,8 +43,8 @@ export default function Hero() {
 
       {/* Left Content */}
       <div className="font-raleway font-light relative z-10 w-full md:w-1/2  px-4  md:px-10 mb-8 lg:mb-0">
-        <h1 className="text-2xl md:text-3xl font-sans font-semibold mb-5">
-          Dream It. Live It. Own Your Home in Dubai.
+        <h1 className="text-3xl md:text-5xl  font-semibold mb-5 font-merriweather whitespace-pre-wrap">
+          {"Dream It. Live It. \nOwn Your Home in Dubai."}
         </h1>
         <h1 className="text-xl md:text-3xl leading-snug mb-6 uppercase">
           Luxury homes, prime investments and expert guidance WITH{" "}

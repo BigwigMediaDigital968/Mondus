@@ -6,6 +6,7 @@ import {
   FaBell,
   FaPhoneAlt,
   FaBook,
+  FaBuilding,
 } from "react-icons/fa";
 
 const GRADIENTS = [
@@ -15,6 +16,7 @@ const GRADIENTS = [
   "from-orange-500 via-amber-500 to-yellow-500",
   "from-rose-500 via-pink-500 to-red-500",
   "from-indigo-500 via-purple-500 to-pink-500",
+  "from-sky-500 via-blue-500 to-indigo-600",
 ];
 
 const Dashboard = () => {
@@ -25,6 +27,7 @@ const Dashboard = () => {
     leads: 0,
     callbacks: 0,
     blogs: 0,
+    listedProperties: 0,
   });
 
   useEffect(() => {
@@ -47,6 +50,9 @@ const Dashboard = () => {
       fetch("https://mondus-backend.onrender.com/api/blogs/viewblog").then(
         (r) => r.json()
       ),
+      fetch("https://mondus-backend.onrender.com/api/listing").then((r) =>
+        r.json()
+      ),
     ]).then(
       ([
         subscribers,
@@ -55,6 +61,7 @@ const Dashboard = () => {
         leads,
         callbacks,
         blogs,
+        listedProperties,
       ]: unknown[]) => {
         setCounts({
           subscribers: (subscribers as any[]).length,
@@ -63,6 +70,7 @@ const Dashboard = () => {
           leads: (leads as any[]).length,
           callbacks: (callbacks as any[]).length,
           blogs: (blogs as any[]).length,
+          listedProperties: (listedProperties as any[]).length,
         });
       }
     );
@@ -90,6 +98,11 @@ const Dashboard = () => {
       title: "Blogs Data",
       icon: <FaBook />,
       count: counts.blogs,
+    },
+    {
+      title: "Listed Properties Data",
+      icon: <FaBuilding />,
+      count: counts.listedProperties,
     },
   ];
 

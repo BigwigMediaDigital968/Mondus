@@ -43,7 +43,7 @@ const ListProperty = () => {
               onClick={() => setShowForm(true)}
               className=" px-6 py-3 font-raleway font-light bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black  hover:opacity-90 transition"
             >
-              List Your Property
+              Submit Property
             </button>
           </div>
         </div>

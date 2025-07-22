@@ -50,9 +50,6 @@ const Career = () => {
         />
         <div className="absolute inset-0 bg-black/40 dark:bg-black/70 flex flex-col items-center justify-end py-5 text-center px-4">
           <h1 className="text-4xl md:text-6xl text-white mb-4">CAREERS</h1>
-          <p className="text-lg md:text-2xl text-white">
-            What clients say about us
-          </p>
         </div>
       </section>
 
@@ -60,14 +57,16 @@ const Career = () => {
         <div>
           <div className="grid md:grid-cols-2 gap-10 mb-10">
             <h2 className="text-3xl md:text-4xl">
-              Build a career in an innovative real estate agency
+              Join a Leading Real Estate Company in Dubai
             </h2>
             <p className="text-sm md:text-base  leading-relaxed">
-              Our sole focus is to ensure that the client's apartment or villa
-              is designed and furnished with their ideas and personalities. We
-              provide an interior decor consultation, turnkey solutions, project
-              management, home decorating and furniture selection to help you
-              realize your dream.
+              If you're looking to grow with a top real estate company in Dubai
+              that values innovation, design, and client satisfaction, Mondus
+              Properties welcomes you. As a trusted name in Dubai real estate,
+              we handle premium projects in Dubai Creek Harbour, Palm Jumeirah,
+              Dubai Hills Estates, and beyond. Join the team that's reshaping
+              how people explore luxury homes and premium apartments across
+              Dubai and the UAE.
             </p>
           </div>
 
@@ -109,13 +108,14 @@ const Career = () => {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           {/* Left Side */}
           <div>
-            <h2 className="text-3xl md:text-4xl mb-4">WORK WITH US</h2>
+            <h2 className="text-3xl md:text-4xl mb-4">
+              Let’s Build Dubai’s Real Estate Future Together
+            </h2>
             <p className="text-sm md:text-base leading-relaxed">
-              <span className="font-semibold">Mondus Properties</span> strives
-              to build a team of talented professionals and is passionate about
-              helping them do what they love throughout their career here. We
-              are always on the lookout for enthusiastic and driven people,
-              offering countless prospects and professional growth.
+              Help clients sell smarter and match them with ideal properties.
+              You’ll be shaping lives and building futures. If you're ready to
+              grow with one of the UAE’s leading real estate companies, apply
+              now and make your mark.
             </p>
           </div>
 

@@ -4,10 +4,10 @@ const SendResume = () => {
       <div className="w-full md:w-[90%] bg-gradient-to-r from-[var(--primary-color)] via-gray-900 to-[var(--primary-color)] p-[1px] bg-center">
         <div className="bg-white dark:bg-black px-8 py-10 sm:px-16 sm:py-14 transition-colors duration-300">
           <h2 className="text-center text-xl sm:text-2xl tracking-wide font-light mb-2">
-            SEND RESUME
+            Join Our Team
           </h2>
           <p className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-10">
-            Apply now and we will get back to you shortly
+            Send us your resume and we'll connect with you soon.
           </p>
 
           <form className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">

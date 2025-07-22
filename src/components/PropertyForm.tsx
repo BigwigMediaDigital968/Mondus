@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
 type Props = {
   onClose: () => void;
 };
@@ -13,32 +15,62 @@ const PropertyForm: React.FC<Props> = ({ onClose }) => {
     bedrooms: "",
     size: "",
     message: "",
-    titleDeed: false,
   });
+
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const target = e.target;
-
-    const name = target.name;
-    const value =
-      target instanceof HTMLInputElement && target.type === "checkbox"
-        ? target.checked
-        : target.value;
-
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Submission:", formData);
-    onClose();
+    setLoading(true);
+    setSuccessMsg("");
+
+    try {
+      const res = await fetch(`${baseURL}/api/listing`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        console.log("✅ Property submitted:", data);
+        setSuccessMsg("Your property listing has been submitted successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          bedrooms: "",
+          size: "",
+          message: "",
+        });
+
+        setTimeout(() => {
+          setSuccessMsg("");
+          onClose();
+        }, 3000);
+      } else {
+        console.error("❌ Submission failed:", data.message || data.error);
+      }
+    } catch (error) {
+      console.error("❌ Network error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,13 +87,16 @@ const PropertyForm: React.FC<Props> = ({ onClose }) => {
         <h2 className="text-2xl font-bold mb-6 text-[#0a1f44]">
           Property Details
         </h2>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             name="name"
             placeholder="Your Name *"
             className="w-full border p-3 rounded"
             required
+            value={formData.name}
             onChange={handleChange}
+            disabled={loading}
           />
           <input
             name="email"
@@ -69,21 +104,27 @@ const PropertyForm: React.FC<Props> = ({ onClose }) => {
             placeholder="Your Email Address *"
             className="w-full border p-3 rounded"
             required
+            value={formData.email}
             onChange={handleChange}
+            disabled={loading}
           />
           <input
             name="phone"
             placeholder="Your Phone Number *"
             className="w-full border p-3 rounded"
             required
+            value={formData.phone}
             onChange={handleChange}
+            disabled={loading}
           />
           <input
             name="address"
             placeholder="Your Property Address *"
             className="w-full border p-3 rounded"
             required
+            value={formData.address}
             onChange={handleChange}
+            disabled={loading}
           />
 
           <div className="flex gap-4">
@@ -91,7 +132,9 @@ const PropertyForm: React.FC<Props> = ({ onClose }) => {
               name="bedrooms"
               className="w-1/2 border p-3 rounded"
               required
+              value={formData.bedrooms}
               onChange={handleChange}
+              disabled={loading}
             >
               <option value="">Bedrooms *</option>
               <option value="1">1 Bedroom</option>
@@ -104,7 +147,9 @@ const PropertyForm: React.FC<Props> = ({ onClose }) => {
               placeholder="Size *"
               className="w-1/2 border p-3 rounded"
               required
+              value={formData.size}
               onChange={handleChange}
+              disabled={loading}
             />
           </div>
 
@@ -114,30 +159,30 @@ const PropertyForm: React.FC<Props> = ({ onClose }) => {
             className="w-full border p-3 rounded"
             rows={4}
             required
+            value={formData.message}
             onChange={handleChange}
+            disabled={loading}
           />
-
-          <div className="flex items-center gap-2">
-            <input type="checkbox" name="titleDeed" onChange={handleChange} />
-            <label htmlFor="titleDeed" className="text-sm text-gray-700">
-              Do you have a title deed?
-            </label>
-          </div>
 
           <button
             type="submit"
-            className="bg-[#f59e0b] hover:bg-[#d97706] text-white font-semibold px-6 py-3 rounded shadow-md transition-all duration-200"
+            disabled={loading}
+            className={`bg-[#f59e0b] hover:bg-[#d97706] text-white font-semibold px-6 py-3 rounded shadow-md transition-all duration-200 ${
+              loading ? "opacity-60 cursor-not-allowed" : ""
+            }`}
           >
-            Send Message
+            {loading ? "Submitting..." : "Send Message"}
           </button>
+
+          {successMsg && (
+            <p className="text-green-600 text-sm text-center mt-2">
+              {successMsg}
+            </p>
+          )}
 
           <p className="text-xs text-gray-600 mt-2">
             By clicking Submit, you agree to our{" "}
-            <a href="#" className="underline">
-              Terms & Conditions
-            </a>{" "}
-            and{" "}
-            <a href="#" className="underline">
+            <a href="/privacy" className="underline">
               Privacy Policy
             </a>
             .

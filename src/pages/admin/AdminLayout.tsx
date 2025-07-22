@@ -1,36 +1,33 @@
-import {
-  FaTachometerAlt,
-  FaEnvelope,
-  FaMailBulk,
-  FaUsers,
-  FaCommentDots,
-  FaClipboardList,
-  FaRobot,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../assets/logo mondus new (4).gif";
-import { NotebookPen } from "lucide-react";
+import {
+  Bot,
+  Building2,
+  ClipboardList,
+  Gauge,
+  Mail,
+  MailPlus,
+  MessagesSquare,
+  NotebookPen,
+  Users,
+} from "lucide-react";
 
 const AdminLayout = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { icon: <FaTachometerAlt />, label: "Dashboard", to: "/admin" },
-    { icon: <FaEnvelope />, label: "Newsletter", to: "/admin/newsletter" },
-    { icon: <FaMailBulk />, label: "Emailer", to: "/admin/emailer" },
-    { icon: <FaUsers />, label: "Subscriber", to: "/admin/subscriber" },
-    { icon: <FaCommentDots />, label: "Leads", to: "/admin/contacts" },
-    {
-      icon: <FaClipboardList />,
-      label: "Call Back Leads",
-      to: "/admin/request",
-    },
-    { icon: <FaRobot />, label: "Chat Leads", to: "/admin/chatleads" },
+    { icon: <Gauge />, label: "Dashboard", to: "/admin" },
+    { icon: <Mail />, label: "Newsletter", to: "/admin/newsletter" },
+    { icon: <MailPlus />, label: "Emailer", to: "/admin/emailer" },
+    { icon: <Users />, label: "Subscriber", to: "/admin/subscriber" },
+    { icon: <MessagesSquare />, label: "Leads", to: "/admin/contacts" },
+    { icon: <ClipboardList />, label: "Call Back Leads", to: "/admin/request" },
+    { icon: <Bot />, label: "Chat Leads", to: "/admin/chatleads" },
     { icon: <NotebookPen />, label: "Blogs", to: "/admin/blogs" },
+    { icon: <Building2 />, label: "Listed Properties", to: "/admin/listing" },
   ];
 
   return (

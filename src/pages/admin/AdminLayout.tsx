@@ -4,6 +4,7 @@ import { useState } from "react";
 import logo from "../../assets/logo mondus new (4).gif";
 import {
   Bot,
+  Briefcase,
   Building2,
   ClipboardList,
   Gauge,
@@ -28,6 +29,7 @@ const AdminLayout = () => {
     { icon: <Bot />, label: "Chat Leads", to: "/admin/chatleads" },
     { icon: <NotebookPen />, label: "Blogs", to: "/admin/blogs" },
     { icon: <Building2 />, label: "Listed Properties", to: "/admin/listing" },
+    { icon: <Briefcase />, label: "Opportunity", to: "/admin/opportunity" },
   ];
 
   return (

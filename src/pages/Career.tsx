@@ -1,47 +1,35 @@
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import SendResume from "../components/SendResume";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const jobs = [
-  {
-    title: "Social Media Handler cum Content Creator",
-    date: "Jan 09, 2025",
-    location: "Dubai",
-    salary: "Competitive salary",
-    description:
-      "Mondus Properties is a leading real estate company committed to delivering innovative and sustainable properties that transform lifestyles. We’re looking for a creative and tech-savvy Social Media Handler cum Content Creator to enhance our online presence and effectively communicate our brand story.",
-  },
-  {
-    title: "Marketing Head",
-    date: "Jan 09, 2025",
-    location: "Dubai",
-    salary: "Competitive salary",
-    description:
-      "Mondus Properties is a leading name in the real estate industry, known for delivering innovative, sustainable, and high-quality properties that enhance lifestyles. As we continue to expand, we are seeking a dynamic and experienced Marketing Head to lead our marketing strategies and drive brand growth.",
-  },
-  {
-    title: "Sales Manager",
-    date: "Nov 07, 2024",
-    location: "Dubai",
-    salary: "Competitive salary",
-    description:
-      "Mondus Properties is seeking an experienced and driven Sales Manager to lead our real estate sales team. In this role, you will be responsible for managing and guiding a team of property consultants, developing sales strategies, and achieving company sales targets. You will leverage your market knowledge and leadership skills to drive sales growth, enhance client satisfaction, and build a high-performing team.",
-  },
-  {
-    title: "Property Consultant",
-    date: "Nov 07, 2024",
-    location: "Dubai",
-    salary: "Competitive Commission",
-    description:
-      "Mondus Properties is seeking a motivated Property Consultant to join our team. In this role, you will assist clients with buying, selling, and renting properties, providing expert advice and personalized service. You’ll leverage market insights to guide clients through every step of the property transaction.",
-  },
-];
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
+// 👇 Define the shape of a job opportunity
+interface Opportunity {
+  title: string;
+  postedAt: string;
+  description: string;
+  location?: string;
+  type?: string;
+}
 
 const Career = () => {
+  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/api/opportunity`)
+      .then((res) => setOpportunities(res.data))
+      .catch((err) => console.error("Failed to fetch opportunities", err));
+  }, []);
+
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <Navbar />
 
+      {/* Hero Section */}
       <section className="relative h-screen w-full">
         <img
           src="https://www.axcapital.ae/_ipx/s_1920x960/img/careers/careers-banner.webp"
@@ -53,13 +41,14 @@ const Career = () => {
         </div>
       </section>
 
+      {/* Intro Section */}
       <section className="w-full md:w-[90%] mx-auto px-4 py-12">
         <div>
           <div className="grid md:grid-cols-2 gap-10 mb-10">
             <h2 className="text-3xl md:text-4xl">
               Join a Leading Real Estate Company in Dubai
             </h2>
-            <p className="text-sm md:text-base  leading-relaxed">
+            <p className="text-sm md:text-base leading-relaxed">
               If you're looking to grow with a top real estate company in Dubai
               that values innovation, design, and client satisfaction, Mondus
               Properties welcomes you. As a trusted name in Dubai real estate,
@@ -104,9 +93,9 @@ const Career = () => {
         </div>
       </section>
 
+      {/* Call to Action Section */}
       <section className="w-full md:w-[90%] mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-10 items-center">
-          {/* Left Side */}
           <div>
             <h2 className="text-3xl md:text-4xl mb-4">
               Let’s Build Dubai’s Real Estate Future Together
@@ -119,7 +108,6 @@ const Career = () => {
             </p>
           </div>
 
-          {/* Right Side */}
           <div>
             <p className="text-sm md:text-base leading-relaxed">
               <span className="font-semibold">Mondus Properties</span> is always
@@ -130,33 +118,48 @@ const Career = () => {
         </div>
       </section>
 
-      <div className="w-full md:w-[90%] mx-auto px-4 py-10 font-raleway">
-        <h1 className="text-4xl mb-4">OPPORTUNITIES</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {jobs.map((job, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-lg transition"
-            >
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                  {job.title}
-                </h3>
-                <span className="text-sm text-gray-500 dark:text-gray-400">
-                  {job.date}
-                </span>
+      {/* Opportunities Section */}
+      <section className="w-full md:w-[90%] mx-auto px-4 py-10 font-raleway">
+        <h1 className="text-3xl mb-4">OPPORTUNITIES</h1>
+
+        {opportunities.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {opportunities.map((job, index) => (
+              <div
+                key={index}
+                className="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-lg transition"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                    {job.title}
+                  </h3>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {new Date(job.postedAt).toLocaleDateString()}
+                  </span>
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                  {job.description}
+                </p>
+                <div className="flex flex-wrap text-sm text-gray-600 dark:text-gray-400 gap-4">
+                  {job.location && <span>📍 {job.location}</span>}
+                  {job.type && <span>🕒 {job.type}</span>}
+                </div>
               </div>
-              <p className="text-gray-700 dark:text-gray-300 mb-3">
-                {job.description}
-              </p>
-              <div className="flex flex-wrap text-sm text-gray-600 dark:text-gray-400 gap-4">
-                <span>📍 {job.location}</span>
-                <span>💰 {job.salary}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+            ))}
+          </div>
+        ) : (
+          <div className="p-6 text-center text-gray-600 dark:text-gray-400 border border-dashed border-gray-300 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-neutral-900">
+            <h2 className="text-2xl mb-2 font-semibold">
+              No Job Openings Currently
+            </h2>
+            <p className="text-sm">
+              We're not hiring at the moment, but we're always open to talent.
+              <br />
+              Please check back later or send your resume to keep in touch!
+            </p>
+          </div>
+        )}
+      </section>
 
       <SendResume />
       <Footer />

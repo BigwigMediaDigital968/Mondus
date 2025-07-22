@@ -42,6 +42,7 @@ import { FiPhone } from "react-icons/fi";
 import ChatbotLead from "./pages/admin/ChatbotLead";
 import AdminBlog from "./pages/admin/AdminBlog";
 import AdminListings from "./pages/admin/Listing";
+import Opportunity from "./pages/admin/Opportunity";
 
 // ✅ Custom wrapper to access location inside App
 function AppWrapper() {
@@ -85,6 +86,7 @@ function AppWrapper() {
           <Route path="sendemailer" element={<Emailer />} />
           <Route path="blogs" element={<AdminBlog />} />
           <Route path="listing" element={<AdminListings />} />
+          <Route path="opportunity" element={<Opportunity />} />
         </Route>
       </Routes>
 

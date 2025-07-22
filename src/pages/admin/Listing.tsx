@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// const baseURL = import.meta.env.VITE_API_BASE_URL;
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 interface Listing {
   _id: string;
@@ -17,7 +17,7 @@ const AdminListings = () => {
   const [listings, setListings] = useState<Listing[]>([]);
 
   useEffect(() => {
-    fetch(`https://mondus-backend.onrender.com/api/listing`)
+    fetch(`${baseURL}/api/listing`)
       .then((res) => res.json())
       .then((data) => setListings(data))
       .catch((err) => console.error("Error fetching listings:", err));

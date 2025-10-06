@@ -1,10 +1,25 @@
 import { useParams } from "react-router-dom";
-import properties from "../data/OffPlanData.json";
+import propertiesData from "../data/OffPlanData.json";
+const properties = propertiesData as Property[];
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import { FaBath, FaBed, FaMapMarkerAlt, FaHome } from "react-icons/fa";
 import { useEffect } from "react";
 import NotifyMe from "../components/NotifyMe";
+
+type Property = {
+  id: number;
+  title: string;
+  location: string;
+  type: string;
+  developer: string;
+  price: string;
+  image: string;
+  beds: number;
+  baths: number;
+  featuresAndAmenities: string[];
+  description: string;
+};
 
 const OffPlanDetails = () => {
   const { slug } = useParams();

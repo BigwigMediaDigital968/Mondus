@@ -1,12 +1,27 @@
 import "leaflet/dist/leaflet.css";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
-import properties from "../data/OffPlanData.json";
+import propertiesData from "../data/OffPlanData.json";
+const properties = propertiesData as Property[];
 
 import { useNavigate } from "react-router-dom";
 import NotifyMe from "../components/NotifyMe";
 
-const PropertyCard = ({ property }: { property: (typeof properties)[0] }) => {
+type Property = {
+  id: number;
+  title: string;
+  location: string;
+  type: string;
+  developer: string;
+  price: string;
+  image: string;
+  beds: number;
+  baths: number;
+  featuresAndAmenities: string[];
+  description: string;
+};
+
+const PropertyCard = ({ property }: { property: Property }) => {
   const navigate = useNavigate();
 
   const slug = `${property.title
@@ -68,11 +83,18 @@ const OffPlan = () => {
 
       {/* Property Cards Section */}
       <section className="px-4 sm:px-6 py-24 md:w-[90%] mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {properties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
-        </div>
+        {properties.length === 0 ? (
+          <p className="text-center text-gray-700 dark:text-gray-300 text-lg">
+            No off-plan properties available at the moment. Please check back
+            soon.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {properties.map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))}
+          </div>
+        )}
       </section>
       <NotifyMe />
       <Footer />

@@ -118,8 +118,8 @@ const NotifyMe = () => {
   };
 
   return (
-    <section className="bg-white dark:bg-black text-black dark:text-white py-10 px-4 md:px-20 font-raleway transition-colors duration-300">
-      <div className="w-11/12 mx-auto bg-gradient-to-r from-[var(--primary-color)] via-gray-900 to-[var(--primary-color)] p-[1px]">
+    <section className="bg-white dark:bg-black text-black dark:text-white py-10 px-4 font-raleway transition-colors duration-300">
+      <div className="max-w-7xl mx-auto bg-gradient-to-r from-[var(--primary-color)] via-gray-900 to-[var(--primary-color)] p-[1px]">
         <div className="bg-white dark:bg-black p-8 md:p-12">
           <h2 className="text-2xl md:text-3xl font-light text-center mb-2">
             Schedule Your Consultation
@@ -229,7 +229,7 @@ const NotifyMe = () => {
                       name="countryCode"
                       value={formData.countryCode}
                       onChange={handleChange}
-                      className="w-[30%] mix-w-[100%] md:min-w-[90px] border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
+                      className="w-[30%] mix-w-[100%] md:min-w-[120px] border px-2 py-2 bg-white dark:bg-black border-gray-400 dark:border-gray-500"
                     >
                       <option value="+1">+1 (US)</option>
                       <option value="+44">+44 (UK)</option>

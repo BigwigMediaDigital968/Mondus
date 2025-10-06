@@ -187,8 +187,14 @@ const Buy: React.FC = () => {
           <div className="flex justify-center items-center min-h-[300px]">
             <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
           </div>
+        ) : saleData.length === 0 ? (
+          <p className="text-center text-gray-900 dark:text-gray-300 min-h-[300px] flex items-center justify-center">
+            No property data available. Please check back later.
+          </p>
         ) : properties.length === 0 ? (
-          <p className="text-center text-gray-900">No properties found.</p>
+          <p className="text-center text-gray-900 dark:text-gray-300 min-h-[300px] flex items-center justify-center">
+            No properties match your filters.
+          </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {properties.map((property, id) => (

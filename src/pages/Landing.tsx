@@ -6,7 +6,7 @@ import RealEstateExperts from "../components/expert";
 // import FindYourPartner from "../components/FindYourPartner";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
-import LifeStyleSection from "../components/LifestyleSection";
+// import LifeStyleSection from "../components/LifestyleSection";
 import ListProperty from "../components/listproperty";
 import Navbar from "../components/Nav";
 import NewsSubscribeSection from "../components/NewsLetterSection";
@@ -31,7 +31,7 @@ export const Landing = () => {
       <AwardsSection />
       <ReviewSection />
       <AboutSection />
-      <LifeStyleSection />
+      {/* <LifeStyleSection /> */}
       {/* <RealStateInsights /> */}
       {/* <PromptConsultation /> */}
       <NotifyMe />

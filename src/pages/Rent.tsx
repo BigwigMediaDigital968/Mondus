@@ -16,7 +16,7 @@ const Footer = lazy(() => import("../components/Footer"));
 const NotifyMe = lazy(() => import("../components/NotifyMe"));
 
 const Rent: React.FC = () => {
-  const [saleData, setSentData] = useState<any[]>([]);
+  const [rentData, setRentData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   const [bedroomFilter, setBedroomFilter] = useState<string>("");
@@ -32,7 +32,7 @@ const Rent: React.FC = () => {
         const cachedData = localStorage.getItem("rentProperties");
         if (cachedData) {
           // Use cached data
-          setSentData(JSON.parse(cachedData));
+          setRentData(JSON.parse(cachedData));
           setLoading(false);
         } else {
           // Fetch fresh data and cache it
@@ -40,7 +40,7 @@ const Rent: React.FC = () => {
             "https://mondus-backend.onrender.com/api/properties/rent"
           );
           const data = await response.json();
-          setSentData(data);
+          setRentData(data);
           localStorage.setItem("rentProperties", JSON.stringify(data));
           setLoading(false);
         }
@@ -53,7 +53,7 @@ const Rent: React.FC = () => {
     fetchData();
   }, []);
 
-  const properties = saleData.filter((property) => {
+  const properties = rentData.filter((property) => {
     const bedrooms = Number(property.properties.bedrooms_number || 0);
     const bathrooms = Number(property.properties.bathrooms_number || 0);
     const subarea = property.properties.link_subarea || "";
@@ -137,7 +137,7 @@ const Rent: React.FC = () => {
           <option value="">All Subareas</option>
           {[
             ...new Set(
-              saleData.map((p) => p.properties?.link_subarea).filter(Boolean)
+              rentData.map((p) => p.properties?.link_subarea).filter(Boolean)
             ),
           ]
             .sort()
@@ -157,7 +157,7 @@ const Rent: React.FC = () => {
           <option value="">All Property Types</option>
           {[
             ...new Set(
-              saleData.map((p) => p.properties?.property_type).filter(Boolean)
+              rentData.map((p) => p.properties?.property_type).filter(Boolean)
             ),
           ]
             .sort()
@@ -191,8 +191,14 @@ const Rent: React.FC = () => {
           <div className="flex justify-center items-center min-h-[300px]">
             <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
           </div>
+        ) : rentData.length === 0 ? (
+          <p className="text-center text-gray-900 dark:text-gray-300 min-h-[300px] flex items-center justify-center">
+            No property data available. Please check back later.
+          </p>
         ) : properties.length === 0 ? (
-          <p className="text-center text-gray-900">No properties found.</p>
+          <p className="text-center text-gray-900 dark:text-gray-300 min-h-[300px] flex items-center justify-center">
+            No properties match your filters.
+          </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {properties.map((property, id) => (

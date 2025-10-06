@@ -40,6 +40,7 @@ const Navbar = () => {
     { label: "Blogs", path: "/blogs" },
     { label: "Catalogs", path: "/catalogs" },
     { label: "About Us", path: "/about" },
+    { label: "Contact Us", path: "/contact" },
   ];
 
   const dropdownItems = [

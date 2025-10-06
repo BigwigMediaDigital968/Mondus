@@ -9,9 +9,9 @@ const About = () => {
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <Navbar />
-      <section className="relative h-screen w-full">
+      <section className="relative h-[50vh] md:h-[100vh] w-full">
         <img
-          src="https://mondusproperties.ae/storage/yoyo.png"
+          src="https://www.axcapital.ae/_ipx/s_1920x960/img/intro/offplan.webp"
           alt="About"
           className="h-full w-full object-cover"
         />

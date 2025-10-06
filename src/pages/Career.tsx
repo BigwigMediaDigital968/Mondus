@@ -30,7 +30,7 @@ const Career = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-screen w-full">
+      <section className="relative h-[50vh] md:h-[100vh] w-full">
         <img
           src="https://www.axcapital.ae/_ipx/s_1920x960/img/careers/careers-banner.webp"
           alt="Career"

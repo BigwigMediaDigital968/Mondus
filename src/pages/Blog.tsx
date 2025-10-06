@@ -57,7 +57,7 @@ const Blog = () => {
     <div className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
       <Navbar />
 
-      <section className="relative h-screen w-full">
+      <section className="relative h-[50vh] md:h-[100vh] w-full">
         <img
           src={blogHeroImage}
           alt="Blog Hero"

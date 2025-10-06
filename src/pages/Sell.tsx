@@ -8,7 +8,7 @@ const Sell = () => {
       <Navbar />
 
       {/* Hero Image with Overlay Text */}
-      <section className="relative h-screen w-full">
+      <section className="relative h-[50vh] md:h-[100vh] w-full">
         <img
           src="https://www.axcapital.ae/_ipx/s_1920x960/img/sell/sell-banner.webp" // Replace with your actual image path
           alt="Off Plan Hero"

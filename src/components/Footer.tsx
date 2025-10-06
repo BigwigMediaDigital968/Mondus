@@ -44,13 +44,11 @@ const Footer = () => {
               { label: "Off-Plan", path: "/offplan" },
             ],
             [
-              { label: "Catalogs", path: "/catalogs" },
-              { label: "Area Guides", path: "/area-guides" },
-              { label: "Developers", path: "/developers" },
-            ],
-            [
               { label: "Careers", path: "/careers" },
               { label: "Contact Us", path: "/contact" },
+              { label: "Catalogs", path: "/catalogs" },
+              // { label: "Area Guides", path: "/area-guides" },
+              { label: "Developers", path: "/developers" },
             ],
           ].map((group, idx) => (
             <ul key={idx} className="space-y-4">

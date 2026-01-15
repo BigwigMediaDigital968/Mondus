@@ -176,12 +176,12 @@ const Footer = () => {
         <div className="hidden sm:flex flex-row justify-between items-center w-full">
           <span>Mondus ©2025 All Rights Reserved</span>
           <a
-            href="https://www.bigwigdigital.in/"
+            href="https://www.bigwigmediadigital.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-[var(--primary-color)] text-[var(--primary-color)] px-4 py-3 uppercase text-sm tracking-widest  text-center"
           >
-            Made & Marketed with ❤️ by Bigwig Digital
+            Made & Marketed with ❤️ by Bigwig Media Digital
           </a>
           <div className="flex gap-4">
             {["Terms of Use", "Privacy Policy"].map((item, idx) => (

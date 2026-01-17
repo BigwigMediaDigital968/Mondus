@@ -1,6 +1,9 @@
 import { useState } from "react";
+type NotifyMeProps = {
+  onVerified?: () => void; // ✅ optional
+};
 
-const NotifyMe = ({ onVerified }: { onVerified: () => void }) => {
+const NotifyMe = ({ onVerified }: NotifyMeProps) => {
   const [formData, setFormData] = useState({
     purpose: "Buy",
     category: "Apartment",
@@ -107,7 +110,7 @@ const NotifyMe = ({ onVerified }: { onVerified: () => void }) => {
         setOtp("");
         setStep(1);
         sessionStorage.removeItem("formData");
-        onVerified();
+        onVerified?.();
       } else {
         setMessage("❌ " + (data.error || "OTP verification failed."));
       }

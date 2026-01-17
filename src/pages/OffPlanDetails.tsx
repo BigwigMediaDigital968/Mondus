@@ -26,7 +26,7 @@ const OffPlanDetails = () => {
   const decodedTitle = slug?.replace(/-/g, " ").toLowerCase();
 
   const property = properties.find(
-    (item) => item.title.toLowerCase().replace(/\s+/g, " ") === decodedTitle
+    (item) => item.title.toLowerCase().replace(/\s+/g, " ") === decodedTitle,
   );
 
   useEffect(() => {

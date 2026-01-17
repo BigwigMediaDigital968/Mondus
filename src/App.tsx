@@ -5,6 +5,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
+
 import { Landing } from "./pages/Landing";
 import AgentDetail from "./pages/AgentDetail";
 import AgentsSection from "./components/Agents";
@@ -92,6 +93,19 @@ function AppWrapper() {
 
       {/* ✅ Show chatbot only on non-admin routes */}
       {!isAdminRoute && <Chatbot />}
+
+      {/* Whatsapp icon */}
+      {!isAdminRoute && (
+        <a
+          href="https://wa.me/971521110795"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+          className="fixed bottom-[140px] right-6 p-4 hidden md:block rounded-full bg-[var(--primary-color)] text-white shadow-lg hover:scale-105  transition z-50 items-center justify-center"
+        >
+          <FaWhatsapp size={22} />
+        </a>
+      )}
 
       {/* Sticky bottom bar on mobile (always shown) */}
       <div className="fixed bottom-0 left-0 w-full flex md:hidden z-[9999]">

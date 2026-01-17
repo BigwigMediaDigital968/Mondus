@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
+import NotifyMe from "./NotifyMe";
 
 interface CatalogCardProps {
   title: string;
@@ -38,7 +39,7 @@ const CatalogCard: React.FC<CatalogCardProps> = ({
 
           const ratio = Math.min(
             pageWidth / img.width,
-            pageHeight / img.height
+            pageHeight / img.height,
           );
           const imgWidth = img.width * ratio;
           const imgHeight = img.height * ratio;
@@ -58,25 +59,87 @@ const CatalogCard: React.FC<CatalogCardProps> = ({
     pdf.save(`${title}.pdf`);
   };
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [verified, setVerified] = useState(false);
+
+  useEffect(() => {
+    if (verified) handleDownload();
+  }, [verified]);
+
   return (
-    <div className=" border border-gray-700 p-4 text-white max-w-sm">
-      <h2 className="text-lg font-semibold">{title}</h2>
-      <p className="text-sm text-gray-400 mb-2 font-light">{subtitle}</p>
-      <div className="flex justify-between text-sm text-[#c28b66] cursor-pointer">
-        <span className="hover:underline font-light" onClick={handleDownload}>
+    <>
+      {/* Modal popup */}
+      {showPopup && (
+        <div className="fixed inset-0 z-[9999] bg-black/60 flex items-center justify-center px-4">
+          <div className="bg-white dark:bg-black max-w-5xl w-full p-6 relative">
+            {/* Close */}
+            <button
+              onClick={() => {
+                setShowPopup(false);
+                setVerified(false);
+              }}
+              className="absolute top-4 right-4 text-xl"
+            >
+              ✕
+            </button>
+
+            <div className="w-full max-w-7xl mx-auto">
+              {!verified ? (
+                <NotifyMe onVerified={() => setVerified(true)} />
+              ) : (
+                <div className="flex flex-col items-center justify-center text-center py-10">
+                  <p className="mb-6 text-green-600 text-lg font-medium">
+                    ✅ Verification successful
+                  </p>
+                  <button
+                    onClick={handleDownload}
+                    className="
+          bg-[var(--primary-color)]
+          px-8 py-3
+          text-white
+          uppercase
+          tracking-wider
+          text-sm
+          hover:opacity-90
+          transition
+        "
+                  >
+                    Download PDF
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Cataloug cards */}
+      <div className=" border border-gray-700 p-4 text-white max-w-sm">
+        <h2 className="text-lg font-semibold">{title}</h2>
+        <p className="text-sm text-gray-400 mb-2 font-light">{subtitle}</p>
+        <div className="flex justify-between text-sm text-[#c28b66] cursor-pointer">
+          {/* <span className="hover:underline font-light" onClick={handleDownload}>
           DOWNLOAD
-        </span>
-        <span className="hover:underline font-light" onClick={onPreview}>
-          PREVIEW
-        </span>
+        </span> */}
+          <span
+            className="hover:underline font-light"
+            onClick={() => setShowPopup(true)}
+          >
+            DOWNLOAD
+          </span>
+
+          <span className="hover:underline font-light" onClick={onPreview}>
+            PREVIEW
+          </span>
+        </div>
+        <img
+          src={imageUrl}
+          alt={title}
+          className="mt-4 w-full h-96 object-cover"
+          draggable="false"
+        />
       </div>
-      <img
-        src={imageUrl}
-        alt={title}
-        className="mt-4 w-full h-96 object-cover"
-        draggable="false"
-      />
-    </div>
+    </>
   );
 };
 

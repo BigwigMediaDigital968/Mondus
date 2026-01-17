@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
+import PromptConsultation from "../components/PromptConsultation";
 
 interface BlogType {
   title: string;
@@ -26,7 +27,7 @@ const BlogDetails = () => {
       setError("");
       try {
         const res = await axios.get(
-          `https://mondus-backend.onrender.com/api/blogs/viewblog`
+          `https://mondus-backend.onrender.com/api/blogs/viewblog`,
         );
         const blogList: BlogType[] = res.data;
         console.log("Fetched blogs:", blogList);
@@ -80,6 +81,8 @@ const BlogDetails = () => {
           dangerouslySetInnerHTML={{ __html: blog.content }}
         />
       </div>
+
+      <PromptConsultation />
       <Footer />
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NotifyMe = () => {
+const NotifyMe = ({ onVerified }: { onVerified: () => void }) => {
   const [formData, setFormData] = useState({
     purpose: "Buy",
     category: "Apartment",
@@ -55,7 +55,7 @@ const NotifyMe = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...formData, phone: fullPhone }),
-        }
+        },
       );
 
       const data = await response.json();
@@ -87,7 +87,7 @@ const NotifyMe = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...formData, phone: fullPhone, otp }),
-        }
+        },
       );
 
       const data = await res.json();
@@ -107,6 +107,7 @@ const NotifyMe = () => {
         setOtp("");
         setStep(1);
         sessionStorage.removeItem("formData");
+        onVerified();
       } else {
         setMessage("❌ " + (data.error || "OTP verification failed."));
       }
@@ -305,8 +306,8 @@ const NotifyMe = () => {
                 {loading
                   ? "Please wait..."
                   : step === 1
-                  ? "Send OTP"
-                  : "Verify OTP"}
+                    ? "Send OTP"
+                    : "Verify OTP"}
               </button>
             </div>
           </form>

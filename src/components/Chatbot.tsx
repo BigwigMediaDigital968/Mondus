@@ -32,10 +32,10 @@ const Chatbot: React.FC = () => {
       const savedMessages = sessionStorage.getItem("mondus-chat-messages");
       const savedUserInfo = sessionStorage.getItem("mondus-chat-userInfo");
       const savedUserDetailsCaptured = sessionStorage.getItem(
-        "mondus-chat-userDetailsCaptured"
+        "mondus-chat-userDetailsCaptured",
       );
       const savedSelectedPurpose = sessionStorage.getItem(
-        "mondus-chat-purpose"
+        "mondus-chat-purpose",
       );
 
       if (savedMessages) {
@@ -51,7 +51,7 @@ const Chatbot: React.FC = () => {
         setMessages([welcome]);
         sessionStorage.setItem(
           "mondus-chat-messages",
-          JSON.stringify([welcome])
+          JSON.stringify([welcome]),
         );
       }
 
@@ -95,7 +95,7 @@ const Chatbot: React.FC = () => {
   useEffect(() => {
     sessionStorage.setItem(
       "mondus-chat-userDetailsCaptured",
-      String(userDetailsCaptured)
+      String(userDetailsCaptured),
     );
   }, [userDetailsCaptured]);
 
@@ -119,7 +119,7 @@ const Chatbot: React.FC = () => {
 
       if (!userDetailsCaptured) {
         const emailMatch = trimmedInput.match(
-          /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/
+          /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/,
         );
         const namePart = trimmedInput.replace(emailMatch?.[0] || "", "").trim();
 
@@ -165,7 +165,7 @@ const Chatbot: React.FC = () => {
             message: trimmedInput,
             chatHistory: [...messages, newUserMsg],
           }),
-        }
+        },
       );
 
       const data = await res.json();
@@ -251,7 +251,7 @@ const Chatbot: React.FC = () => {
                           isLead: true,
                           chatHistory: messages,
                         }),
-                      }
+                      },
                     );
                   }}
                 >

@@ -28,7 +28,7 @@ const Blog = () => {
     const fetchBlogs = async () => {
       try {
         const res = await fetch(
-          "https://mondus-backend.onrender.com/api/blogs/viewblog"
+          "https://mondus-backend.onrender.com/api/blogs/viewblog",
         );
         const data = await res.json();
         setBlogs(data);
